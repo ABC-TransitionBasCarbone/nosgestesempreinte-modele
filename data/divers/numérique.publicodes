@@ -381,7 +381,7 @@ divers . numérique . appareils . téléphone . nombre:
   titre: Nombre de téléphones
   question: Utilisez-vous un téléphone ?
   plancher: 0
-  par défaut: 1
+  par défaut: 0
 divers . numérique . appareils . téléphone . durée:
   titre: Durée de vie d'un téléphone
   formule: 2.5
@@ -463,7 +463,7 @@ divers . numérique . appareils . ordinateur portable . nombre:
   titre: Nombre d'ordinateurs portables
   question: Utilisez-vous un ordinateur portable ?
   plancher: 0
-  par défaut: 1
+  par défaut: 0
 divers . numérique . appareils . ordinateur portable . durée:
   titre: Durée de vie d'un ordinateur portable
   formule: 3
@@ -485,7 +485,7 @@ divers . numérique . appareils . ordinateur fixe . nombre:
   titre: Nombre d'ordinateurs fixes
   question: Utilisez-vous un ordinateur fixe ?
   plancher: 0
-  par défaut: 1
+  par défaut: 0
 divers . numérique . appareils . ordinateur fixe . durée:
   titre: Durée de vie d'un ordinateur fixe
   formule: 6
@@ -541,7 +541,7 @@ divers . numérique . appareils . TV . nombre:
   titre: Nombre de TV
   question: Utilisez-vous une TV ?
   plancher: 0
-  par défaut: 1
+  par défaut: 0
 divers . numérique . appareils . TV . durée:
   titre: Durée de vie d'une TV
   formule: 8

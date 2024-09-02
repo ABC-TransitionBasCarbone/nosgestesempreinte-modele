@@ -324,6 +324,15 @@ axios@^1.6.4:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
+axios@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.4.tgz#4c8ded1b43683c8dd362973c393f3ede24052aa2"
+  integrity sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -665,7 +674,17 @@ debug@^4, debug@~4.3.1, debug@~4.3.2, debug@~4.3.4:
   dependencies:
     ms "2.1.2"
 
-deepl-node@^1.10.2, deepl-node@^1.7.0:
+deepl-node@^1.10.2:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/deepl-node/-/deepl-node-1.13.1.tgz#00efe900c64b688f2d5f62ae8563fcbeacb7c18e"
+  integrity sha512-J1Y4+FYNxxTyqKiTM83Vub8Fm6/z6ZlV7yFKJ59Oi5dWXjdILQWd8UR4eiNF+pJtTBH5ObRv1cdUrRyUuN5VDg==
+  dependencies:
+    "@types/node" ">=12.0"
+    axios "^1.7.4"
+    form-data "^3.0.0"
+    loglevel ">=1.6.2"
+
+deepl-node@^1.7.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/deepl-node/-/deepl-node-1.11.1.tgz#e4ce8409ea874aa46c435ac80e1fe639b0795123"
   integrity sha512-Xdy0sDfqGP40nG++u8IipKD8jxlp6ss4V95pITUIPwMej0bbCngdOSwuVtFSFj7PoemOrjLls4YRZL3refCg1g==
@@ -891,6 +910,11 @@ follow-redirects@^1.0.0, follow-redirects@^1.15.4:
   version "1.15.5"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.5.tgz#54d4d6d062c0fa7d9d17feb008461550e3ba8020"
   integrity sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==
+
+follow-redirects@^1.15.6:
+  version "1.15.6"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
+  integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
 
 form-data@^3.0.0:
   version "3.0.1"
