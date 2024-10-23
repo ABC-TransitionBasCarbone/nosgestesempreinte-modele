@@ -9,3 +9,8 @@ importer!:
     - semaines par an
     - jours par semaine
     - jours par an
+
+population 2023:
+  formule: 68143433
+  note: |
+    Population française en 2023 reprise de [l'INSEE](https://www.insee.fr/en/statistiques/serie/001760077)

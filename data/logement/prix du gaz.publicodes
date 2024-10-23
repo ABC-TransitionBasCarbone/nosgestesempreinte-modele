@@ -37,33 +37,35 @@ logement . chauffage . gaz . prix . prix total:
   unité: €
 
 logement . chauffage . gaz . prix . marginal HT:
-  formule: 0.0785
+  formule: 0.07109
   unité: €/kWh
   description: |
-    Prix marginal du kWh hors taxe pour un forfait B1 (cuisine, chauffage air et eau : 6000kWh à 30 000kWh/an).·
-
-    Nous choissons la zone 2 car elle semble la plus représentative (la zone 1 a plus de villes, l'essentiel des métropoles, mais reste une extrêmité et Paris est en 2). [Comprendre les zones](https://selectra.info/energie/guides/demarches/zone-tarifaire-gaz).
-
-    Le barème de janvier 2023 est disponible sur [le site du CRE](https://www.cre.fr/Actualites/publication-des-baremes-applicables-pour-les-tarifs-reglementes-de-vente-de-gaz-naturel-d-engie-janvier-2023).
+    On se base sur le prix repère de vente de gaz naturel pour les consommateurs résidentiels pour août 2024 [publié](https://www.cre.fr/consommateurs/prix-reperes-et-references/prix-repere-de-vente-de-gaz-naturel-a-destination-des-clients-residentiels.html) par la CRE
+    Ce prix repère met en avant un exemple sur la zone GRDF. Il n'est plus détaillé comme en janvier 2023 par [type d'abonnement et de zone](https://www.cre.fr/fileadmin/Documents/Actualites/import/Baremes_TRVG_janvier2023.pdf)
+    
+    Pour rappel lors de la maj précédente on s'appuyer sur :
+    - Prix marginal du kWh hors taxe pour un forfait B1 (cuisine, chauffage air et eau : 6000kWh à 30 000kWh/an).
+    - Un choix de la zone 2 car elle semble la plus représentative (la zone 1 a plus de villes, l'essentiel des métropoles, mais reste une extrêmité et Paris est en 2). [Comprendre les zones](https://selectra.info/energie/guides/demarches/zone-tarifaire-gaz).
+    - Le barème de janvier 2023 détaillé par type d'abonnement et par zone et disponible sur [le site du CRE](https://www.cre.fr/Actualites/publication-des-baremes-applicables-pour-les-tarifs-reglementes-de-vente-de-gaz-naturel-d-engie-janvier-2023).
 
 logement . chauffage . gaz . prix . marginal avec TVA: marginal HT * 1.2
 
 logement . chauffage . gaz . prix . TICGN:
-  formule: 0.00837
+  formule: 0.01637
   unité: €/kWh
-  description: valeur de la TICGN 2023 repris depuis ce [site](https://www.capitole-energie.com/la-ticgn-en-2022/)
+  description: valeur de la TICGN 2024 repris depuis ce [site](https://capitole-energie.com/2024/01/04/ticgn-2024/)
 
 logement . chauffage . gaz . prix . TICGN avec TVA: TICGN * 1.2
 
 logement . chauffage . gaz . prix . marginal taxé: TICGN avec TVA + marginal avec TVA
 
-logement . chauffage . gaz . prix . abonnement: 203.76 €
+logement . chauffage . gaz . prix . abonnement: 219.45 €
 logement . chauffage . gaz . prix . abonnement avec TVA: abonnement * 1.055
 
 logement . chauffage . gaz . prix . abonnement ATRD fixe:
-  formule: 133.56 €
+  formule: 175.92 €
   description: |
-    Partie fixe du tarif d’acheminement appliqué par les gestionnaires des réseaux de distribution gaz naturel pour calcul de la CTA, [source 2023](https://opera-energie.com/atrd-tarif-distribution-gaz-naturel/).
+    Partie fixe du tarif d’acheminement appliqué par les gestionnaires des réseaux de distribution gaz naturel pour calcul de la CTA, [source 2024](https://opera-energie.com/atrd-tarif-distribution-gaz-naturel/).
     L'option tarifaire B1 (côté client) que nous considérons correspond à l'option tarifaire T2 (côté fournisseur)
 
 logement . chauffage . gaz . prix . CTA: abonnement ATRD fixe * 0.208

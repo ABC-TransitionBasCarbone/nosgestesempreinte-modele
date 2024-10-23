@@ -17,6 +17,203 @@ transport:
       - mobilité douce
       - train
       - transports commun
+      - car longue distance
       - vacances
       - ferry
       - bateau
+      - croisière
+      - transport . mosaic
+
+### Calcul d'empreinte des biens durables fonction de l'achat ou non en 2023
+transport . mosaic:
+  applicable si:
+    une de ces conditions:
+      - est défini: transport . voiture . utilisateur . propriétaire
+      - transport . deux roues . type = 'scooter thermique'
+      - transport . deux roues . type = 'moto inf 250'
+      - transport . deux roues . type = 'moto sup 250'
+      - est défini: transport . deux roues . type . scooter électrique . propriétaire
+      - est défini: transport . bateau . bateau moteur . propriétaire
+      - est défini: transport . bateau . voilier . propriétaire
+      - est défini: transport . bateau . annexe . propriétaire
+      - est défini: transport . vacances . camping car . propriétaire
+      - est défini: transport . vacances . caravane . propriétaire
+      - est défini: transport . vacances . van . propriétaire
+  mosaique:  
+    type: sélection  
+    optionsConditionnelles:  
+      - voiture . présent
+      - scooter thermique . présent
+      - scooter électrique . présent
+      - moto inf 250 . présent
+      - moto sup 250 . présent
+      - bateau moteur . présent
+      - voilier . présent
+      - annexe . présent
+      - camping-car . présent
+      - caravane . présent
+      - van . présent  
+    suggestions:  
+      aucun:  
+        voiture . présent: non  
+        scooter thermique . présent: non
+        scooter électrique . présent: non
+        moto inf 250 . présent: non
+        moto sup 250 . présent: non
+        bateau moteur . présent: non
+        voilier . présent: non
+        annexe moteur . présent: non
+        camping-car . présent: non
+        caravane . présent: non
+        van . présent: non
+  question: Parmi les biens que vous avez renseigné détenir, lesquels avez-vous achetés en 2023 ?  
+  titre: Biens durables transport achetés en 2023
+  formule:  
+    somme:  
+      - voiture
+      - scooter thermique
+      - scooter électrique
+      - moto inf 250
+      - moto sup 250
+      - bateau moteur
+      - voilier
+      - annexe
+      - camping-car 
+      - caravane
+      - van
+
+# On utilise le deuxième bloc transport . mosaic . voiture car le modèle inclue une questions sur l'âge ce qui simplifie l'estimation de la construction si la voiture a été achetée en 2023.
+#transport . mosaic . voiture:
+#  formule:
+#    variations:
+#      - si:
+#          toutes ces conditions:
+#            - est défini: transport . voiture . empreinte moyenne
+#### Formule brute car la fonction contexte du bloc ci-dessous ne fonctionne pas 
+##        alors:
+##          valeur: transport . voiture . barème construction
+##          contexte:
+##            transport . voiture . gabarit: "'berline'"
+##            transport . voiture . motorisation: "'thermique'"
+#        alors: transport . voiture . barème construction . barème thermique . empreinte par kg * 1750
+#      - si: 
+#          toutes ces conditions:
+#            - est défini: transport . voiture . empreinte calculée
+#        alors: transport . voiture . barème construction
+#  unité: kgCO2e
+
+# Pour cette variable on ne suit pas la même structure que pour les autres car l'âge du véhicule est demandé dans le questionnaire voiture
+transport . mosaic . voiture:
+  formule:
+    variations:
+      - si: 
+          toutes ces conditions:
+            - transport . voiture . âge = 1
+            - transport . voiture . utilisateur = 'propriétaire'
+        alors: transport . voiture . barème construction
+      - sinon: 0
+  unité: kgCO2e
+
+transport . mosaic . voiture . présent:
+  titre: voiture
+  icônes: 🚘️
+
+transport . mosaic . scooter thermique:
+  formule: 378
+  unité: kgCO2e
+  note: |
+    Cette valeur est obtenue en repartant de la documentation de la Base Empreinte pour le FE Cyclomoteur/2018
+    Hypothèse :
+     - 4.2 kgCO2e/kg de véhicule
+     - Masse cyclomoteur = 90 kg
+
+transport . mosaic . scooter thermique . présent:
+  titre: scooter thermique
+  icônes: 🛵
+
+transport . mosaic . scooter électrique:
+  formule: 283
+  unité: kgCO2e
+  note: |
+    FE _Private e-scooter_ retravaillé depuis l'étude "Assessing the Environmental Performance of New Mobility" de l'International Transport Forum. [Excel disponible ici](https://www.itf-oecd.org/good-to-go-environmental-performance-new-mobility):
+      - compensation par un quadruplement du renouvellement de la batterie sur le CV (de 0 pour 6000 km -> 4 pour 28 800 km) pour palier à l'augmentation des km roulés en électrique afin d'harmoniser les hypothèses enre thermique et électrique.
+    Les phases du cycle de vie considérées sont _Manufacturing_ , _Assembly_ (_Disposal_ est exclue pour être cohérent avec les autres périmètres des FE des biens d'équipements). Sont aussi considérées les émissions liées aux fluides frigorigènes
+    La différence de valeur entre scooter électrique thermique peut notamment s'expliquer par la différence de poids considérée entre thermique (90 kg dans la Base Empreinte) et l'étude ACV du scooter électrique (13 kg batterie inclue)
+
+transport . mosaic . scooter électrique . présent:
+  titre: scooter électrique
+  icônes: 🛵⚡
+
+transport . mosaic . moto inf 250:
+  formule: 504
+  unité: kgCO2e
+  note: |
+    Cette valeur est obtenue en repartant de la documentation de la Base Empreinte pour le FE Moto =< 250 cm3/2018
+    Hypothèse :
+     - 4.2 kgCO2e/kg de véhicule
+     - Masse Moto =< 250 cm3 = 120 kg
+
+transport . mosaic . moto inf 250 . présent:
+  titre: moto < 250 m3
+  icônes: 🏍️
+
+transport . mosaic . moto sup 250:
+  formule: 840
+  unité: kgCO2e
+  note: |
+    Cette valeur est obtenue en repartant de la documentation de la Base Empreinte pour le FE Moto > 250 cm3/2018
+    Hypothèse :
+     - 4.2 kgCO2e/kg de véhicule
+     - Masse Moto > 250 cm3 = 200 kg
+
+transport . mosaic . moto sup 250 . présent:
+  titre: moto > 250 m3
+  icônes: 🏍️
+
+transport . mosaic . bateau moteur:
+  formule: transport . bateau . bateau moteur . construction
+  unité: kgCO2e
+
+transport . mosaic . bateau moteur . présent:
+  titre: bateau à moteur
+  icônes: 🛥️
+
+transport . mosaic . voilier:
+  formule: transport . bateau . voilier . construction
+  unité: kgCO2e
+
+transport . mosaic . voilier . présent:
+  titre: voilier
+  icônes: ⛵
+
+transport . mosaic . annexe:
+  formule: transport . bateau . annexe . construction
+  unité: kgCO2e
+
+transport . mosaic . annexe . présent:
+  titre: annexe à moteur
+  icônes: 🚣‍♂️
+
+transport . mosaic . camping-car:
+  formule: transport . vacances . camping car . construction
+  unité: kgCO2e
+
+transport . mosaic . camping-car . présent:
+  titre: camping-car
+  icônes: 🚐
+
+transport . mosaic . caravane:
+  formule: transport . vacances . caravane . construction
+  unité: kgCO2e
+
+transport . mosaic . caravane . présent:
+  titre: caravane
+  icônes: 🚎
+
+transport . mosaic . van:
+  formule: transport . vacances . van . construction
+  unité: kgCO2e
+
+transport . mosaic . van . présent:
+  titre: van
+  icônes: 🚐

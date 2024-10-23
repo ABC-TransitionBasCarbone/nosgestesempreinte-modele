@@ -43,8 +43,8 @@ divers . numérique . internet . empreinte horaire:
   unité: kgCO2e/h
 
 divers . numérique . internet . durée journalière:
-  question: Combien d'heures passez-vous par jour sur internet hors bureau (envoi de mails, surf Web, streaming vidéo, etc.) ?
-  description: Comptez seulement une estimation à la louche de vos heures d'utilisation personnelle (soir, week-end) car ce que vous faites au travail entre dans la comptabilité de votre entreprise ou organisation.
+  question: Combien d'heures passez-vous par jour sur internet en dehors de vos heures de bureau (envoi de mails, surf Web, streaming vidéo, etc.) ?
+  description: Essayez de renseigner une estimation cohérente avec **vos usages personnels**, c'est-à-dire sans prendre en compte ce que vous faites au travail.
   unité: h/jour
   plancher: 0
   par défaut: 2.3
@@ -53,258 +53,6 @@ divers . numérique . internet . durée journalière:
     modérément: 2
     je ne décroche pas: 8
   note: D'après Médiamétrie, les français ont passé en 2022, en moyenne, 2h18 sur Internet ([source](https://www.mediametrie.fr/fr/lannee-internet-2022))
-
-# On initialise les options que l'on veut voir apparaître dans la mosaïque
-divers . numérique . appareils . mosaic . téléphone . choix:
-  titre: "téléphone"
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . TV . choix:
-  titre: "TV"
-  icônes: 📺
-
-divers . numérique . appareils . mosaic . ordinateur portable . choix:
-  titre: "ordinateur portable"
-  icônes: 💻
-
-divers . numérique . appareils . mosaic . ordinateur fixe . choix:
-  titre: "ordinateur fixe"
-  icônes: 🖥
-
-divers . numérique . appareils . mosaic . tablette . choix:
-  titre: "tablette"
-  icônes: ⬛
-
-divers . numérique . appareils . mosaic . vidéoprojecteur . choix:
-  titre: "vidéoprojecteur"
-  icônes: 📽️
-
-divers . numérique . appareils . mosaic . appareil photo . choix:
-  titre: "appareil photo"
-  icônes: 📷
-
-divers . numérique . appareils . mosaic . home cinéma . choix:
-  titre: "home cinéma"
-  icônes: 🔊🎬
-
-divers . numérique . appareils . mosaic . enceinte bluetooth . choix:
-  titre: "enceinte bluetooth"
-  icônes: 🎵
-
-divers . numérique . appareils . mosaic . enceinte vocale . choix:
-  titre: "enceinte vocale"
-  icônes: 🔊
-
-divers . numérique . appareils . mosaic . montre connectée . choix:
-  titre: "montre connectée"
-  icônes: ⌚️
-
-divers . numérique . appareils . mosaic . console de salon . choix:
-  titre: "console de salon"
-  icônes: 🕹
-
-divers . numérique . appareils . mosaic . console portable . choix:
-  titre: "console portable"
-  icônes: 🎮
-
-# On redéfinit les options que l'on veut voir apparaître dans la mosaïque.
-# En l'occurence une question de type nombre pour se calquer sur les mêmes réponses du premier choix
-divers . numérique . appareils . mosaic . téléphone . choix . nombre:
-  titre: Nombre de téléphones
-  question: Nombre de téléphones en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . tablette . choix . nombre:
-  titre: Nombre de tablettes
-  question: Nombre de tablettes en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . TV . choix . nombre:
-  titre: Nombre de TV
-  question: Nombre de TV en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . ordinateur portable . choix . nombre:
-  titre: Nombre d'ordinateurs portables
-  question: Nombre d'ordinateurs portables en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . ordinateur fixe . choix . nombre:
-  titre: Nombre d'ordinateurs fixes
-  question: Nombre d'ordinateurs fixes en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . vidéoprojecteur . choix . nombre:
-  titre: Nombre de vidéoprojecteurs
-  question: Nombre de vidéoprojecteurs en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . appareil photo . choix . nombre:
-  titre: Nombre d'appareils photos
-  question: Nombre d'appareils photos en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . home cinéma . choix . nombre:
-  titre: Nombre d'homes cinémas
-  question: Nombre d'home cinéma en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . enceinte bluetooth . choix . nombre:
-  titre: Nombre d'enceintes bluetooth
-  question: Nombre d'enceintes bluetooth en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . enceinte vocale . choix . nombre:
-  titre: Nombre d'enceinte vocale
-  question: Nombre d'enceintes vocale en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . montre connectée . choix . nombre:
-  titre: Nombre de montres connectées
-  question: Nombre de montres connectées en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . console de salon . choix . nombre:
-  titre: Nombre de consoles de salon
-  question: Nombre de console de salon en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-divers . numérique . appareils . mosaic . console portable . choix . nombre:
-  titre: Nombre de consoles portables
-  question: Nombre de consoles portables en 2023 ?
-  type: nombre
-  plancher: 0
-  par défaut: 1
-  icônes: 📱
-
-# On définit les calculs que l'on veut faire à partir des réponses à la mosaïque
-divers . numérique . appareils . mosaic . téléphone:
-  formule: 10 * divers . numérique . appareils . mosaic . téléphone . choix . nombre
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . TV:
-  formule: 10 * divers . numérique . appareils . mosaic . TV . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . ordinateur portable:
-  formule: 10 * divers . numérique . appareils . mosaic . ordinateur portable . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . ordinateur fixe:
-  formule: 10 * divers . numérique . appareils . mosaic . ordinateur fixe . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . tablette:
-  formule: 10 * divers . numérique . appareils . mosaic . tablette . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . vidéoprojecteur:
-  formule: 10 * divers . numérique . appareils . mosaic . vidéoprojecteur . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . appareil photo:
-  formule: 10 * divers . numérique . appareils . mosaic . appareil photo . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . home cinéma:
-  formule: 10 * divers . numérique . appareils . mosaic . home cinéma . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . enceinte bluetooth:
-  formule: 10 * divers . numérique . appareils . mosaic . enceinte bluetooth . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . enceinte vocale:
-  formule: 10 * divers . numérique . appareils . mosaic . enceinte vocale . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . montre connectée:
-  formule: 10 * divers . numérique . appareils . mosaic . montre connectée . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . console de salon:
-  formule: 10 * divers . numérique . appareils . mosaic . console de salon . choix
-  unité: kgCO2e
-divers . numérique . appareils . mosaic . console portable:
-  formule: 10 * divers . numérique . appareils . mosaic . console portable . choix
-  unité: kgCO2e
-
-# On définit notre mosaïque en réutilisant les infos définis plus haut
-divers . numérique . appareils . mosaic:
-  applicable si: divers . numérique . appareils . nombre total > 0
-  mosaique:
-    type: nombre
-    optionsConditionnelles:
-      - téléphone . choix . nombre
-      - TV . choix . nombre
-      - ordinateur portable . choix . nombre
-      - ordinateur fixe . choix . nombre
-      - tablette . choix . nombre
-      - vidéoprojecteur . choix . nombre
-      - appareil photo . choix . nombre
-      - home cinéma . choix . nombre
-      - enceinte bluetooth . choix . nombre
-      - enceinte vocale . choix . nombre
-      - montre connectée . choix . nombre
-      - console de salon . choix . nombre
-      - console portable . choix . nombre
-    suggestions:
-      aucun:
-        téléphone . choix . nombre: 0
-        TV . choix . nombre: 0
-        ordinateur portable . choix . nombre: 0
-        ordinateur fixe . choix . nombre: 0
-        tablette . choix . nombre: 0
-        vidéoprojecteur . choix . nombre: 0
-        appareil photo . choix . nombre: 0
-        home cinéma . choix . nombre: 0
-        enceinte bluetooth . choix . nombre: 0
-        enceinte vocale . choix . nombre: 0
-        montre connectée . choix . nombre: 0
-        console de salon . choix . nombre: 0
-        console portable . choix . nombre: 0
-  question: Parmi ceux que vous avez lesquels avez-vous acheté en 2023 ?
-  titre: test
-  formule:
-    somme:
-      - téléphone
-      - TV
-      - ordinateur portable
-      - ordinateur fixe
-      - tablette
-      - vidéoprojecteur
-      - appareil photo
-      - home cinéma
-      - enceinte bluetooth
-      - enceinte vocale
-      - montre connectée
-      - console de salon
-      - console portable
 
 divers . numérique . appareils:
   mosaique:
@@ -340,12 +88,9 @@ divers . numérique . appareils:
         console portable . nombre: 0
   question: Quels appareils numériques de moins de 10 ans possédez-vous ?
   description: |
-    Certains appareils sont partagés dans le foyer (TV, ordinateur fixe...), d'autres personnels (téléphone ...): c'est pris en compte dans le calcul !
+    Renseignez ici les appareils électroniques de moins de 10 ans **que vous possédez et que vous avez acheté neufs.**
 
-    > ✨️ Par simplicité, ne renseignez que les appareils récents : une TV âgée de plus de 10 ans a déjà été bien amorti.
-
-    > 📡 Nous améliorerons prochainement le modèle pour prendre en compte les appareils reconditionnés. 
-    > Pour le moment, nous vous conseillons de les ajouter ici même le bénéfice de cet achat par rapport au neuf ne sera pas visible dans le calcul.
+    Ne renseignez donc pas un équipement que vous auriez acheté d'occasion ou reconditionné (même s'il a moins de 10 ans).
   note: |
     Cette catégorie est un peu particulière au niveau de l'amortissement. En effet, à l'inverse de l'ameublement ou l'on considère que tout est partagé au sein du foyer,
     ici, certains appareils sont partagés alors que d'autres sont considérés comme étant individuels.
@@ -381,7 +126,7 @@ divers . numérique . appareils . téléphone . nombre:
   titre: Nombre de téléphones
   question: Utilisez-vous un téléphone ?
   plancher: 0
-  par défaut: 1
+  par défaut: 0
 divers . numérique . appareils . téléphone . durée:
   titre: Durée de vie d'un téléphone
   formule: 2.5
@@ -463,7 +208,7 @@ divers . numérique . appareils . ordinateur portable . nombre:
   titre: Nombre d'ordinateurs portables
   question: Utilisez-vous un ordinateur portable ?
   plancher: 0
-  par défaut: 1
+  par défaut: 0
 divers . numérique . appareils . ordinateur portable . durée:
   titre: Durée de vie d'un ordinateur portable
   formule: 3
@@ -485,7 +230,7 @@ divers . numérique . appareils . ordinateur fixe . nombre:
   titre: Nombre d'ordinateurs fixes
   question: Utilisez-vous un ordinateur fixe ?
   plancher: 0
-  par défaut: 1
+  par défaut: 0
 divers . numérique . appareils . ordinateur fixe . durée:
   titre: Durée de vie d'un ordinateur fixe
   formule: 6
@@ -541,7 +286,7 @@ divers . numérique . appareils . TV . nombre:
   titre: Nombre de TV
   question: Utilisez-vous une TV ?
   plancher: 0
-  par défaut: 1
+  par défaut: 0
 divers . numérique . appareils . TV . durée:
   titre: Durée de vie d'une TV
   formule: 8
@@ -687,47 +432,263 @@ divers . numérique . appareils . nombre total:
       - console de salon . nombre
       - console portable . nombre
 
-divers . numérique . appareils . préservation:
-  applicable si: appareils . nombre total > 0
-  question: Quel effort faites-vous pour garder vos appareils numériques le plus longtemps possible ?
-  description: |
-    Pour éviter de vous demander de renseigner l'âge précis de tous les appareils électroniques que vous possédez, nous utilisons une grille d'âge moyen constaté pour chaque appareil que l'on fait évoluer en fonction de vos efforts à les préserver ou non.
+### Calcul d'empreinte basé sur l'achat en 2023
+divers . numérique . appareils . mosaic:  
+  applicable si: divers . numérique . appareils . nombre total > 0  
+  mosaique:  
+    type: nombre  
+    optionsConditionnelles:  
+      - téléphone . choix . nombre  
+      - TV . choix . nombre  
+      - ordinateur portable . choix . nombre  
+      - ordinateur fixe . choix . nombre  
+      - tablette . choix . nombre  
+      - vidéoprojecteur . choix . nombre  
+      - appareil photo . choix . nombre  
+      - home cinéma . choix . nombre  
+      - enceinte bluetooth . choix . nombre  
+      - enceinte vocale . choix . nombre  
+      - montre connectée . choix . nombre  
+      - console de salon . choix . nombre  
+      - console portable . choix . nombre  
+    suggestions:  
+      aucun:  
+        téléphone . choix . nombre: 0  
+        TV . choix . nombre: 0  
+        ordinateur portable . choix . nombre: 0  
+        ordinateur fixe . choix . nombre: 0  
+        tablette . choix . nombre: 0  
+        vidéoprojecteur . choix . nombre: 0  
+        appareil photo . choix . nombre: 0  
+        home cinéma . choix . nombre: 0  
+        enceinte bluetooth . choix . nombre: 0  
+        enceinte vocale . choix . nombre: 0  
+        montre connectée . choix . nombre: 0  
+        console de salon . choix . nombre: 0  
+        console portable . choix . nombre: 0  
+  question: Parmi les appareils numériques de moins de 10 ans que vous possédez, lesquels avez-vous acheté en 2023 ?  
+  description: Pour rappel, nous nous intéressons qu'aux **équipements achetés neufs.**
+  titre: Appareils achetés en 2023
+  formule:  
+    somme:  
+      - téléphone
+      - TV  
+      - ordinateur portable  
+      - ordinateur fixe  
+      - tablette  
+      - vidéoprojecteur  
+      - appareil photo  
+      - home cinéma  
+      - enceinte bluetooth  
+      - enceinte vocale  
+      - montre connectée  
+      - console de salon  
+      - console portable
 
-    A vous donc de juger vos efforts pour les faire durer le plus longtemps possible
+divers . numérique . appareils . mosaic . téléphone:
+  formule: téléphone . empreinte * mosaic . téléphone . choix . nombre  
+  unité: kgCO2e
 
-    > Répondre "Aucun, je rachète souvent neuf" est la réponse la plus impactante car elle signifie que vous remplacez vos appareils précocement avant même qu'ils soient hors d'usage.
-  par défaut: "'moyen'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - achat neuf
-        - faible
-        - moyen
-        - maximum
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . téléphone . choix:
+  titre: Téléphone
+  icônes: 📱
 
-divers . numérique . appareils . préservation . faible:
-  titre: Peu d'effort
-divers . numérique . appareils . préservation . achat neuf:
-  titre: Aucun, je rachète souvent neuf
-divers . numérique . appareils . préservation . moyen:
-  titre: Effort moyen
-divers . numérique . appareils . préservation . maximum:
-  titre: Effort maximal
+divers . numérique . appareils . mosaic . téléphone . choix . nombre:
+  titre: Nombre de téléphones achetés en 2023 
+  question: Nombre de téléphones achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
 
-divers . numérique . appareils . coefficient préservation:
-  note: |
-    Nous définissons une grille de comportements de consommation, de l'acheteur neuf presque compulsif à celui qui fait un effort important pour garder ses appareils le plus longtemps possible.
+divers . numérique . appareils . mosaic . TV:
+  formule: TV . empreinte * mosaic . TV . choix . nombre  
+  unité: kgCO2e
 
-    Nous considérons que la personne qui déclare acheter souvent neuf garde ses appareils la moitié de leur durée de vie moyenne constatée, à l'inverse celui qui conserve ses appareils repousse leur durée de vie moyenne.
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . TV . choix:
+  titre: TV
+  icônes: 📺
 
-    Cette grille pourra évoluer si de nouvelles sources ou études viennent compléter tout cela.
-  formule:
-    variations:
-      - si: préservation = 'achat neuf'
-        alors: 1 / 2
-      - si: préservation = 'faible'
-        alors: 2 / 3
-      - si: préservation = 'moyen'
-        alors: 1
-      - sinon: 4 / 3
+divers . numérique . appareils . mosaic . TV . choix . nombre:
+  titre: Nombre de TV achetées en 2023 
+  question: Nombre de TV achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . ordinateur portable:
+  formule: ordinateur portable . empreinte * mosaic . ordinateur portable . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . ordinateur portable . choix:
+  titre: Ordinateur portable
+  icônes: 💻
+
+divers . numérique . appareils . mosaic . ordinateur portable . choix . nombre:
+  titre: Nombre de ordinateurs portables achetés en 2023 
+  question: Nombre d'ordinateurs portables achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . ordinateur fixe:
+  formule: ordinateur fixe . empreinte * mosaic . ordinateur fixe . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . ordinateur fixe . choix:
+  titre: Ordinateur fixe
+  icônes: 🖥
+
+divers . numérique . appareils . mosaic . ordinateur fixe . choix . nombre:
+  titre: Nombre de ordinateurs fixes achetés en 2023 
+  question: Nombre d'ordinateur fixes achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . tablette:
+  formule: tablette . empreinte * mosaic . tablette . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . tablette . choix:
+  titre: Tablette
+  icônes: ⬛
+
+divers . numérique . appareils . mosaic . tablette . choix . nombre:
+  titre: Nombre de tablettes achetées en 2023 
+  question: Nombre de tablettes achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . vidéoprojecteur:
+  formule: vidéoprojecteur . empreinte * mosaic . vidéoprojecteur . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . vidéoprojecteur . choix:
+  titre: Vidéoprojecteur
+  icônes: 📽️
+
+divers . numérique . appareils . mosaic . vidéoprojecteur . choix . nombre:
+  titre: Nombre de vidéoprojecteurs achetés en 2023 
+  question: Nombre de vidéoprojecteurs achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . appareil photo:
+  formule: appareil photo . empreinte * mosaic . appareil photo . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . appareil photo . choix:
+  titre: Appareil photo
+  icônes: 📷
+
+divers . numérique . appareils . mosaic . appareil photo . choix . nombre:
+  titre: Nombre d'appareils photo achetés en 2023 
+  question: Nombre d'appareils photo achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . home cinéma:
+  formule: home cinéma . empreinte * mosaic . home cinéma . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . home cinéma . choix:
+  titre: Home cinéma
+  icônes: 🔊🎬
+
+divers . numérique . appareils . mosaic . home cinéma . choix . nombre:
+  titre: Nombre de home cinéma achetés en 2023 
+  question: Nombre de home cinéma achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . enceinte bluetooth:
+  formule: enceinte bluetooth . empreinte * mosaic . enceinte bluetooth . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . enceinte bluetooth . choix:
+  titre: Enceinte bluetooth
+  icônes: 🎵
+
+divers . numérique . appareils . mosaic . enceinte bluetooth . choix . nombre:
+  titre: Nombre d'enceintes bluetooth achetées en 2023 
+  question: Nombre d'enceintes bluetooth achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . enceinte vocale:
+  formule: enceinte vocale . empreinte * mosaic . enceinte vocale . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . enceinte vocale . choix:
+  titre: Enceinte vocale
+  icônes: 🔊
+
+divers . numérique . appareils . mosaic . enceinte vocale . choix . nombre:
+  titre: Nombre d'enceintes vocales achetées en 2023 
+  question: Nombre d'enceintes vocales achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . montre connectée:
+  formule: montre connectée . empreinte * mosaic . montre connectée . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . montre connectée . choix:
+  titre: Montre connectée
+  icônes: ⌚️
+
+divers . numérique . appareils . mosaic . montre connectée . choix . nombre:
+  titre: Nombre de montres connectées achetées en 2023 
+  question: Nombre de montres connectées achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . console de salon:
+  formule: console de salon . empreinte * mosaic . console de salon . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . console de salon . choix:
+  titre: Console de salon
+  icônes: 🕹
+
+divers . numérique . appareils . mosaic . console de salon . choix . nombre:
+  titre: Nombre de consoles de salon achetées en 2023 
+  question: Nombre de consoles de salon achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . numérique . appareils . mosaic . console portable:
+  formule: console portable . empreinte * mosaic . console portable . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . numérique . appareils . mosaic . console portable . choix:
+  titre: Console portable
+  icônes: 🎮
+
+divers . numérique . appareils . mosaic . console portable . choix . nombre:
+  titre: Nombre de consoles portables achetées en 2023 
+  question: Nombre de consoles portables achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1

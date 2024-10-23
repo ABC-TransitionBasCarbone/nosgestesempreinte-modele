@@ -13,32 +13,6 @@ alimentation . boisson . chaude:
       - thé . nombre
       - chocolat chaud . nombre
       - chicorée . nombre
-    suggestions:
-      pas de boisson chaude:
-        café . nombre: 0
-        thé . nombre: 0
-        chocolat chaud . nombre: 0
-        chicorée . nombre: 0
-      un café par jour:
-        café . nombre: 7
-        thé . nombre: 0
-        chocolat chaud . nombre: 0
-        chicorée . nombre: 0
-      beaucoup de café:
-        café . nombre: 28
-        thé . nombre: 0
-        chocolat chaud . nombre: 0
-        chicorée . nombre: 0
-      un café et un thé par jour:
-        café . nombre: 7
-        thé . nombre: 7
-        chocolat chaud . nombre: 0
-        chicorée . nombre: 0
-      un chocolat chaud le matin:
-        café . nombre: 0
-        thé . nombre: 0
-        chocolat chaud . nombre: 7
-        chicorée . nombre: 0
   question: Quelle est votre consommation de boissons chaudes pour une semaine type (nombre de tasses par semaine) ?
   icônes: ☕️🫖
   description: |
@@ -318,10 +292,6 @@ alimentation . boisson . sucrées . facteur jus de fruits:
 alimentation . boisson . sucrées . litres:
   titre: Consommation de boissons sucrées
   question: Quelle est votre consommation par semaine de sodas, jus de fruits, etc. ?
-  suggestions:
-    nulle: 0
-    modérée: 1
-    importante: 5
   par défaut: 1
   plancher: 0
   unité: l/semaine
@@ -365,10 +335,6 @@ alimentation . boisson . alcool . facteur cocktail:
 alimentation . boisson . alcool . litres:
   titre: Consommation d'alcool
   question: Quelle est votre consommation par semaine d'alcool (vin, bière, etc.) ?
-  suggestions:
-    nulle: 0
-    modérée: 1
-    importante: 3
   par défaut: 1.5
   plancher: 0
   unité: l/semaine

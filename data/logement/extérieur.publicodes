@@ -1,10 +1,6 @@
 logement . extérieur:
   icônes: ☘️
   titre: Extérieur (jardin, terrasse)
-  non applicable si:
-    toutes ces conditions:
-      - est défini: logement . appartement
-      - appartement
   mosaique:
     type: selection
     options:
@@ -22,13 +18,14 @@ logement . extérieur:
         tondeuse thermique . présent: non
         barbecue électrique ou gaz . présent: non
         barbecue charbon . présent: non
-  question: Que possédez-vous dans votre extérieur (jardin, balcon) ?
-  description: |
-    Nous essayons ici de couvrir les éléments principaux d'un jardin individuel type. Il manque encore des éléments, qui seront ajoutés progressivement.
+  question: Quels équipements de moins de 10 ans possédez-vous pour l'extérieur de votre logement principal (jardin, terrasse, balcon) ?
   formule:
     variations:
       - si: choix utilisateur
-        alors: empreinte totale / habitants
+        alors: 
+          somme:
+            - empreinte totale / habitants
+            - mosaic
       - sinon: empreinte par défaut / habitants
 
 logement . extérieur . choix utilisateur:
@@ -349,4 +346,133 @@ logement . extérieur . part propriétaires barbecue charbon:
   formule: 0.85 * 0.37
   note: |
     D'après [cette source](https://www.esprit-barbecue.fr/blog/des-chiffres-fous-pour-le-marche-du-barbecue/), nous savons que 85% des français possédant un jardin ont un barbecue.
-    Par ailleurs, [cette source[(http://www.bva-xsight.com/wp-content/uploads/2023/03/Weber_Les-Francais-et-le-barbecue_Infographie-2023.pdf)] nous donne la répartition des types de barbecue possédés. Nous comptons ici les barbecues au charbon.
+    Par ailleurs, cette source[(http://www.bva-xsight.com/wp-content/uploads/2023/03/Weber_Les-Francais-et-le-barbecue_Infographie-2023.pdf)] nous donne la répartition des types de barbecue possédés. Nous comptons ici les barbecues au charbon.
+
+### Calcul d'empreinte basé sur l'achat en 2023
+
+logement . extérieur . mosaic:
+  applicable si:
+    une de ces conditions:
+      - est défini: extérieur . salon de jardin bois . présent
+      - est défini: extérieur . salon de jardin résine ou métal . présent
+      - est défini: extérieur . tondeuse électrique ou robot . présent
+      - est défini: extérieur . tondeuse thermique . présent
+      - est défini: extérieur . barbecue électrique ou gaz . présent
+      - est défini: extérieur . barbecue charbon . présent
+  mosaique:
+    type: sélection
+    optionsConditionnelles:
+      - mosaic . salon de jardin bois . choix . présent
+      - mosaic . salon de jardin résine ou métal . choix . présent
+      - mosaic . tondeuse électrique ou robot . choix . présent
+      - mosaic . tondeuse thermique . choix . présent
+      - mosaic . barbecue électrique ou gaz . choix . présent
+      - mosaic . barbecue charbon . choix . présent
+    suggestions:
+      aucun:
+        salon de jardin bois . choix . présent: non
+        salon de jardin résine ou métal . choix . présent: non
+        tondeuse électrique ou robot . choix . présent: non
+        tondeuse thermique . choix . présent: non
+        barbecue électrique ou gaz . choix . présent: non
+        barbecue charbon . choix . présent: non
+  question: Parmi les équipements extérieurs de moins de 10 ans que vous possédez, lesquels avez-vous achetés en 2023 ?  
+  titre: Extérieurs achetés en 2023
+  formule:
+    somme:
+      - salon de jardin bois
+      - salon de jardin résine ou métal
+      - tondeuse électrique ou robot
+      - tondeuse thermique
+      - barbecue électrique ou gaz
+      - barbecue charbon
+
+logement . extérieur . mosaic . salon de jardin bois:
+  applicable si:
+    toutes ces conditions:
+      - est défini: mosaic . salon de jardin bois . choix . présent
+      - mosaic . salon de jardin bois . choix . présent
+  formule: empreinte salon de jardin bois
+
+# Initialisation de l'option
+logement . extérieur . mosaic . salon de jardin bois . choix:
+  titre: Salon de jardin en bois
+  icônes: 🏡🪵
+
+logement . extérieur . mosaic . salon de jardin bois . choix . présent:
+  question: Avez-vous achetés un salon de jardin en bois en 2023 ?
+
+logement . extérieur . mosaic . salon de jardin résine ou métal:
+  applicable si:
+    toutes ces conditions:
+      - est défini: mosaic . salon de jardin résine ou métal . choix . présent
+      - mosaic . salon de jardin résine ou métal . choix . présent
+  formule: empreinte salon de jardin résine ou métal
+
+# Initialisation de l'option
+logement . extérieur . mosaic . salon de jardin résine ou métal . choix:
+  titre: Salon de jardin en résine ou métal
+  icônes: 🏡🪨
+
+logement . extérieur . mosaic . salon de jardin résine ou métal . choix . présent:
+  question: Avez-vous achetés un salon de jardin en en résine ou métal en 2023 ?
+
+logement . extérieur . mosaic . tondeuse électrique ou robot:
+  applicable si:
+    toutes ces conditions:
+      - est défini: mosaic . tondeuse électrique ou robot . choix . présent
+      - mosaic . tondeuse électrique ou robot . choix . présent
+  formule: empreinte tondeuse électrique ou robot
+
+# Initialisation de l'option
+logement . extérieur . mosaic . tondeuse électrique ou robot . choix:
+  titre: Tondeuse électrique ou robot
+  icônes: 🌿🔌
+
+logement . extérieur . mosaic . tondeuse électrique ou robot . choix . présent:
+  question: Avez-vous achetés une tondeuse électrique ou robot en 2023 ?
+
+logement . extérieur . mosaic . tondeuse thermique:
+  applicable si:
+    toutes ces conditions:
+      - est défini: mosaic . tondeuse thermique . choix . présent
+      - mosaic . tondeuse thermique . choix . présent
+  formule: empreinte tondeuse thermique
+
+# Initialisation de l'option
+logement . extérieur . mosaic . tondeuse thermique . choix:
+  titre: Tondeuse thermique
+  icônes: 🌿⛽️
+
+logement . extérieur . mosaic . tondeuse thermique . choix . présent:
+  question: Avez-vous achetés une tondeuse thermique en 2023 ?
+
+logement . extérieur . mosaic . barbecue électrique ou gaz:
+  applicable si:
+    toutes ces conditions:
+      - est défini: mosaic . barbecue électrique ou gaz . choix . présent
+      - mosaic . barbecue électrique ou gaz . choix . présent
+  formule: empreinte barbecue électrique ou gaz
+
+# Initialisation de l'option
+logement . extérieur . mosaic . barbecue électrique ou gaz . choix:
+  titre: Barbecue électrique ou gaz
+  icônes: ♨️🔌
+
+logement . extérieur . mosaic . barbecue électrique ou gaz . choix . présent:
+  question: Avez-vous achetés un barbecue électrique ou gaz en 2023 ?
+
+logement . extérieur . mosaic . barbecue charbon:
+  applicable si:
+    toutes ces conditions:
+      - est défini: mosaic . barbecue charbon . choix . présent
+      - mosaic . barbecue charbon . choix . présent
+  formule: empreinte barbecue charbon
+
+# Initialisation de l'option
+logement . extérieur . mosaic . barbecue charbon . choix:
+  titre: Barbecue au charbon
+  icônes: ♨️🔥
+
+logement . extérieur . mosaic . barbecue charbon . choix . présent:
+  question: Avez-vous achetés un barbecue charbon en 2023 ?

@@ -36,10 +36,6 @@ divers . animaux domestiques . empreinte:
   titre: Empreinte annuelle des animaux du foyer
   icônes: 😺🐶
   question: Combien d'animaux vivent avec vous, au sein de votre foyer ?
-  description: |
-    Chien ou chat, c'est le moment de prendre en compte nos fidèles compagnons.
-
-    > 🦴 L'impact votre animal est en grande partie lié à sa gamelle !
   mosaique:
     type: nombre
     options:
@@ -47,12 +43,22 @@ divers . animaux domestiques . empreinte:
       - chien moyen . nombre
       - gros chien . nombre
       - chats . nombre
+      - lapins . nombre
+      - oiseaux . nombre
+      - reptiles . nombre
+      - poissons . nombre
+      - souriceaux . nombre
     suggestions:
       aucun animal:
         petit chien . nombre: 0
         chien moyen . nombre: 0
         gros chien . nombre: 0
         chats . nombre: 0
+        lapins . nombre: 0
+        oiseaux . nombre: 0
+        reptiles . nombre: 0
+        poissons . nombre: 0
+        souriceaux . nombre: 0
   formule: empreinte totale
 
 divers . animaux domestiques . empreinte totale:
@@ -60,6 +66,96 @@ divers . animaux domestiques . empreinte totale:
     somme:
       - empreinte . chats
       - empreinte . chiens
+      - empreinte . lapins
+      - empreinte . oiseaux
+      - empreinte . reptiles
+      - empreinte . poissons
+      - empreinte . souriceaux
+
+divers . animaux domestiques . empreinte . lapins:
+  icônes: 🐇
+  titre: Lapin
+  description: Lapins petits comme grands
+  formule: nombre * empreinte
+
+divers . animaux domestiques . empreinte . lapins . nombre:
+  question: Combien de lapins possédez-vous dans votre foyer ?
+  plancher: 0
+  par défaut: 0.1
+
+divers . animaux domestiques . empreinte . lapins . empreinte:
+  titre: Empreinte d'un lapin
+  formule: 0.1
+  unité: kgCO2e
+  note: L'objectif des variables "lapins" est avant tout informatif --> on met l'empreinte à 0.
+
+divers . animaux domestiques . empreinte . oiseaux:
+  icônes: 🦜
+  titre: Oiseau
+  description: Perruches, inséparables, perroquets ...
+  formule: nombre * empreinte
+
+divers . animaux domestiques . empreinte . oiseaux . nombre:
+  question: Combien d'oiseaux possédez-vous dans votre foyer ?
+  plancher: 0
+  par défaut: 0.1
+
+divers . animaux domestiques . empreinte . oiseaux . empreinte:
+  titre: Empreinte d'un oiseau
+  formule: 0.1
+  unité: kgCO2e
+  note: L'objectif des variables "oiseaux" est avant tout informatif --> on met l'empreinte à 0.
+
+divers . animaux domestiques . empreinte . reptiles:
+  icônes: 🐍
+  titre: Reptile
+  description: Serpents, iguanes ...
+  formule: nombre * empreinte
+
+divers . animaux domestiques . empreinte . reptiles . nombre:
+  question: Combien de reptiles possédez-vous dans votre foyer ?
+  plancher: 0
+  par défaut: 0.1
+
+divers . animaux domestiques . empreinte . reptiles . empreinte:
+  titre: Empreinte d'un reptile
+  formule: 0.1
+  unité: kgCO2e
+  note: L'objectif des variables "reptiles" est avant tout informatif --> on met l'empreinte à 0.
+
+divers . animaux domestiques . empreinte . poissons:
+  icônes: 🐟
+  titre: Poisson
+  description: Poissons d'aquarium
+  formule: nombre * empreinte
+
+divers . animaux domestiques . empreinte . poissons . nombre:
+  question: Combien de poissons possédez-vous dans votre foyer ?
+  plancher: 0
+  par défaut: 0.1
+
+divers . animaux domestiques . empreinte . poissons . empreinte:
+  titre: Empreinte d'un poisson
+  formule: 0.1
+  unité: kgCO2e
+  note: L'objectif des variables "poissons" est avant tout informatif --> on met l'empreinte à 0.
+
+divers . animaux domestiques . empreinte . souriceaux:
+  icônes: 🐁
+  titre: Souriceau
+  description: Souris, furet ...
+  formule: nombre * empreinte
+
+divers . animaux domestiques . empreinte . souriceaux . nombre:
+  question: Combien de souriceaux possédez-vous dans votre foyer ?
+  plancher: 0
+  par défaut: 0.1
+
+divers . animaux domestiques . empreinte . souriceaux . empreinte:
+  titre: Empreinte d'un souriceau
+  formule: 0.1
+  unité: kgCO2e
+  note: L'objectif des variables "souriceaux" est avant tout informatif --> on met l'empreinte à 0.
 
 divers . animaux domestiques . empreinte . chats:
   icônes: 🐱

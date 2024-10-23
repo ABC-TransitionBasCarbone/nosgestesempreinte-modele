@@ -1,0 +1,46 @@
+logement . jardin:
+  icônes: 🌳🏡
+  titre: Jardin et bois
+  mosaique:
+    type: selection
+    options:
+      - jardin . privatif . présent
+      - jardin . partagé . présent
+      - jardin . bois . présent
+    suggestions:
+      aucun:
+        jardin . privatif . présent: nonaj
+        jardin . partagé . présent: non
+        jardin . bois . présent: non
+  question: Quel type de jardin ou surface boisée possédez-vous ?
+  description: |
+    Renseignez ici le type de jardin dont vous avez **la (co)propriété pleine et entière**. Si vous disposez d'un parc ou d'un bois
+    municipal derrière chez vous, ne cochez rien.
+    Par ailleurs : 
+    - Un jardin partagé correspond à un jardin et/ou parc partagé au sein d'une résidence ou au sein d'un groupe d'habitation.
+    - Un jardin privatif correspond à un jardin et/ou parc que vous possédez et dédié à votre usage personnel.
+    - Un bois est un jardin privatif beaucoup plus grand et s'apparentant à une forêt de petite ou grande taille.
+  formule: 0
+  unité: kgCO2e
+
+logement . jardin . privatif:
+  titre: Jardin privatif
+
+logement . jardin . privatif . présent:
+  question: Votre jardin est-il un jardin privatif ?
+
+logement . jardin . partagé:
+  titre: Jardin privatif
+
+logement . jardin . partagé . présent:
+  question: Votre jardin est-il un jardin partagé ?
+
+logement . jardin . bois:
+  titre: Jardin privatif
+
+logement . jardin . bois . présent:
+  question: Votre jardin est-il un bois ?
+
+logement . jardin . surface:
+  question: Quelle est la surface de votre jardin ou surface boisée ?
+  unité: m2

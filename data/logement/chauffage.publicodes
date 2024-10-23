@@ -22,15 +22,17 @@ logement . chauffage:
         fioul . présent: non
         bois . présent: non
   icônes: 🌡️
-  question: Quel type d'énergie utilisez-vous pour le chauffage de votre logement, eau chaude, cuisson, etc. ?
+  question: En 2023, quel type d'énergie utilisiez-vous pour le chauffage, l'eau chaude et la cuisson au sein de votre logement principal ?
   description: |
-    > Cette question couvre l'ensemble des sources d'énergie qui vous permet d'alimenter vos chauffages, votre chauffe-eau, vos plaques de cuisson, etc.
+    Cette question couvre **l'ensemble des sources d'énergie** qui vous permet d'alimenter vos chauffages, votre chauffe-eau, vos plaques de cuisson, etc.
 
     Certains logements utilisent uniquement de l'électricité, d'autres sont entièrement chauffés au gaz, et plus rarement au bois ou au fioul.
     Dans d'autres situations encore, un logement peut être chauffé principalement via des chauffages électriques ou une pompe à chaleur,
-    mais avec un appoint bois, par exemple. Enfin, il est possible de prendre en compte également vos consommations de gaz pour votre van ou camping-car. 
+    mais avec un appoint bois, par exemple. Enfin, il est possible de prendre en compte également vos consommations de gaz pour votre ou habitat particulier. 
 
-    Cochez tous les modes que vous utilisez.
+    **Cochez tous les modes que vous utilisez.**
+
+    PS : si vous possédez un van oun camping-car, intégrez ici vos consommations de gaz.
   formule:
     variations:
       - si: choix utilisateur
@@ -84,7 +86,7 @@ logement . chauffage . notif électrique:
           - PAC . présent = oui
           - électricité . présent = oui
   description: |
-    Vous avez renseigné une pompe à chaleur ou un chauffage électrique : leur consommation est prise en compte via votre facture globale d'électricité.
+    Vous avez renseigné une pompe à chaleur ou un chauffage électrique : leur consommation est prise en compte via la question précédente sur votre facture/consommation globale d'électricité.
 
 logement . chauffage . électricité:
   icônes: ⚡️
@@ -115,15 +117,25 @@ logement . chauffage . gaz . présent:
 
 logement . chauffage . gaz . consommation:
   icônes: 🔥
-  question: Quelle est la consommation annuelle de gaz de votre foyer ?
+  question: En 2023, quelle a été la consommation annuelle de gaz de votre logement principal ?
   aide: logement . chauffage . gaz . consommation estimée via le coût . saisie
   par défaut: parc français . chauffage . consommation gaz par m2 * surface
   plancher: 0
   unité: kWh
   description: |
-    Astuce : Vous trouverez vos consommations annuelles d'énergie sur vos factures de gaz et d'électricité ou sur votre compte en ligne sur le site de votre fournisseur.
+    Si vous vivez en copropriété il se peut que cette dernière ne vous communique pas la consommation de votre logement (en kWh), quand la chaudière est centralisée. Cela dit, elle doit vous fournir le montant en €, que vous pourrez saisir ci-dessous pour estimer vos kWh.
 
-    > Il se peut que votre copropriété ne vous communique pas la consommation en kWh de votre logement, quand la chaudière est centralisée. Cela dit, elle doit vous fournir le montant en €, que vous pourrez saisir ci-dessous pour estimer vos kWh.
+    > Astuce : Vous trouverez votre consommation annuelle 2023 sur vos factures de gaz ou sur votre compte en ligne sur le site de votre fournisseur.
+
+logement . chauffage . notif gaz valeur supérieure:
+  type: notification
+  formule:
+    toutes ces conditions:
+      - est défini: gaz . présent
+      - gaz . présent = oui
+      - gaz . consommation > parc français . chauffage . consommation gaz par m2 * surface * (habitants / 2.2) * logement . facteur notif conso supérieur
+  description: |
+    Vous avez renseigné une consommation de gaz relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
 
 logement . chauffage . gaz . consommation estimée via le coût:
   titre: Consommation estimée via le coût
@@ -133,7 +145,7 @@ logement . chauffage . gaz . consommation estimée via le coût:
   note: Cette règle est utilisée dans le cadre de l'aide à la saisie pour la question mentionnée dans l'attribut `aide`. L'attribution de la valeur finale est géré côté site.
 
 logement . chauffage . gaz . consommation estimée via le coût . saisie:
-  question: Pas de facture ? Entrez vos dépenses approximatives par mois
+  question: Pas de facture ? Entrez vos dépenses actuelles approximatives par mois
   plancher: 0
   unité: €/mois
 
@@ -147,30 +159,32 @@ logement . chauffage . gaz . consommation estimée via le coût . facteur:
     Mis à jour via un petit algorithme de calcul en janvier 2022, suite aux hausses historiques du prix en 2021.
     La valeur pour 2022 est approximativement de 0.104 €/kWh.
 
-logement . chauffage . gaz . biogaz:
-  question: Avez-vous souscrit à un contrat gaz incluant du biogaz (ou biométhane) ?
-  par défaut: non
-  description: |
-    Le biogaz ou biométhane, est un gaz fabriqué à partir de déchets organiques (déchets ménagers, fumier, déchets de pelouse, cultures, etc.), contrairement au gaz fossile aussi appelé de façon trompeuse "naturel", qui lui est extrait comme le pétrole depuis le sous-sol norvégien, russe, etc.
-
-    Depuis quelques années, il est possible de souscrire à un contrat qui garantit l'injection sur le réseau de gaz français de la même quantité de biométhane que sa propre consommation. Le gaz que vous consommez dans votre logement sera de toute façon un mélange principalement composé de la molécule de méthane (CH₄), mais pour chaque kWh de gaz consommé, il aura été injecté "en votre nom" 1 kWh de biométhane.
-
-    > Contrairement au gaz, l'électricité *ne se stocke pas*, c'est pourquoi nous ne proposons pas d'option "électricité verte" dans le simulateur.
-
-    Attention, il existe des offres à 10%, 20% de biométhane seulement, si c'est le cas répondez "non".
-
-logement . chauffage . gaz . avertissement biogaz:
-  formule: biogaz
-  type: notification
-  description: |
-    Vous constaterez que le choix du biogaz réduit énormément l'empreinte climat du gaz que vous consommez, mais notez bien que la production actuelle est incapable de passer à l'échelle : la réduction globale de toute consommation de gaz reste essentielle, que l'on consomme du biogaz ou du gaz fossile.
+### Tout ce qui trait au biogaz est commenté --> on considère un FE unique réseau
+#logement . chauffage . gaz . biogaz:
+#  question: Avez-vous souscrit à un contrat gaz incluant du biogaz (ou biométhane) ?
+#  par défaut: non
+#  description: |
+#    Le biogaz ou biométhane, est un gaz fabriqué à partir de déchets organiques (déchets ménagers, fumier, déchets de pelouse, cultures, etc.), contrairement au gaz fossile aussi appelé de façon trompeuse "naturel", qui lui est extrait comme le pétrole depuis le sous-sol norvégien, russe, etc.
+#
+#    Depuis quelques années, il est possible de souscrire à un contrat qui garantit l'injection sur le réseau de gaz français de la même quantité de biométhane que sa propre consommation. Le gaz que vous consommez dans votre logement sera de toute façon un mélange principalement composé de la molécule de méthane (CH₄), mais pour chaque kWh de gaz consommé, il aura été injecté "en votre nom" 1 kWh de biométhane.
+#
+#    > Contrairement au gaz, l'électricité *ne se stocke pas*, c'est pourquoi nous ne proposons pas d'option "électricité verte" dans le simulateur.
+#
+#    Attention, il existe des offres à 10%, 20% de biométhane seulement, si c'est le cas répondez "non".
+#
+#logement . chauffage . gaz . avertissement biogaz:
+#  formule: biogaz
+#  type: notification
+#  description: |
+#    Vous constaterez que le choix du biogaz réduit énormément l'empreinte climat du gaz que vous consommez, mais notez bien que la production actuelle est incapable de passer à l'échelle : la réduction globale de toute consommation de gaz reste essentielle, que l'on consomme du biogaz ou du gaz fossile.
 
 logement . chauffage . gaz . intensité carbone gaz utilisateur:
-  formule:
-    variations:
-      - si: chauffage . gaz . biogaz
-        alors: biogaz . facteur d'émission
-      - sinon: facteur d'émission base carbone
+  formule: facteur d'émission base carbone
+#  formule:
+#    variations:
+#      - si: chauffage . gaz . biogaz
+#        alors: biogaz . facteur d'émission
+#      - sinon: facteur d'émission base carbone
   unité: kgCO2e/kWh
 
 logement . chauffage . gaz . facteur d'émission base carbone:
@@ -185,77 +199,77 @@ logement . chauffage . gaz . facteur d'émission base carbone:
 
     Base Carbone Gaz naturel - 2022/mix moyen/consommation
 
-logement . chauffage . biogaz:
-  note: |
-    La base carbone retient le facteur d'émission biogaz suivant : `0.0444 kgCO2e/kWhPCI`. 
-
-    Voici davantage de documentation sur l'intégration de ce chiffres et ses limites.
-
-    <details><summary>Leur justification est dans la documentation [déplier]</summary>
-
-    Pour des questions méthodologiques, cette approche n’est pas compatible avec la logique de construction des facteurs d’émissions de la Base Carbone® et ne peut être utilisée pour la réalisation d’un bilan d’émissions de GES. Ainsi, des travaux complémentaires ont été menés aboutissant à une mise à jour de l'Analyse de Cycle de Vie en 2020 [[144]](https://bilans-ges.ademe.fr/documentation/UPLOAD_DOC_FR/references.htm) et à un facteur d’émissions de 44,1 gCO2e / kWh PCI. Cette dernière valeur traduit l’impact GES induit par la production d’un kWh de biométhane, contrairement à la valeur de 23,4 gCO2e / kWh PCI issue de la précédente étude, qui traduit l’impact global de la filière de méthanisation et injection, intégrant impacts induits et réductions d’émissions de GES apportés par cette filière. </details>
-    <br/>
-
-    Il nous faudra préciser ce qui dans NGC, nous empêche d'utiliser le facteur le plus faible dans le cadre de ce modèle de calcul consommation qui est un calcul global couvrant également l'agriculture via l'alimentation.
-
-    Autre point crucial : le gaz se stocke, contrairement à l'électricité "verte", ce qui a motivé la non intégration de leur facteur d'émission pour l'instant dans NGC. 
-
-    Ajoutons que les fuites des installations de biométhane, par nature bien plus petites et nombreuses que le gaz fossile et donc difficile à controler, pourraient être sous-estimées. Cette [étude de 2022](https://www.cell.com/one-earth/fulltext/S2590-3322(22)00267-6) est-elle prise en compte dans le facteur d'émission ci-dessus (2020) ? 
-
-    ## Au sujet de l'utilisation des terres
-
-    Le lien de la base carbone vers l'étude de GRDF n'est plus en ligne. [La voici en PDF](https://github.com/incubateur-ademe/nosgestesclimat/files/9542516/evaluation-des-impacts-ges-biomethane-_synthese-quantis_2017.pdf). On peut y voir : 
-
-    ![image](https://user-images.githubusercontent.com/1177762/189527416-4e8a3725-ef5a-448e-8557-0ad0007e0720.png)
-
-    Dont la part rouge est détaillée ici : 
-
-    ![image](https://user-images.githubusercontent.com/1177762/189527431-3fdcc5b2-22c0-49e1-b5f0-68762f780d57.png)
-
-    On peut y voir que les cultures dédiées sont très faibles en proportion, ce qui est plutôt très rassurant. 
-
-    Cela dit, et je ne sais pas trop comment le définir précisément, j'ai quand même une forte impression qu'une grande partie de ces composants pourraient être valorisés différemment : concrètement, on brûle et on valorise donc à un prix vendu très élevé (le gaz en prix de gros [coûte en septembre 2022](https://twitter.com/i/timeline) près de 2 fois le prix de production du biogaz (90€/MWh)) les restes de poulet de la cantine qu'on aurait pu juste ne pas produire (bleu); la pelouse domestique que le voisin tond toutes les semaines (bleu clair); le fumier de cultures qui auraient pu être dédiées à du végétal humain (mauve); etc. 
-
-    En bref, si une partie de l'énergie présente dans les matières utilisées par le biométhane était juste perdue, une autre partie subit simplement un changement d'allocation, d'une chose utile au monde agricole vers la combustion du gaz pour chauffer des logemens notamment. Sans compter l'effet d'aubaine pour des activités qui émettent, substituables par d'autres qui émettent moins. L'étude pourtant semble très complète, donc c'est à creuser, peut-être qu'elle répond à tout ça et que je n'ai pas vu (c'est complexe). 
-
-    On peut aussi citer [un article de Reporterre](https://reporterre.net/methanisation-un-digestat-bien-indigeste-pour-les-sols-et-les-eaux) qui s'inquiète des contaminations bactériennes dues à l'épendage du digestat ainsi qu'aux fuites de méthane et de protoxide d'azote N2O, qui seraient sous-estimées (car bien présentes donc évaluées dans l'étude citée par la base carbone). Mais attention, Reporterre n'est pas un organisme de recherche, mais un média d'opinion. 
-
-    Une investigation toute récente sur les méthaniseurs de Bretagne va dans le même sens, cataloguant les incidents ayant eu lieu dans la région : https://basta.media/des-methaniseurs-menacent-l-environnement-la-carte-inedite-des-accidents-en-Bretagne-Splann. 
-
-    Cela ne remet pas en question le fait d'intégrer dans NGC le facteur à mon avis. La production de gaz fossile est tout à fait concernée par ce genre de problèmes également, à titre d'exemple. 
-
-    Une autre question dont la réponse y est peut-être est celle-ci : la filière peut-elle faire x10 en production sans introduire des externalités négatives pour l'instant maitrisées ? Ce serait intéressant d'y répondre pour l'utilisateur de NGC, lui montrer que son choix peut passer à l'échelle de la société. Carbone4 semble y répondre négativement : le remplacement du gaz fossile par le biométhane ne doit pas conduire à une non réduction de la consommation de gaz en général, et encore moins à un effet rebond ! 
-
-    ![image](https://user-images.githubusercontent.com/1177762/189527887-931ee20a-8ad6-431f-bd4d-d705fa9eefca.png)
-
-    Un **avertissement** est donc être intégré pendant la simulation pour évoquer cet impossible passage à l'échelle : 
-
-    > Le biométhane réduit **énormément** les émissions de CO₂ du gaz que vous consommez, mais la production actuelle est **incapable de passer à l'échelle** : la réduction globale de toute consommation de gaz reste **essentielle**, que l'on consomme du biogaz ou du gaz fossile.
-
-logement . chauffage . biogaz . facteur d'émission:
-  formule: biogaz . facteur d'émission base carbone * part + gaz . facteur d'émission base carbone * (1 - part)
-  description: |
-    Biogaz : Biométhane - Injecté dans les réseaux - Mix moyen
-
-logement . chauffage . biogaz . facteur d'émission base carbone:
-  titre: Facteur d'émission du biogaz
-  formule: 0.0395
-  unité: kgCO2e/kWh
-  description: |
-    On raisonne en PCS (Pouvoir Calorifique Supérieur) et non en PCI (Pouvoir Calorifique Inférieur), car le PCS est utilisé en tant que coefficient de conversion dans les factures pour convertir le volume de gaz utilisé en kWh : 
-    on fait l'hypothèse que la chaudière gaz récupère bien la chaleur latente de condensation.
-
-    Biogaz : Biométhane - Injecté dans les réseaux - Mix moyen
-
-logement . chauffage . biogaz . part:
-  question: Quelle est la part de biogaz garantie par votre contrat de gaz ?
-  plancher: 0
-  plafond: 100
-  description: |
-    Il existe peu de vendeurs de gaz proposant des contrats 100% biogaz, mais il en existe (en septembre 2022). 
-    Par contre, le premier vendeur de gaz français propose à ses clients une option biogaz avec une proportion reglable moyennant un coût supplémentaire (significatif mais qui ne fait pas non plus doubler la facture). N'hésitez pas à en parler à un conseiller.
-  par défaut: 20%
-  unité: '%'
+#logement . chauffage . biogaz:
+#  note: |
+#    La base carbone retient le facteur d'émission biogaz suivant : `0.0444 kgCO2e/kWhPCI`. 
+#
+#    Voici davantage de documentation sur l'intégration de ce chiffres et ses limites.
+#
+#    <details><summary>Leur justification est dans la documentation [déplier]</summary>
+#
+#    Pour des questions méthodologiques, cette approche n’est pas compatible avec la logique de construction des facteurs d’émissions de la Base Carbone® et ne peut être utilisée pour la réalisation d’un bilan d’émissions de GES. Ainsi, des travaux complémentaires ont été menés aboutissant à une mise à jour de l'Analyse de Cycle de Vie en 2020 [[144]](https://bilans-ges.ademe.fr/documentation/UPLOAD_DOC_FR/references.htm) et à un facteur d’émissions de 44,1 gCO2e / kWh PCI. Cette dernière valeur traduit l’impact GES induit par la production d’un kWh de biométhane, contrairement à la valeur de 23,4 gCO2e / kWh PCI issue de la précédente étude, qui traduit l’impact global de la filière de méthanisation et injection, intégrant impacts induits et réductions d’émissions de GES apportés par cette filière. </details>
+#    <br/>
+#
+#    Il nous faudra préciser ce qui dans NGC, nous empêche d'utiliser le facteur le plus faible dans le cadre de ce modèle de calcul consommation qui est un calcul global couvrant également l'agriculture via l'alimentation.
+#
+#    Autre point crucial : le gaz se stocke, contrairement à l'électricité "verte", ce qui a motivé la non intégration de leur facteur d'émission pour l'instant dans NGC. 
+#
+#    Ajoutons que les fuites des installations de biométhane, par nature bien plus petites et nombreuses que le gaz fossile et donc difficile à controler, pourraient être sous-estimées. Cette [étude de 2022](https://www.cell.com/one-earth/fulltext/S2590-3322(22)00267-6) est-elle prise en compte dans le facteur d'émission ci-dessus (2020) ? 
+#
+#    ## Au sujet de l'utilisation des terres
+#
+#    Le lien de la base carbone vers l'étude de GRDF n'est plus en ligne. [La voici en PDF](https://github.com/incubateur-ademe/nosgestesclimat/files/9542516/evaluation-des-impacts-ges-biomethane-_synthese-quantis_2017.pdf). On peut y voir : 
+#
+#    ![image](https://user-images.githubusercontent.com/1177762/189527416-4e8a3725-ef5a-448e-8557-0ad0007e0720.png)
+#
+#    Dont la part rouge est détaillée ici : 
+#
+#    ![image](https://user-images.githubusercontent.com/1177762/189527431-3fdcc5b2-22c0-49e1-b5f0-68762f780d57.png)
+#
+#    On peut y voir que les cultures dédiées sont très faibles en proportion, ce qui est plutôt très rassurant. 
+#
+#    Cela dit, et je ne sais pas trop comment le définir précisément, j'ai quand même une forte impression qu'une grande partie de ces composants pourraient être valorisés différemment : concrètement, on brûle et on valorise donc à un prix vendu très élevé (le gaz en prix de gros [coûte en septembre 2022](https://twitter.com/i/timeline) près de 2 fois le prix de production du biogaz (90€/MWh)) les restes de poulet de la cantine qu'on aurait pu juste ne pas produire (bleu); la pelouse domestique que le voisin tond toutes les semaines (bleu clair); le fumier de cultures qui auraient pu être dédiées à du végétal humain (mauve); etc. 
+#
+#    En bref, si une partie de l'énergie présente dans les matières utilisées par le biométhane était juste perdue, une autre partie subit simplement un changement d'allocation, d'une chose utile au monde agricole vers la combustion du gaz pour chauffer des logemens notamment. Sans compter l'effet d'aubaine pour des activités qui émettent, substituables par d'autres qui émettent moins. L'étude pourtant semble très complète, donc c'est à creuser, peut-être qu'elle répond à tout ça et que je n'ai pas vu (c'est complexe). 
+#
+#    On peut aussi citer [un article de Reporterre](https://reporterre.net/methanisation-un-digestat-bien-indigeste-pour-les-sols-et-les-eaux) qui s'inquiète des contaminations bactériennes dues à l'épendage du digestat ainsi qu'aux fuites de méthane et de protoxide d'azote N2O, qui seraient sous-estimées (car bien présentes donc évaluées dans l'étude citée par la base carbone). Mais attention, Reporterre n'est pas un organisme de recherche, mais un média d'opinion. 
+#
+#    Une investigation toute récente sur les méthaniseurs de Bretagne va dans le même sens, cataloguant les incidents ayant eu lieu dans la région : https://basta.media/des-methaniseurs-menacent-l-environnement-la-carte-inedite-des-accidents-en-Bretagne-Splann. 
+#
+#    Cela ne remet pas en question le fait d'intégrer dans NGC le facteur à mon avis. La production de gaz fossile est tout à fait concernée par ce genre de problèmes également, à titre d'exemple. 
+#
+#    Une autre question dont la réponse y est peut-être est celle-ci : la filière peut-elle faire x10 en production sans introduire des externalités négatives pour l'instant maitrisées ? Ce serait intéressant d'y répondre pour l'utilisateur de NGC, lui montrer que son choix peut passer à l'échelle de la société. Carbone4 semble y répondre négativement : le remplacement du gaz fossile par le biométhane ne doit pas conduire à une non réduction de la consommation de gaz en général, et encore moins à un effet rebond ! 
+#
+#    ![image](https://user-images.githubusercontent.com/1177762/189527887-931ee20a-8ad6-431f-bd4d-d705fa9eefca.png)
+#
+#    Un **avertissement** est donc être intégré pendant la simulation pour évoquer cet impossible passage à l'échelle : 
+#
+#    > Le biométhane réduit **énormément** les émissions de CO₂ du gaz que vous consommez, mais la production actuelle est **incapable de passer à l'échelle** : la réduction globale de toute consommation de gaz reste **essentielle**, que l'on consomme du biogaz ou du gaz fossile.
+#
+#logement . chauffage . biogaz . facteur d'émission:
+#  formule: biogaz . facteur d'émission base carbone * part + gaz . facteur d'émission base carbone * (1 - part)
+#  description: |
+#    Biogaz : Biométhane - Injecté dans les réseaux - Mix moyen
+#
+#logement . chauffage . biogaz . facteur d'émission base carbone:
+#  titre: Facteur d'émission du biogaz
+#  formule: 0.0395
+#  unité: kgCO2e/kWh
+#  description: |
+#    On raisonne en PCS (Pouvoir Calorifique Supérieur) et non en PCI (Pouvoir Calorifique Inférieur), car le PCS est utilisé en tant que coefficient de conversion dans les factures pour convertir le volume de gaz utilisé en kWh : 
+#    on fait l'hypothèse que la chaudière gaz récupère bien la chaleur latente de condensation.
+#
+#    Biogaz : Biométhane - Injecté dans les réseaux - Mix moyen
+#
+#logement . chauffage . biogaz . part:
+#  question: Quelle est la part de biogaz garantie par votre contrat de gaz ?
+#  plancher: 0
+#  plafond: 100
+#  description: |
+#    Il existe peu de vendeurs de gaz proposant des contrats 100% biogaz, mais il en existe (en septembre 2022). 
+#    Par contre, le premier vendeur de gaz français propose à ses clients une option biogaz avec une proportion reglable moyennant un coût supplémentaire (significatif mais qui ne fait pas non plus doubler la facture). N'hésitez pas à en parler à un conseiller.
+#  par défaut: 20%
+#  unité: '%'
 
 logement . chauffage . bouteille gaz:
   icônes: 🛢️🔥
@@ -275,14 +289,14 @@ logement . chauffage . bouteille gaz . présent:
   question: Utilisez-vous des bouteille de gaz ?
 
 logement . chauffage . bouteille gaz . consommation:
-  question: Quelle est votre consommation annuelle en bouteilles de gaz (13 kg) ?
+  question: En 2023, quelle a été votre consommation annuelle en bouteilles de gaz (13 kg) ?
   aide: logement . chauffage . bouteille gaz . consommation estimée via le poids . saisie
   plancher: 0
   par défaut: parc français . chauffage . consommation moyenne gaz cuisson / énergie par bouteille
   unité: bouteille
   description: |
     Pour simplifier la réponse à cette question, nous vous proposons de rentrer directement le nombre de bouteilles de gaz que vous consommez.
-    On considère ici une capacité de 13kg, modèle le plus répandu et généralement utilisé pour le gaz de cuisson.
+    Nous considèrons ici une capacité de 13kg, modèle le plus répandu et généralement utilisé pour le gaz de cuisson.
 
     Si vous souhaitez répondre en kilogrammes, car la taille de la bouteille ne vous correspond pas, n'hésitez pas à utiliser l'aide à la conversion.
   note: |
@@ -296,6 +310,18 @@ logement . chauffage . bouteille gaz . consommation:
     La bouteille la plus répandue est le modèle de 13kg, généralement utilisée pour le gaz de cuisson. On considère donc pour cette question une bouteille de 13kg.
 
     Étant donné que les bouteilles elles-mêmes sont consignées, nous prenons en compte uniquement les émissions liées au gaz seul.
+
+### Je commente la notif car je pense que les chiffres de conso de GPL du parc français ne sont pas adaptés pour les bouteilles de gaz (qui sont avant tout des appoints) car
+### j'obtiens une limite supérieure d'environ 120 bouteilles (soit une tous les 3 jours). En revanche les chiffres semblent adaptés aux citernes de propane
+#logement . chauffage . notif bouteille gaz valeur supérieure:
+#  type: notification
+#  formule:
+#    toutes ces conditions:
+#      - est défini: bouteille gaz . présent
+#      - bouteille gaz . présent = oui
+#      - bouteille gaz . consommation * bouteille gaz . énergie par bouteille > parc français . chauffage . consommation GPL par m2 * surface * (habitants / 2.2) * logement . facteur notif conso supérieur
+#  description: |
+#    Vous avez renseigné une consommation de bouteille de gaz relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
 
 logement . chauffage . bouteille gaz . consommation estimée via le poids:
   titre: Consommation estimée via le poids
@@ -372,15 +398,25 @@ logement . chauffage . citerne propane . présent:
   question: Votre logement est-il chauffé via une citerne de propane ?
 
 logement . chauffage . citerne propane . consommation:
-  question: Quelle est la consommation annuelle de gaz propane en citerne de votre foyer ?
+  question: En 2023, quelle a été la consommation annuelle de gaz propane en citerne de votre logement principal ?
   aide: logement . chauffage . citerne propane . consommation estimée via le coût . saisie
   plancher: 0
   par défaut: parc français . chauffage . consommation gaz par m2 * surface / énergie par kg
   unité: kg
   description: |
-    Astuce : Vous trouverez vos consommations annuelles d'énergie sur vos factures ou sur votre compte en ligne sur le site de votre fournisseur.
+    > Astuce : Vous trouverez votre consommation annuelle sur vos factures ou sur votre compte en ligne sur le site de votre fournisseur.
   note: |
     Certains logements ne peuvent être raccordés au réseau de gaz et disposent d'une citerne propane, à l'image d'une citerne fioul.
+
+logement . chauffage . notif citerne propane valeur supérieure:
+  type: notification
+  formule:
+    toutes ces conditions:
+      - est défini: citerne propane . présent
+      - citerne propane . présent = oui
+      - citerne propane . consommation * citerne propane . énergie par kg > parc français . chauffage . consommation GPL par m2 * surface * (habitants / 2.2) * logement . facteur notif conso supérieur
+  description: |
+    Vous avez renseigné une consommation de propane relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
 
 logement . chauffage . citerne propane . consommation estimée via le coût:
   titre: Consommation estimée via le coût
@@ -390,16 +426,16 @@ logement . chauffage . citerne propane . consommation estimée via le coût:
   note: Cette règle est utilisée dans le cadre de l'aide à la saisie pour la question mentionnée dans l'attribut `aide`. L'attribution de la valeur finale est géré côté site.
 
 logement . chauffage . citerne propane . consommation estimée via le coût . saisie:
-  question: Pas de facture ? Entrez vos dépenses approximatives par mois
+  question: Pas de facture ? Entrez vos dépenses actuelles approximatives par mois
   plancher: 0
   unité: €/mois
 
 logement . chauffage . citerne propane . consommation estimée via le coût . facteur:
-  formule: 1.8
+  formule: 2.176
   unité: €/kg
   note: |
-    Selon les informations agrégées par le site [HelloWatt](https://www.hellowatt.fr/gaz-propane-citerne/comparatif-prix), 
-    le prix du propane en citerne oscille autour de 1800€ par tonne (selon le fournisseur).
+    Source : données issue de l'Excel `1.1.-Prix-menages-Petrole.2024-09` (variable PX_PETRO_PROPANE_TONNE), moyenne S1 2024.
+    Accessible sur le site du [SDES](https://www.statistiques.developpement-durable.gouv.fr/catalogue?page=dataset&datasetId=631b03afb61e5c6479370169)
 
     Cette aide à l'estimation est désignée pour recevoir une consommation mensuelle (cf InputEstimation.tsx côté site)
 
@@ -438,13 +474,23 @@ logement . chauffage . fioul . présent:
   question: Votre logement est-il chauffé au fioul ?
 
 logement . chauffage . fioul . consommation:
-  question: Quelle est la consommation annuelle de fioul domestique de votre foyer ?
+  question: En 2023, quelle a été la consommation annuelle de fioul domestique de votre logement principal ?
   aide: logement . chauffage . fioul . consommation estimée via le coût . saisie
   plancher: 0
   unité: l
   description: |
-    Astuce : Vous trouverez vos consommations annuelles d'énergie sur votre facture de fioul ou sur votre compte en ligne sur le site de votre fournisseur.
+    > Astuce : Vous trouverez votre consommations annuelles sur votre facture de fioul ou sur votre compte en ligne sur le site de votre fournisseur.
   par défaut: parc français . chauffage . consommation fioul par m2 * fioul kWh au litre * surface
+
+logement . chauffage . notif fioul valeur supérieure:
+  type: notification
+  formule:
+    toutes ces conditions:
+      - est défini: fioul . présent
+      - fioul . présent = oui
+      - fioul . consommation * (1 / fioul kWh au litre) > parc français . chauffage . consommation fioul par m2 * surface * (habitants / 2.2) * logement . facteur notif conso supérieur
+  description: |
+    Vous avez renseigné une consommation de fioul relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
 
 logement . chauffage . fioul . consommation estimée via le coût:
   titre: Consommation estimée via le coût
@@ -454,17 +500,17 @@ logement . chauffage . fioul . consommation estimée via le coût:
   note: Cette règle est utilisée dans le cadre de l'aide à la saisie pour la question mentionnée dans l'attribut `aide`. L'attribution de la valeur finale est géré côté site.
 
 logement . chauffage . fioul . consommation estimée via le coût . saisie:
-  question: Pas de facture ? Entrez vos dépenses approximatives par mois
+  question: Pas de facture ? Entrez vos dépenses actuelles approximatives par mois
   plancher: 0
   unité: €/mois
 
 logement . chauffage . fioul . consommation estimée via le coût . facteur:
-  formule: 1.2869
+  formule: 1.2415
   unité: €/l
   note: |
     Cette formule nous permet de passer des €/mois aux litres/an.
 
-    Source : Fioul domestique 2000 à 4999 litres, 2ème semestre 2023.
+    Source : Fioul domestique 2000 à 4999 litres, moyenne réalisée sur le 1er semestre 2024.
     Donnée issue de l'excel `Prix HTT et TTC depuis janvier 2020.xlsx` téléchargeable sur la page 
     [Prix des produits pétroliers](https://www.ecologie.gouv.fr/prix-des-produits-petroliers#scroll-nav__4) du ministère de la Transition Écologique.
 
@@ -505,7 +551,7 @@ logement . chauffage . bois . présent:
 
 logement . chauffage . bois . type:
   titre: type de bois
-  question: Quel type de bois utilisez-vous ?
+  question: Quel type de bois utilisez-vous au sein de votre logement principal ?
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -521,7 +567,7 @@ logement . chauffage . bois . type . granulés:
   titre: Granulés
 
 logement . chauffage . bois . type . granulés . consommation:
-  question: Quelle est la consommation annuelle de bois en granulés de votre foyer ?
+  question: En 2023, quelle a été la consommation annuelle de bois en granulés de votre logement principal ?
   aide: logement . chauffage . bois . type . granulés . consommation estimée via le coût . saisie
   plancher: 0
   unité: kWh
@@ -534,6 +580,16 @@ logement . chauffage . bois . type . granulés . consommation:
 
     Et donc probablement que si la discrimination par type de bois de chauffe était faite dans les données du CEREN (pour les kWh consommés et les surface chauffées) on aboutirait à une valeur en kWh/m2 beaucoup plus faible pour les granulés que pour le bois bûches.
 
+logement . chauffage . notif bois granulés valeur supérieure:
+  type: notification
+  formule:
+    toutes ces conditions:
+      - est défini: bois . présent
+      - bois . présent = oui
+      - bois . type . granulés . consommation > parc français . chauffage . consommation bois par m2 * surface * (habitants / 2.2) * logement . facteur notif conso supérieur
+  description: |
+    Vous avez renseigné une consommation de granulés relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
+
 logement . chauffage . bois . type . granulés . consommation estimée via le coût:
   titre: Consommation estimée via le coût
   formule: saisie * commun . mois par an / facteur
@@ -542,7 +598,7 @@ logement . chauffage . bois . type . granulés . consommation estimée via le co
   note: Cette règle est utilisée dans le cadre de l'aide à la saisie pour la question mentionnée dans l'attribut `aide`. L'attribution de la valeur finale est géré côté site.
 
 logement . chauffage . bois . type . granulés . consommation estimée via le coût . saisie:
-  question: Pas de facture ? Entrez vos dépenses approximatives par mois
+  question: Vous ne connaissez pas votre consommation annuelle 2023 de granulés ? Entrez vos dépenses actuelles approximatives par mois
   plancher: 0
   unité: €/mois
 
@@ -558,7 +614,7 @@ logement . chauffage . bois . type . bûches . intensité énergétique:
   note: Nous faisons l'hypothèse d'une consommation de bûches de 20% d'humidité, d'après l'[étude ADEME sur le chauffahe domestique au bois](https://librairie.ademe.fr/produire-autrement/872-etude-sur-le-chauffage-domestique-au-bois.html), page 10.
 
 logement . chauffage . bois . type . bûches . consommation:
-  question: Quelle la consommation annuelle de bois en bûches de votre foyer ?
+  question: En 2023, quelle a été la consommation annuelle de bois en bûches de votre logement principal ?
   aide: logement . chauffage . bois . type . bûches . consommation estimée via le coût . saisie
   plancher: 0
   description: |
@@ -568,6 +624,16 @@ logement . chauffage . bois . type . bûches . consommation:
   unité: stère
   par défaut: parc français . chauffage . consommation bois par m2 * surface / intensité énergétique
 
+logement . chauffage . notif bois bûches valeur supérieure:
+  type: notification
+  formule:
+    toutes ces conditions:
+      - est défini: bois . présent
+      - bois . présent = oui
+      - bois . type . bûches . consommation * bois . type . bûches . intensité énergétique > parc français . chauffage . consommation bois par m2 * surface * (habitants / 2.2) * logement . facteur notif conso supérieur
+  description: |
+    Vous avez renseigné une consommation de bûches relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
+
 logement . chauffage . bois . type . bûches . consommation estimée via le coût:
   titre: Consommation estimée via le coût
   formule: saisie * commun . mois par an / facteur
@@ -576,7 +642,7 @@ logement . chauffage . bois . type . bûches . consommation estimée via le coû
   note: Cette règle est utilisée dans le cadre de l'aide à la saisie pour la question mentionnée dans l'attribut `aide`. L'attribution de la valeur finale est géré côté site.
 
 logement . chauffage . bois . type . bûches . consommation estimée via le coût . saisie:
-  question: Pas de facture ? Entrez vos dépenses approximatives par mois
+  question: Vous ne connaissez pas votre consommation annuelle 2023 de bois ? Entrez vos dépenses actuelles approximatives par mois
   plancher: 0
   unité: €/mois
 
@@ -627,19 +693,25 @@ logement . chauffage . réseau de chaleur . présent:
 
 logement . chauffage . réseau de chaleur . consommation:
   icônes: 🔥
-  question: Quelle est votre consommation annuelle d'énergie via le réseau de chaleur raccordé à votre foyer ?
+  question: En 2023, quelle a été votre consommation annuelle de chaleur via le réseau de chaleur raccordé à votre logement principal ?
   aide: logement . chauffage . réseau de chaleur . consommation estimée via le coût . saisie
   plancher: 0
   par défaut: parc français . chauffage . consommation réseau de chaleur par m2 * surface
   unité: kWh
   description: |
-    Le contenu carbone du kWh de chaleur issu d'un réseau de chaleur dépend fortement du réseau auquel vous êtes raccordé. 
+    Si vous vivez en copropriété il se peut que cette dernière ne vous communique pas la consommation de chaleur de votre logement (en kWh). Cela dit, elle doit vous fournir le montant en €, que vous pourrez saisir ci-dessous pour estimer vos kWh.
+    
+    >  Astuce : Vous trouverez votre consommations annuelle 2023 sur vos factures ou sur votre compte en ligne sur le site de votre fournisseur de chaleur.
 
-    Pour le moment, nous nous basons sur un facteur d'émission moyen : nous avons fait le choix de ne pas vous demander votre adresse.
-
-    Astuce : Vous trouverez vos consommations annuelles d'énergie sur vos factures ou sur votre compte en ligne sur le site de votre fournisseur.
-
-    > Il se peut que votre copropriété ne vous communique pas la consommation en kWh de votre logement, quand la chaudière est centralisée. Cela dit, elle doit vous fournir le montant en €, que vous pourrez saisir ci-dessous pour estimer vos kWh.
+logement . chauffage . notif réseau de chaleur valeur supérieure:
+  type: notification
+  formule:
+    toutes ces conditions:
+      - est défini: réseau de chaleur . présent
+      - réseau de chaleur . présent = oui
+      - réseau de chaleur . consommation > parc français . chauffage . consommation réseau de chaleur par m2 * surface * (habitants / 2.2) * logement . facteur notif conso supérieur
+  description: |
+    Vous avez renseigné une consommation de chaleur relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
 
 logement . chauffage . réseau de chaleur . consommation estimée via le coût:
   titre: Consommation estimée via le coût
@@ -648,28 +720,24 @@ logement . chauffage . réseau de chaleur . consommation estimée via le coût:
   note: Cette règle est utilisée dans le cadre de l'aide à la saisie pour la question mentionnée dans l'attribut `aide`. L'attribution de la valeur finale est géré côté site.
 
 logement . chauffage . réseau de chaleur . consommation estimée via le coût . saisie:
-  question: Pas de facture ? Entrez vos dépenses approximatives par mois
+  question: Pas de facture ? Entrez vos dépenses actuelles approximatives par mois
   plancher: 0
   unité: €/mois
 
 logement . chauffage . réseau de chaleur . consommation estimée via le coût . facteur:
-  formule: 0.085
+  formule: 0.1126
   unité: €/kWh
   note: |
-    Cette formule nous permet de passer des €/mois aux kWh/an : le kWh coût x centimes par mois sur 12 mois.
+    Cette formule nous permet de passer des €/mois aux kWh/an : le kWh coût x centimes par mois sur 12 mois. Attention, ces données de prix sont issues 
+    des recettes des exploitants facturées aux abonnés (et non pas aux usagers finaux) et ne tiennent pas comptent des aides telles que le bouclier tarifaire (cf. mail AMORCE).
 
-    Ce chiffre est tiré de l'[Enquête des réseaux de chaleur et de froid](https://amorce.asso.fr/actualite/les-reseaux-de-chaleur-la-bonne-solution-de-chauffage-pour-le-pouvoir-d-achat-et-le-climat) 
-    basé sur les données 2021 qui donne un chiffre de 80€HT/MWh.
+    Ce chiffre est tiré de l'[Enquête des réseaux de chaleur et de froid - RCE 40](https://amorce.asso.fr/publications/enquete-sur-le-prix-de-vente-de-la-chaleur-et-du-froid-en-2022-rce40) 
+    non encore publiée mais transmise par le réseau AMORCE. L'enquête se base sur les données 2022 qui donne un chiffre de 112.6 €HT/MWh 119.8 €TTC/MWh.
 
-    L'[Enquête sur le prix de vente de la chaleur et de froid de 2019](https://amorce.asso.fr/publications/enquete-sur-le-prix-de-vente-de-la-chaleur-et-de-froid-en-2019-rce36)
-    donnait un chiffre de 74,6€HT/MWh et 79,3€TTC/MWh, avec une médiane à 82,3€TTC/MWh.
+    Il faut savoir que l'écart-type TTC est important car la TVA appliquée varie avec la proportion d'énergie verte dans le mix du réseau de chaleur (5,5% pour les réseaux contenant plus de 50 % d'énergie renouvelable et de récupération).
 
-    Nous avons donc choisi dans une première approximation de nous baser sur la moyenne 2021 en conservant le ratio 2019 pour passer en TTC ce qui donne une valeur de 85€TTC/MWh
-    (ce n'est pas seulement un 5,5% ou 20%, car l'application de ces taux varie selon la proportion d'énergie verte dans le mix du réseau de chaleur, 
-    une TVA à 5,5% étant appliquée aux réseaux contenant plus de 50 % d'énergie renouvelable et de récupération).
-
-    C'est une valeur moyenne dont l'écart-type est relativement important.
-    Néanmoins, on peut lire dans l'enquête que "les prix de vente moyens des réseaux de chaleur affichent une très grande disparité, 89% de la chaleur livrée est vendue à un prix compris entre -30 et +30% de la moyenne nationale".
+    Néanmoins, on peut lire p17 "Bien que les prix de vente moyens des réseaux de chaleur affichent une très grande disparité, 88% 
+    de la chaleur livrée est vendue à un prix compris entre -30 et +30% de la moyenne nationale."
 
 logement . chauffage . réseau de chaleur . intensité carbone:
   titre: Empreinte carbone réseau de chaleur

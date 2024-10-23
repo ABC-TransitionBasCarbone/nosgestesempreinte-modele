@@ -5,20 +5,25 @@ transport . transports commun:
     options:
       - bus . présent
       - car . présent
+      - car longue distance . présent
       - métro ou tram . présent
     suggestions:
       aucun:
         bus . présent: non
         car . présent: non
+        car longue distance . présent: non
         métro ou tram . présent: non
   question: Quels transports en commun utilisez-vous régulièrement (au moins une fois par mois) ?
   icônes: 🚋
   description: |
-    S'il vous est arrivé de faire un trajet en bus pendant vos vacances cette année, nous le considérerons comme négligeable.
+    S'il vous est arrivé de prendre certains de ces transports de manière épisodique (en vacances par exemple) ne les comptez pas. Nous nous intéressons ici à une utilisation récurrente au quotidien.
+    
+    Si vous avez pris des autocars "Macron" pour des trajets de longue distance ne les comptez pas ici, c'est l'objet de la question suivante.
   formule:
     somme:
       - bus
       - car
+      - car longue distance
       - métro ou tram
 
 transport . transports commun . bus:
@@ -53,12 +58,10 @@ transport . transports commun . bus . impact par heure:
   description: |
     Sur la base de 113 gCO2e/(passager.km) et de 12 km/h de vitesse moyenne
 transport . transports commun . bus . impact par km:
-  formule: 0.113
+  formule: 0.146
   unité: kgCO2e/km
   note: |
-    Autobus - Gazole ; 113 gCO2e/km/personne ; Base Carbone consultée le 04/04/2022
-    La flotte étant majoritairement Diesel en France (https://www.statistiques.developpement-durable.gouv.fr/69-000-autocars-en-circulation-au-1er-janvier-2020), on fait le choix de prendre ce FE (plus fiable que la référence "Autobus moyen" selon la base carbone)
-    La prise compte des autres motorisations de cette catégorie de la base carbone fera diminuer ce FE (en pondérant selon les caractéristiques de la flotte française). (Ex: Autobus - électrique = 21.7 gCO2e/km/personne)
+    Autobus moyen/Agglomération de 100 000 à 250 000 habitants ; 146 gCO2e/km/personne ; Base Carbone consultée le 26/07/2024
 transport . transports commun . bus . vitesse:
   formule: 12
   unité: km/h
@@ -126,16 +129,26 @@ transport . transports commun . car . distance moyenne hebdo:
   unité: km/semaine
 
 transport . transports commun . car . distance moyenne annuelle:
-  formule: 45000000000 km / population
+  formule: 35400000000 km / population
   unité: km
   note: |
     D'après [l'étude "Chiffres clef du transport 2021" (données de 2019)](https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-transport-2021/13-transport-routier-de-voyageurs), les français parcourent en moyenne 45 milliards de km en car par an.
+    Sont comptabilisés les km réalisés "autres autocars" (occasionnel, scolaire, personnel, etc.)
+
 
 transport . transports commun . car . impact par km:
-  formule: 0.0295
+  formule: 0.100
   unité: kgCO2e/km
   note: |
-    Autocar - Gazole ; 29,5 gCO2e/km.personne ; Base Empreinte consultée le 18/01/2024
+    FE (amont + combustion) Autobus - Gazole courte distance [Base Empreinte - hypothèses de la section "Autobus - autocars"] : 92 gCO2e/passager.km consolidé
+    en intégrant la fabrication du véhicule. Soit une composante "fabrication" estimée à 8.9 gCO2eq/passager.km pour un FE total de 100.9 gCO2e/passager.km
+    Hypothèses retenues pour la consolidation (reprises de la Base Empreinte) :
+     - 4 kgCO2eq/kg pour la fabrication des autobus/autocar (basé sur une analyse de la littérature)
+     - masse d’un autocar = 12 tonnes
+     - durée de vie en km = 361 884 km
+     - nombre de passagers moyen = 30
+    /!\ Bizarrement ce FE consolidé à partir des hypothèses diffère de ce qu'affiche la Base Empreinte - FE Autobus/Gazole : 113 gCO2eq/passager.km
+    /!\ Le 92 gCO2eq/passager.km de la documentation ne correspond pas à la somme amont + combustion du FE : 20.5 + 83.8 = 104,3 gCO2eq/passager.k
 
 transport . transports commun . métro ou tram:
   titre: Métro, tramway, train de banlieue

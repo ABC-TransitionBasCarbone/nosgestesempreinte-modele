@@ -6,24 +6,29 @@ transport . vacances:
       - caravane . propriétaire
       - camping car . propriétaire
       - van . propriétaire
+      - location véhicule . propriétaire
     suggestions:
       aucun:
         caravane . propriétaire: non
         camping car . propriétaire: non
         van . propriétaire: non
-  question: Que possédez-vous pour vos week-ends, vos vacances (hors véhicule principal) ?
+        location véhicule . propriétaire: non
+  question: En 2023, que possédiez-vous pour vos week-ends, vos vacances (en plus de votre véhicule principal) ?
   icônes: 🏖
   description: |
-    On vous propose ici de sélectionner ce que vous possédez pour vos vacances. La catégorie "van aménagé" comprend les fourgons et camionettes aménagés. 
+    Sélectionner ici les autres véhicules que vous possédiez, en 2023, en plus de votre voiture. La catégorie "van aménagé" comprend les fourgons et camionettes aménagés. 
 
-    Si vous avez déjà renseigné les kilomètres parcourus en van aménagé précédemment, en indiquant "véhicule utilitaire léger" comme véhicule principal de déplacement, alors vous pouvez ici cocher "aucun".
+    Si vous possédez un van **et qu'il s'agit de votre moyen de transport principal**, vous avez donc normalement renseigné les km faits avec à la première question (si ce n'est pas le cas revenez en arrière et modifiez votre réponse). Vous pouvez donc ici cocher "Aucun".
 
-    💡 Si vous ne possédez ni camping car, ni caravane, ni van aménagé ou bien si vous les louez, vous pouvez cliquer sur "aucun" juste en dessous de cette question, puis "Suivant". La location n'est pas encore disponible dans notre modèle**.
+    Si vous ne possédez ni camping car, ni caravane, ni van aménagé et que vous n'en avez pas loué un en 2023, cliquez sur "Aucun", puis passez à la question suivante.
+ 
+
   formule:
     somme:
       - caravane
       - camping car
       - van
+      - location véhicule
 
 # @Clément: pour l'instant, nous gardons la valeur par défaut pour `transport . vacances` à false pour des raison de complexité :
 # - L'empreinte est divisée entre 2 catégorie : nous ne pouvons appliqué le même comportement / contournement que pour la mosaïque "chauffage" par exemple.
@@ -77,12 +82,12 @@ transport . vacances . caravane . ratio surconsommation:
     En première approximation, nous considérons donc une hypothèse de 25% de surconsommation
 
 transport . vacances . caravane . distance:
-  question: Quelle distance parcourez-vous à l'année en caravane ?
+  question: Quelle distance avez-vous parcouru en 2023 avec votre caravane ?
   par défaut: 6250
   description: |
-    Attention, pour faire ces km en caravane, vous les avez faits avec une voiture : vous devez donc les avoir inclus dans les km voiture (une question à laquelle vous avez probablement déjà répondu).
-
-    💡 Cette question nous sert à appliquer la surconsommation du tractage de votre caravane à une partie de vos km en voiture.
+    Renseignez ici les km effectués en voiture en ayant tracté votre caravane.
+    
+    **Attention ! Ces km doivent aussi avoir été renseignés lors de la première question portant sur les trajets réalisés en voiture.**
   note: D'après la fédération des campeurs, caravaniers et camping-caristes, un camping-cariste fait en moyenne de 5000 à 7500 km par an ([source](https://ffcc.fr/chiffres-cles/))
   unité: km
 
@@ -154,16 +159,18 @@ transport . vacances . camping car . durée de vie:
 transport . vacances . camping car . km:
   titre: km en camping car
   applicable si: propriétaire
-  question: Quelle distance parcourez-vous à l'année en camping-car ?
+  question: Quelle distance avez-vous parcouru en 2023 avec votre camping-car ?
   description: |
-    Attention, ces km de camping car ne doivent pas être renseignés dans les km voiture (une question à laquelle vous avez probablement déjà répondu), ce sont deux questions différentes.
+    Attention, les km faits en camping-car ne doivent pas avoir été inclus dans les km réalisés en voiture (la première question à laquelle vous avez répondu). Nous distinguons ces deux types de trajet.
+    
+    Si vous l'avez fait, revenez en arrière pour modifier vos réponses à la première question.
   par défaut: 8869
   plancher: 0
   unité: km
   note: D'après la fédération des campeurs, caravaniers et camping-caristes, un camping-cariste fait en moyenne 8869 km par an ([source](https://ffcc.fr/actualite/qui-sont-les-camping-caristes-et-les-vanlifers-en-2021/))
 
 transport . vacances . camping car . consommation aux 100:
-  question: Connaissez-vous la consommation moyenne de votre camping-car ?
+  question: Quelle était la consommation moyenne de votre camping-car en 2023 ?
   par défaut: 15
   unité: l/centkm
   note: |
@@ -193,7 +200,7 @@ transport . vacances . camping car . pourcentage camping-caristes:
   note: Il existe 1,4 millions de camping-caristes en France, dont 77% roulent en camping-car (23% en van / fourgon aménagé) [selon la Fédération des campeurs, caravaniers et camping-caristes](https://ffcc.fr/chiffres-cles/)
 
 transport . vacances . van:
-  titre: Van
+  titre: Van aménagé
   icônes: 🚐
   applicable si: propriétaire
   formule: usage réel + construction amortie
@@ -214,9 +221,11 @@ transport . vacances . van . usage:
 transport . vacances . van . km:
   titre: km en van
   applicable si: propriétaire
-  question: Quelle distance parcourez-vous à l'année en van ?
+  question: Quelle distance avez-vous parcouru en 2023 avec votre van ?
   description: |
-    Attention, ces km en van ne doivent pas être renseignés dans les km voiture (une question à laquelle vous avez probablement déjà répondu), ce sont deux questions différentes.
+    Pour rappel, **si votre van aménagé est votre moyen de transport principal**, les km réalisés doivent avoir été renseignés lors de la première question (si ce n'est pas le cas revenez en arrière, décochez la possession d'un van et modifiez vos réponses à la première question).
+    
+    Ici nous nous intéressons aux km réalisés en 2023 avec le van que vous possédez **en plus de votre voiture.**
   par défaut: 9310
   unité: km
   plancher: 0
@@ -232,7 +241,7 @@ transport . vacances . van . consommation au kilomètre:
   unité: l/km
 
 transport . vacances . van . consommation aux 100:
-  question: Connaissez-vous la consommation moyenne de votre van ?
+  question: Quelle était la consommation moyenne de votre van ?
   par défaut: 9
   unité: l/centkm
   note: |
@@ -265,3 +274,87 @@ transport . vacances . van . durée de vie:
 transport . vacances . van . pourcentage usagers van:
   formule: 1400000 * 23% / population
   note: Il existe 1,4 millions de camping-caristes en France, dont 23% roulent en van / fourgon aménagé [selon la Fédération des campeurs, caravaniers et camping-caristes](https://ffcc.fr/chiffres-cles/)
+
+transport . vacances . location véhicule:
+  titre: Je ne possédais pas mais j'ai loué un van/camping-car
+  icônes: 🚐🤝
+  applicable si: propriétaire
+  formule: usage réel + construction au km
+
+transport . vacances . location véhicule . propriétaire:
+  question: Avez-vous loué vous un van et/ou camping car en 2023 ?
+  par défaut: non
+
+#A voir si je questionne le nombre de passagers lors de la location
+transport . vacances . location véhicule . usage réel:
+  titre: Usage location
+  formule: usage / passagers
+  unité: kgCO2e
+
+transport . vacances . location véhicule . usage:
+  formule: location véhicule . km * empreinte au kilomètre
+  unité: kgCO2e
+
+transport . vacances . location véhicule . km:
+  titre: km en van loué
+  applicable si: propriétaire
+  question: En 2023, quelle distance avez-vous parcouru avec le van/camping-car que vous avez loué ?
+  description: |
+    **Attention !** Assurez vous de ne pas avoir renseigné ces km lors de la première question portant sur les trajets réalisés en voiture. Si c'est ce que vous avez fait, 
+    revenez en arrière pour modifier vos réponses et renseignez ici les km effectués en 2023 avec un van/camping-car de location.
+  par défaut: 2000 
+  unité: km
+  plancher: 0
+  note: Valeur par défaut à sourcer
+
+transport . vacances . location véhicule . empreinte au kilomètre:
+  titre: empreinte au km camping-car
+  formule: consommation au kilomètre * empreinte au litre
+  unité: kgCO2e/km
+
+transport . vacances . location véhicule . consommation au kilomètre:
+  formule: consommation aux 100 / 100 km/centkm
+  unité: l/km
+
+transport . vacances . location véhicule . consommation aux 100:
+  formule: 9
+  unité: l/centkm
+  note: |
+    On choisi de ne pas poser cette question et d'appliquer directement la valeur par défaut qui considère une consommation de [9 l au 100 km](https://www.wikicampers.fr/blog/van-vs-fourgon-lequel-choisir/)
+
+transport . vacances . location véhicule . empreinte au litre:
+  formule: 2.7
+  unité: kgCO2e/l
+  note: |
+    Source : [Base Carbone](https://bilans-ges.ademe.fr/fr/basecarbone/donnees-consulter/liste-element/categorie/405)
+
+#questionner les passagers ?
+transport . vacances . location véhicule . construction au km:
+  titre: Construction du van
+  formule: (barème construction * amortissement) / passagers
+  unité: kgCO2e
+
+transport . vacances . location véhicule . passagers:
+  titre: Nombre de passagers
+  applicable si: propriétaire
+  question: Combien d'occupants (en vous incluant) étaient présents lors de vos trajets en van/camping-car de location en 2023 ?
+  description: Essayez de renseigner un nombre d'occupants (vous inclus) le plus représentatif des trajets effectués.
+  par défaut: logement . habitants
+  plancher: 1
+
+transport . vacances . location véhicule . barème construction:
+  formule: voiture . barème construction . barème thermique . empreinte par kg * location véhicule . poids
+  unité: kgCO2e
+
+transport . vacances . location véhicule . poids:
+  formule: 3000
+  unité: kg
+  note: Le poids d'un van aménagé varie entre 2,6 et 3,5 tonnes (au-delà de 3,5 tonnes, le véhicule change de PTAC pour devenir un "poids lourd", impliquant l'utilisation d'un autre permis)
+
+transport . vacances . location véhicule . amortissement:
+  formule: 1 / durée de vie en km
+
+transport . vacances . location véhicule . durée de vie en km:
+  formule: 400000
+  unité: km
+  note: A sourcer !!!! Durée de vie moyenne en km d'un van/camping-car

@@ -51,9 +51,11 @@ divers . produits consommables . empreinte par mois:
 divers . produits consommables . consommation:
   question: Comment estimeriez-vous votre consommation par mois de produits d'hygiène (savon, maquillage...) et d'entretien (lessive, produits ménagers...) ?
   description: |
-    Cette question nous permet d'évaluer *simplement* l'empreinte climat de vos consommations en produits d'hygiène 
-    (parfumerie, gels douche, shampoings, déodorants, dentifrices, maquillage, crèmes de soin, crèmes solaires...) et en produits d'entretien 
-    (lessives, produits pour le lave-vaisselle, produits ménagers...) sur la base de 3 niveaux de consommation.
+    Les produits d'hygiène comprennent la parfumerie, les gels douche, les shampoings, les déodorants, le dentifrice et brosse à dent, le maquillage, les crèmes de soin, les crèmes solaires, les cotons, etc. 
+    
+    Les produits d'entretien comprennent la lessive, les produits pour le lave-vaisselle (tablettes, liquide de rinçage et sels), les produits ménagers (vinaigre blanc, javel...), le liquide vaisselle, les vernis et huiles d'entretien, etc.
+    
+    Nous vous proposons d'estimer votrre consommation selon 3 niveaux.
   par défaut: "'normale'"
   formule:
     une possibilité:
@@ -64,11 +66,11 @@ divers . produits consommables . consommation:
         - élevée
 
 divers . produits consommables . consommation . faible:
-  titre: Faible (1 ou 2 produits)
+  titre: 1 ou 2 produits par mois
 divers . produits consommables . consommation . normale:
-  titre: Normale (environ 5 produits)
+  titre: Environ 5 produits par mois
 divers . produits consommables . consommation . élevée:
-  titre: Elevée (environ 10 produits)
+  titre: Environ 10 produits ou plus par mois
 
 divers . produits consommables . empreinte:
   titre: Empreinte des produits consommables

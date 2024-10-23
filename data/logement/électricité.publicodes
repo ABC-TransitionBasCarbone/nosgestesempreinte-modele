@@ -42,16 +42,17 @@ logement . électricité . réseau:
   icônes: ⚡
 
 logement . électricité . réseau . consommation:
-  question: Quelle est la consommation annuelle d'électricité (réseau) de votre foyer ?
+  question: En 2023, quelle a été la consommation annuelle d'électricité (de réseau) de votre logement principal ?
   aide: logement . électricité . réseau . consommation estimée via le coût . saisie
   plancher: 0
   unité: kWh
   par défaut: consommation par défaut
   note: on considère que seule la consommation d'électricité liée au chauffage est dépendante de la surface du logement
   description: |
-    Astuce : vous trouverez la consommation annuelle d'électricité sur vos factures ou sur votre compte en ligne sur le site de votre fournisseur.
-
-    Pour rappel, si vous vivez dans plusieurs logements (par exemple, si vous avez une résidence secondaire), essayez de "ramener" ces consommations dans celles du logement principal afin d'avoir l'estimation la plus juste possible.
+    Nous nous intéressons ici à la seule consommation d'électricité issue d'un contrat passé avec un fournisseur d'éléctricité. Les cas de production
+    d'électricité et d'autoconsommation (pour des panneaux photovoltaiques en maison individuelle notamment) sont questionnés après.
+        
+    > Astuce : vous trouverez la consommation annuelle 2023 d'électricité sur vos factures ou sur votre compte en ligne sur le site de votre fournisseur.
 
 logement . électricité . réseau . consommation par défaut:
   titre: Consommation par défaut électricité
@@ -87,6 +88,14 @@ logement . électricité . réseau . consommation par défaut:
         alors: surface * (parc français . consommation électricité autre par m2 + parc français . chauffage . consommation électricité PAC par m2)
       - sinon: surface * parc français . consommation électricité autre par m2
 
+logement . électricité . réseau . notif électricité valeur supérieure:
+  type: notification
+  formule:
+    toutes ces conditions:
+      - consommation > (parc français . consommation électricité autre par m2 + parc français . chauffage . consommation électricité par m2) * surface * (habitants / 2.2) * logement . facteur notif conso supérieur
+  description: |
+    Vous avez renseigné une consommation d'électricité relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
+
 logement . électricité . réseau . consommation estimée via le coût:
   titre: Consommation estimée via le coût
   formule: saisie * commun . mois par an / facteur
@@ -95,18 +104,22 @@ logement . électricité . réseau . consommation estimée via le coût:
   note: Cette règle est utilisée dans le cadre de l'aide à la saisie pour la question mentionnée dans l'attribut `aide`. L'attribution de la valeur finale est géré côté site.
 
 logement . électricité . réseau . consommation estimée via le coût . saisie:
-  question: Pas de facture ? Entrez vos dépenses approximatives par mois
+  question: Pas de facture ? Entrez vos dépenses actuelles approximatives par mois
   unité: €/mois
 
 logement . électricité . réseau . consommation estimée via le coût . facteur:
-  formule: 0.2317
+  formule: 0.2591 # A reconsulter en septembre pour voir si Eurostat a mis à jour les données (S1 2024)
   unité: €/kWh
   note: |
     Cette formule nous permet de passer des €/mois aux kWh/an.
 
-    Le chiffre inclut un coût de l'abonnement, et représente donc une moyenne. Ce n'est pas le prix du kWh marginal. Il inclut les taxes.
-
-    Chiffre issu de [Eurostat, household, first half 2023](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics).
+    Le chiffre inclut les taxes et prélévements (ce n'est pas le prix du kWh marginal) ainsi que le coût de l'abonnement (normalement) pour la tranche DC(consommation de 1 000 kWh à 2 499 kWh). Faute de données disponibles pour 2024 on considère la moyenne du S2 2023. Chiffre issu 
+    de [Eurostat, household, first half 2023](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics) et identique aux données du [SDES](https://www.statistiques.developpement-durable.gouv.fr/catalogue?page=dataset&datasetId=631b03afb61e5c6479370169)
+    
+    On n'utilise pas un mode de calcul détaillé comme pour le gaz car la CTA (Contribution Tarifaire d’Acheminement) dépend de la TURPE (Tarif d’Utilisation des Réseaux Publics d’Électricité)
+    qui n'est pas un forfait fixe (à l'inverse de l'ATRD pour le gaz). La TURPE dépend de 3 composantes annuelles (comptage, gestion, soutirage). Les deux premières sont fonction du type d'utilisateur 
+    et de compteur tandis que la troisième (soutirage) est fonction des contrats souscrits et des profils de consommation. Bref, pour aider l'utilisateur à saisir une réponse il faudrait poser plus de questions...
+    Plus d'infos [ici](https://selectra.info/energie/guides/comprendre/taxes/turpe#combien-vous-coute-le-turpe)
 
 logement . électricité . réseau . intensité carbone:
   formule: commun . intensité électricité
@@ -123,11 +136,8 @@ logement . électricité . photovoltaique:
   icônes: 🌞⚡️
 
 logement . électricité . photovoltaique . présent:
-  non applicable si:
-    toutes ces conditions:
-      - est défini: logement . appartement
-      - appartement = oui
-  question: Votre logement dispose-t-il de panneaux photovoltaïques ?
+  non applicable si: logement . type = 'appartement'
+  question: Votre logement principal dispose-t-il de panneaux photovoltaïques ?
   par défaut: non
 
 logement . électricité . photovoltaique . production:

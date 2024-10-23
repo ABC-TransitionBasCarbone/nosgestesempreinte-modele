@@ -81,8 +81,8 @@ transport . train . passagers km intercités:
     On omet ici les trajets en RER et transilien.
 
 transport . train . km:
-  question: Combien de kilomètres parcourez-vous en train par an ?
-  description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
+  question: Combien de kilomètres avez-vous parcouru en train en 2023 ?
+  description: Essayez de renseigner un nombre de km cohérent avec vos habitudes et fréquences de voyage, ce n'est pas grave si vous n'êtes pas certain de votre réponse.
   suggestions:
     traversée d'une région: 300
     Paris ⇄ Lyon: 800
@@ -91,4 +91,11 @@ transport . train . km:
     💳 grand voyageur plus ultra: 25000
   unité: km
   plancher: 0
-  par défaut: 1000
+  par défaut: distance moyenne annuelle
+
+transport . train . distance moyenne annuelle:
+  formule: 83500000000 km / population
+  unité: km
+  note: |
+    D'après l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf)., les français parcourent en moyenne 83.5 milliards de km en train par an.
+    Sont comptabilisés tout les types de train (TGV, TER, Intercités).

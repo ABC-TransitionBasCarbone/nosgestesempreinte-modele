@@ -1,0 +1,58 @@
+transport . croisière:
+  titre: Croisière
+  icônes: 🚢
+  formule:
+    variations:
+      - si:
+          est défini: usager
+        alors: empreinte
+      - sinon: empreinte moyenne
+  unité: kgCO2e
+
+transport . croisière . usager:
+  question: Avez-vous réalisé une ou plusieurs croisières en 2023 ?
+  description: |
+    Renseignez ici seulement des croisières en pleine mer (océan ou mer). Les croisières en eau fluvial ne sont pas à prendre
+    en compte.
+
+transport . croisière . empreinte:
+  applicable si: usager
+  formule: jours * empreinte par jour
+
+transport . croisière . jours:
+  titre: Jours de croisière
+  applicable si: usager
+  question: Combien de jours avez-vous voyagé en croisière en 2023 ?
+  par défaut: durée moyenne croisière
+  plancher: 0
+  unité: jour
+
+transport . croisière . empreinte par jour:
+  formule: 1319 / 7 # Je n'utilise pas la variable commun . jours par semaine car l'unité exprimée en jour/semaine pose problème
+  unité: kgCO2e/jour  
+  note: |
+    Empreinte par semaine ramenée par jour et tirée de cette (étude)[https://www.researchgate.net/publication/280008702_A_Life_Cycle_Assessment_of_the_Environmental_Impact_of_Cruise_Holidays]
+
+transport . croisière . empreinte moyenne:
+  valeur: croisière . empreinte
+  contexte:
+    usager: oui
+    jours: jours moyens par français
+
+transport . croisière . jours moyens par français:
+  formule: durée moyenne croisière * (nombre croisièristes français / population 2023)
+  unité: jour
+  note: |
+    En 2023, 325000 français ont réalisé une croisière d'une durée moyenne de 7 jours. Soit 0,3 jours en moyenne par Français.
+
+transport . croisière . durée moyenne croisière:
+  formule: 7
+  unité: jour
+  note: |
+    La grande majorité des croisières réalisées par des passagers français est de 7 jours comme indiqué [ici](https://fr.statista.com/themes/3644/les-croisieres/#topicOverview) et [là](https://fr.statista.com/statistiques/1025163/part-passagers-francais-dans-l-industrie-mondiale-des-croisieres-duree-sejour/)
+
+transport . croisière . nombre croisièristes français:
+  formule: 325000
+  note: |
+    Chiffre de 2022 repris de cette[source](https://fr.statista.com/themes/3644/les-croisieres/#topicOverview)
+    Nous faisons l'hypothèse que le nombre de croisièristes en 2023 est égale à celui de 2022.

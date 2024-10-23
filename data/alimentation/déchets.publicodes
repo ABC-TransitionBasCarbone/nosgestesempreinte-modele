@@ -208,7 +208,6 @@ alimentation . déchets . bonus stop pub . gain prospectus:
 alimentation . déchets . gestes . acheter en vrac . présent:
   question: Achetez-vous en vrac ?
   par défaut: non
-  inactif: oui
   note: |
     Pour le moment, ce getse reste inactif. L'impact étant relativement faible par rapport à la quantité de déchets totale,
     il s'agira d'approfondir le chiffre issu de [l'étude ADEME sur les gisements d'évitement](https://librairie.ademe.fr/dechets-economie-circulaire/2520-etude-d-evaluation-des-gisements-d-evitement-des-potentiels-de-reduction-de-dechets-et-des-impacts-environnementaux-evites.html)

@@ -10,7 +10,10 @@ divers . électroménager:
     Nous considérons que tous les appareils électroménagers sont utilisés par l'ensemble du foyer, même si potentiellement, certains ne le sont qu'à titre individuel, c'est une limitation du test.
 
     Les durées de vies des appareils évoluent en fonction du coefficient de préservation déterminé par la question portant sur les efforts pour préserver ses équipements.
-  formule: appareils / logement . habitants
+  formule: 
+    somme: 
+      - appareils / logement . habitants
+      - appareils . mosaic 
   unité: kgCO2e
 
 divers . électroménager . appareils:
@@ -49,11 +52,9 @@ divers . électroménager . appareils:
         robot cuisine . nombre: 0
   question: Quels appareils électroménagers de moins de 10 ans possédez-vous ?
   description: |
-    L'essentiel de l'empreinte de l'électroménager réside dans les appareils que nous achetons.
+    Renseignez ici l'électroménager de moins de 10 ans **que vous possédez et que vous avez acheté neufs.**
 
-    > ✨️ Par simplicité, ne renseignez que les appareils récents : un réfrigérateur âgé de 10 ans a déjà été bien amorti.
-
-    Si tous vos appareils ne sont pas proposés dans cette liste, ce n'est pas grave, ce test ne se veut pas exhaustif.
+    Ne renseignez donc pas un équipement que vous auriez acheté d'occasion ou reconditionné (même s'il a moins de 10 ans).
   formule:
     somme:
       - réfrigérateur
@@ -397,16 +398,18 @@ divers . électroménager . appareils . robot cuisine . empreinte amortie:
   titre: Empreinte robot cuisine amortie
   formule: robot cuisine . empreinte / (durée * coefficient préservation)
   unité: kgCO2e
+
 divers . électroménager . appareils . robot cuisine . empreinte:
   titre: Empreinte robot cuisine
   formule: 41.3
   unité: kgCO2e
   note: Facteur d'émissions robot cuisine de la Base Carbone (On considère un aspirateur sans sac)
+
 divers . électroménager . appareils . robot cuisine . durée:
   titre: Durée de vie robot cuisine
   formule: 8
-
   note: aucune durée de vie n'est donnée dans les sources ADEME, nous considérons donc une durée de vie totale de 8 ans
+
 divers . électroménager . appareils . robot cuisine . nombre:
   titre: Nombre de robot cuisine
   question: Combien de robot cuisine possédez-vous ?
@@ -437,50 +440,282 @@ divers . électroménager . appareils . nombre total:
       - aspirateur . nombre
       - robot cuisine . nombre
 
-divers . électroménager . appareils . préservation:
-  applicable si: appareils . nombre total > 0
-  question: Quel effort faites-vous pour garder vos appareils électroménagers le plus longtemps possible ?
-  description: |
-    Pour éviter de vous demander de renseigner l'âge précis de la dizaine d'appareils électroménagers que vous possédez, nous utilisons une grille d'âge moyen constaté pour chaque appareil.
+### Calcul d'empreinte basé sur l'achat en 2023
+divers . électroménager . appareils . mosaic:  
+  applicable si: divers . électroménager . appareils . nombre total > 0  
+  mosaique:  
+    type: nombre  
+    optionsConditionnelles:  
+      - réfrigérateur . choix . nombre  
+      - petit réfrigérateur . choix . nombre  
+      - congélateur . choix . nombre  
+      - lave-linge . choix . nombre  
+      - sèche-linge . choix . nombre  
+      - lave-vaisselle . choix . nombre  
+      - four . choix . nombre
+      - plaques . choix . nombre 
+      - micro-onde . choix . nombre  
+      - hotte . choix . nombre  
+      - bouilloire . choix . nombre  
+      - cafetière . choix . nombre  
+      - aspirateur . choix . nombre  
+      - robot cuisine . choix . nombre  
+    suggestions:  
+      aucun:
+        réfrigérateur . choix . nombre: 0   
+        petit réfrigérateur . choix . nombre: 0   
+        congélateur . choix . nombre: 0   
+        lave-linge . choix . nombre: 0   
+        sèche-linge . choix . nombre: 0   
+        lave-vaisselle . choix . nombre: 0   
+        four . choix . nombre: 0   
+        plaques . choix . nombre: 0
+        micro-onde . choix . nombre: 0   
+        hotte . choix . nombre: 0   
+        bouilloire . choix . nombre: 0   
+        cafetière . choix . nombre: 0   
+        aspirateur . choix . nombre: 0   
+        robot cuisine . choix . nombre: 0 
+  question: Parmi les appareils électroménagers de moins de 10 ans que vous possédez, lesquels avez-vous acheté en 2023 ?  
+  description: Pour rappel, nous nous intéressons qu'aux **appareils achetés neufs.**
+  titre: Electroménagers achetés en 2023
+  formule:  
+    somme:  
+      - réfrigérateur
+      - petit réfrigérateur
+      - congélateur
+      - lave-linge
+      - sèche-linge
+      - lave-vaisselle
+      - four
+      - micro-onde
+      - plaques
+      - hotte
+      - bouilloire
+      - cafetière
+      - aspirateur
+      - robot cuisine
 
-    Par exemple, un frigo dure en moyenne 10 ans, un four 12 ans et une bouilloire 6 ans.
+divers . électroménager . appareils . mosaic . réfrigérateur:
+  formule: réfrigérateur . empreinte * mosaic . réfrigérateur . choix . nombre  
+  unité: kgCO2e
 
-    > Il ne s'agit pas de l'âge de l'appareil quand il claque, mais de son âge quand son propriétaire décide de le remplacer par du neuf.
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . réfrigérateur . choix:
+  titre: Réfrigérateur combiné
+  icônes: 🍅
 
-    A vous de vous placer par rapport à la moyenne.
-  par défaut: "'moyen'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - achat neuf
-        - faible
-        - moyen
-        - maximum
+divers . électroménager . appareils . mosaic . réfrigérateur . choix . nombre:
+  titre: Nombre de réfrigérateurs achetés en 2023 
+  question: Nombre de réfrigérateurs achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
 
-divers . électroménager . appareils . préservation . faible:
-  titre: Peu d'effort
-divers . électroménager . appareils . préservation . achat neuf:
-  titre: Aucun, je rachète souvent neuf
-divers . électroménager . appareils . préservation . moyen:
-  titre: Effort moyen
-divers . électroménager . appareils . préservation . maximum:
-  titre: Effort maximal
+divers . électroménager . appareils . mosaic . petit réfrigérateur:
+  formule: petit réfrigérateur . empreinte * mosaic . petit réfrigérateur . choix . nombre  
+  unité: kgCO2e
 
-divers . électroménager . appareils . coefficient préservation:
-  note: |
-    Nous définissons une grille de comportements de consommation, de l'acheteur neuf presque compulsif à celui qui fait un effort important pour garder ses appareils le plus longtemps possible.
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . petit réfrigérateur . choix:
+  titre: Petit réfrigérateur
+  icônes: 🥒
 
-    Nous considérons que la personne qui déclare acheter souvent neuf garde ses appareils la moitié de leur durée de vie moyenne constatée, à l'inverse celui qui conserve ses appareils repousse leur durée de vie moyenne.
+divers . électroménager . appareils . mosaic . petit réfrigérateur . choix . nombre:
+  titre: Nombre de petits réfrigérateurs achetés en 2023 
+  question: Nombre de petits réfrigérateurs achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
 
-    Cette grille pourra évoluer si de nouvelles sources ou études viennent compléter tout cela.
+divers . électroménager . appareils . mosaic . congélateur:
+  formule: congélateur . empreinte * mosaic . congélateur . choix . nombre  
+  unité: kgCO2e
 
-  formule:
-    variations:
-      - si: préservation = 'achat neuf'
-        alors: 1 / 2
-      - si: préservation = 'faible'
-        alors: 2 / 3
-      - si: préservation = 'moyen'
-        alors: 1
-      - sinon: 4 / 3
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . congélateur . choix:
+  titre: Congélateur
+  icônes: ❄️
+
+divers . électroménager . appareils . mosaic . congélateur . choix . nombre:
+  titre: Nombre de congélateurs achetés en 2023 
+  question: Nombre de congélateurs achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . lave-linge:
+  formule: lave-linge . empreinte * mosaic . lave-linge . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . lave-linge . choix:
+  titre: Lave-linge
+  icônes: 💧👕
+
+divers . électroménager . appareils . mosaic . lave-linge . choix . nombre:
+  titre: Nombre de lave-linge achetés en 2023 
+  question: Nombre de lave-linge achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . sèche-linge:
+  formule: sèche-linge . empreinte * mosaic . sèche-linge . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . sèche-linge . choix:
+  titre: Sèche-linge
+  icônes: 💨👕
+
+divers . électroménager . appareils . mosaic . sèche-linge . choix . nombre:
+  titre: Nombre de sèche-linge achetés en 2023 
+  question: Nombre de sèche-linge achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . lave-vaisselle:
+  formule: lave-vaisselle . empreinte * mosaic . lave-vaisselle . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . lave-vaisselle . choix:
+  titre: Lave-vaisselle
+  icônes: 🍽️
+
+divers . électroménager . appareils . mosaic . lave-vaisselle . choix . nombre:
+  titre: Nombre de lave-vaisselle achetés en 2023 
+  question: Nombre de lave-vaisselle achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . four:
+  formule: four . empreinte * mosaic . four . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . four . choix:
+  titre: Four
+  icônes: ♨️🍕
+
+divers . électroménager . appareils . mosaic . four . choix . nombre:
+  titre: Nombre de fours achetés en 2023 
+  question: Nombre de fours achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . micro-onde:
+  formule: micro-onde . empreinte * mosaic . micro-onde . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . micro-onde . choix:
+  titre: Micro-onde
+  icônes: 〰️🥧
+
+divers . électroménager . appareils . mosaic . micro-onde . choix . nombre:
+  titre: Nombre de micro-onde achetés en 2023 
+  question: Nombre de micro-onde achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . plaques:
+  formule: plaques . empreinte * mosaic . plaques . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . plaques . choix:
+  titre: Plaques
+  icônes: ⚫
+
+divers . électroménager . appareils . mosaic . plaques . choix . nombre:
+  titre: Nombre de plaques achetées en 2023 
+  question: Nombre de plaques achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . hotte:
+  formule: hotte . empreinte * mosaic . hotte . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . hotte . choix:
+  titre: Hotte
+  icônes: 💨🍳
+
+divers . électroménager . appareils . mosaic . hotte . choix . nombre:
+  titre: Nombre de hottes achetées en 2023 
+  question: Nombre de hottes achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . bouilloire:
+  formule: bouilloire . empreinte * mosaic . bouilloire . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . bouilloire . choix:
+  titre: Bouilloire
+  icônes: ♨️💧
+
+divers . électroménager . appareils . mosaic . bouilloire . choix . nombre:
+  titre: Nombre de bouilloires achetées en 2023 
+  question: Nombre de bouilloires achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . cafetière:
+  formule: cafetière . empreinte * mosaic . cafetière . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . cafetière . choix:
+  titre: Cafetière
+  icônes: ♨️💧
+
+divers . électroménager . appareils . mosaic . cafetière . choix . nombre:
+  titre: Nombre de cafetières achetées en 2023 
+  question: Nombre de cafetières achetées en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . aspirateur:
+  formule: aspirateur . empreinte * mosaic . aspirateur . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . aspirateur . choix:
+  titre: Aspirateur
+  icônes: 💨
+
+divers . électroménager . appareils . mosaic . aspirateur . choix . nombre:
+  titre: Nombre de aspirateurs achetés en 2023 
+  question: Nombre de aspirateurs achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1
+
+divers . électroménager . appareils . mosaic . robot cuisine:
+  formule: robot cuisine . empreinte * mosaic . robot cuisine . choix . nombre  
+  unité: kgCO2e
+
+# Initialisation de l'option
+divers . électroménager . appareils . mosaic . robot cuisine . choix:
+  titre: Robot cuisine
+  icônes: 🤖🥣
+
+divers . électroménager . appareils . mosaic . robot cuisine . choix . nombre:
+  titre: Nombre de robot cuisine achetés en 2023 
+  question: Nombre de robot cuisine achetés en 2023 ?  
+  type: nombre  
+  plancher: 0  
+  par défaut: 1

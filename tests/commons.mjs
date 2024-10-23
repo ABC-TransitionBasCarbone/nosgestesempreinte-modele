@@ -1,7 +1,3 @@
-import {
-  defaultLang,
-  availableLanguages
-} from '@incubateur-ademe/nosgestesclimat-scripts/utils'
 import c from 'ansi-colors'
 import yargs from 'yargs'
 import { readFile } from 'fs/promises'
@@ -26,8 +22,8 @@ export function getArgs() {
       alias: 'l',
       describe: 'Target language code',
       type: 'string',
-      default: defaultLang,
-      choices: availableLanguages
+      default: 'fr',
+      choices: ['fr']
     })
     .option('markdown', {
       alias: 'm',
