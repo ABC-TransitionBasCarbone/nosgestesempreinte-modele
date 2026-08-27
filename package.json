@@ -1,6 +1,6 @@
 {
   "name": "@abc-transitionbascarbone/nosgestesempreinte-modele",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "Le modèle de calcul du sondage NGE, fork du modèle de calcul Nos Gestes Climat",
   "main": "index.js",
   "types": "index.d.ts",
