@@ -1,6 +1,6 @@
 {
   "name": "@abc-transitionbascarbone/nosgestesempreinte-modele",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "Le modèle de calcul du sondage NGE, fork du modèle de calcul Nos Gestes Climat",
   "main": "index.js",
   "types": "index.d.ts",
@@ -49,7 +49,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@incubateur-ademe/nosgestesclimat-scripts": "^0.6.0",
+    "@incubateur-ademe/nosgestesclimat-scripts": "^0.8.0",
     "@incubateur-ademe/publicodes-commun": "^1.1.1",
     "@publicodes/tools": "^1.0.6",
     "@types/bun": "^1.0.7",
@@ -60,7 +60,7 @@
     "cli-progress": "^3.11.2",
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
-    "deepl-node": "^1.7.0",
+    "deepl-node": "^1.28.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "exceljs": "^4.4.0",
@@ -82,10 +82,37 @@
     "yargs": "^17.6.0"
   },
   "engines": {
-    "node": "22"
+    "node": "24.x"
   },
   "publishConfig": {
     "access": "public"
+  },
+    "resolutions": {
+    "follow-redirects": "1.16.0",
+    "braces": "3.0.3",
+    "brace-expansion": "5.0.9",
+    "diff": "4.0.4",
+    "qs": "6.15.2",
+    "socket.io-parser": "4.2.7",
+    "picomatch": "4.0.4",
+    "yaml": "2.8.3",
+    "lodash": "4.18.0",
+    "ws": "8.21.0",
+    "minimatch": "10.2.5",
+    "micromatch": "4.0.8",
+    "webpack": "5.104.1",
+    "serialize-javascript": "7.0.5",
+    "cross-spawn": "7.0.6",
+    "nanoid": "3.3.18",
+    "js-yaml": "3.15.1",
+    "mdast-util-to-hast": "13.2.1",
+    "ajv": "8.18.0",
+    "flatted": "3.4.2",
+    "postcss": "8.5.23",
+    "vite": "6.4.3",
+    "d3-color": "3.1.0",
+    "@babel/core": "^7.29.7",
+    "@babel/runtime": "^7.23.1"
   },
   "peerDependencies": {
     "publicodes": "^1.1.1"
