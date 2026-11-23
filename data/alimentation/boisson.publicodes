@@ -224,18 +224,18 @@ alimentation . boisson . froide:
   formule:
     somme:
       - sucrées
+      - eau en bouteille
       - alcool
-#       - eau en bouteille
 
-# alimentation . boisson . eau en bouteille:
-#   titre: Eau en bouteille
-#   formule:
+alimentation . boisson . eau en bouteille:
+  titre: Eau en bouteille
+  formule: consommation moyenne * empreinte
 #     variations:
 #       - si:
 #           est défini: consommateur
 #         alors: consommation annuelle * empreinte
 #       - sinon: consommation moyenne * empreinte
-#   unité: kgCO2e
+  unité: kgCO2e
 
 # alimentation . boisson . eau en bouteille . consommateur:
 #   question: Buvez-vous votre eau en bouteille ?
@@ -248,17 +248,17 @@ alimentation . boisson . froide:
 
 #     Nous avons considéré que la valeur par défaut était donc "non".
 
-# alimentation . boisson . eau en bouteille . empreinte:
-#   formule: 0.27
-#   unité: kgCO2e/l
-#   note: Facteur d'émission issu d'[Agibalyse, eau embouteillée de source](https://agribalyse.ademe.fr/app/aliments/18430#Eau_embouteillée_de_source).
+alimentation . boisson . eau en bouteille . empreinte:
+  formule: 0.27
+  unité: kgCO2e/l
+  note: Facteur d'émission issu d'[Agibalyse, eau embouteillée de source](https://agribalyse.ademe.fr/app/aliments/18430#Eau_embouteillée_de_source).
 
-# alimentation . boisson . eau en bouteille . consommation moyenne:
-#   formule: 135
-#   unité: l
-#   note: |
-#     La consommation moyenne de l'eau en bouteille est en 2018 de 135 litres par an par habitant (soit 90 bouteilles), 
-#     d'après le syndicat des eaux minérales naturelles ([source](https://eaumineralenaturelle.fr/qui-sommes-nous/leau-minerale-en-chiffres))
+alimentation . boisson . eau en bouteille . consommation moyenne:
+  formule: 135
+  unité: l
+  note: |
+    La consommation moyenne de l'eau en bouteille est en 2018 de 135 litres par an par habitant (soit 90 bouteilles),
+    d'après le syndicat des eaux minérales naturelles ([source](https://eaumineralenaturelle.fr/qui-sommes-nous/leau-minerale-en-chiffres))
 
 # alimentation . boisson . eau en bouteille . consommation annuelle:
 #   applicable si: consommateur

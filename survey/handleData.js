@@ -17,14 +17,14 @@ for (let i = 2; i <= numberOfRow; i ++) {
     for (let headerIndex = 2; headerIndex <= headerInput.length; headerIndex ++) {
         if (headerInput[headerIndex] !== undefined && currentRow[headerIndex] !== "" && currentRow[headerIndex] !== undefined) {
             if (headerInput[headerIndex].match('aide saisie')) {
-                aideSaisie[headerInput[headerIndex].trim()] = currentRow[headerIndex];
+                aideSaisie[headerInput[headerIndex].trim().toLowerCase()] = currentRow[headerIndex];
             } else if (currentRow[headerIndex] === true || currentRow[headerIndex] === false || currentRow[headerIndex] === 'TRUE' || currentRow[headerIndex] === 'FALSE') {
-                situation[headerInput[headerIndex].trim()] = (currentRow[headerIndex] === true  || currentRow[headerIndex] === 'TRUE') ? "oui" : "non";
+                situation[headerInput[headerIndex].trim().toLowerCase()] = (currentRow[headerIndex] === true  || currentRow[headerIndex] === 'TRUE') ? "oui" : "non";
             } else if (currentRow[headerIndex] !== 'je ne sais pas') {
                 if (typeof currentRow[headerIndex] === 'string') {
-                    situation[headerInput[headerIndex].trim()] = `'${currentRow[headerIndex]}'`;
+                    situation[headerInput[headerIndex].trim().toLowerCase()] = `'${currentRow[headerIndex]}'`;
                 } else {
-                    situation[headerInput[headerIndex].trim()] = currentRow[headerIndex];
+                    situation[headerInput[headerIndex].trim().toLowerCase()] = currentRow[headerIndex];
                 }
             }
         }
@@ -34,7 +34,7 @@ for (let i = 2; i <= numberOfRow; i ++) {
     const computeRow = [currentRow[1]];
 
     for (let ruleIndex = 2; ruleIndex <= headerRow.length; ruleIndex ++) {
-        const rule = headerRow[ruleIndex];
+        const rule = headerRow[ruleIndex].trim().toLowerCase();
         if (rule && rule.match("aide saisie")) {
             computeRow.push(aideSaisie[rule]);
         } else if (rule) {

@@ -13,3 +13,6 @@ quick-doc/migration-report.md
 survey/*.xlsx
 .idea
 yarn-error.log
+
+*.xlsx
+/survey/old
