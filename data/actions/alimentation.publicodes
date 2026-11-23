@@ -470,19 +470,19 @@ alimentation . manger de saison . recalcul:
   contexte:
     alimentation . de saison . consommation: "'oui toujours'"
 
-alimentation . boisson . eau en bouteille . arrêter:
-  applicable si:
-    toutes ces conditions:
-      - est défini: consommateur
-      - consommateur
-  titre: Arrêter d'acheter de l'eau en bouteille
-  formule: consommation annuelle * empreinte
-  unité: kgCO2e
-  icônes: ➡️🚰
-  description: |
-    L'eau en bouteille a un impact environnemental 450 fois supérieur à l'eau du robinet. Elle coûte entre 100 et 300 fois plus cher (80 % du prix est imputable à la production de l'emballage) et participe fortement à la pollution plastique partout dans le monde.
-  note: |
-    Sources : [Écobilan de l’eau potable](http://esu-services.ch/fileadmin/download/jungbluth-2015-ecobilan-eau.pdf) et [Ministère de la Transition Ecologique p106](https://www.economie.gouv.fr/files/files/directions_services/cge/filieres-dechets-recyclage.pdf)
+# alimentation . boisson . eau en bouteille . arrêter:
+#   applicable si:
+#     toutes ces conditions:
+#       - est défini: consommateur
+#       - consommateur
+#   titre: Arrêter d'acheter de l'eau en bouteille
+#   formule: consommation annuelle * empreinte
+#   unité: kgCO2e
+#   icônes: ➡️🚰
+#   description: |
+#     L'eau en bouteille a un impact environnemental 450 fois supérieur à l'eau du robinet. Elle coûte entre 100 et 300 fois plus cher (80 % du prix est imputable à la production de l'emballage) et participe fortement à la pollution plastique partout dans le monde.
+#   note: |
+#     Sources : [Écobilan de l’eau potable](http://esu-services.ch/fileadmin/download/jungbluth-2015-ecobilan-eau.pdf) et [Ministère de la Transition Ecologique p106](https://www.economie.gouv.fr/files/files/directions_services/cge/filieres-dechets-recyclage.pdf)
 
 alimentation . déchets . devenir zéro déchet:
   titre: Passer au "zéro déchet"

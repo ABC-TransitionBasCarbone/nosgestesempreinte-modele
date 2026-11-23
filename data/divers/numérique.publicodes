@@ -12,6 +12,34 @@ divers . numérique:
       - internet
       - appareils
       - appareils . mosaic
+      - ia
+
+divers . numérique . ia:
+  icônes: 🤖
+  formule: empreinte requête * nombre de requêtes par jour * 365
+
+divers . numérique . ia . empreinte requête:
+  formule:
+    0.00114 kgCO2e/requête
+  note:
+    D'après une étude de Carbone4 et l'ADEME de 2025 sur les impacts environnementaux de l'IA de Mistral AI :https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai
+    , une requête à un modèle de langage de grande taille (LLM) génère en moyenne 1.14 grammes de CO2e.
+    Cette étude est précurseuse et se base sur des données partielles qui sous estiment sans doute l'empreinte réelle. Néanmoins, en l'absence de données plus robustes, nous utilisons cette valeur comme base de calcul.
+    Ce calcul ne prend pas en compte la phase d'entrainement, mais seulement celle d'inférence (utilisation du modèle). En considérant un mix électrique mondial. 
+
+divers . numérique . ia . nombre de requêtes par jour: 
+  description: 
+    Cette question permet d’évaluer l’impact carbone lié à l’usage de l’intelligence artificielle générative. Ces outils nécessitent d’importantes ressources informatiques et énergétiques pour fonctionner, chaque requête sollicitant des serveurs à forte consommation électrique partout dans le monde.
+  question: Combien de requêtes à des modèles d'Intelligence Artificielle (IA) (ChatGPT, Copilot, Gemini…) effectuez-vous par jour dans le cadre de votre activité professionnelle ? 
+  unité: requêtes/jour
+  plancher: 0 
+  par défaut: 0
+  suggestions:
+    Aucun: 0
+    Peu: 5
+    Modérément: 20
+    Beaucoup: 50
+
 
 divers . numérique . internet:
   icônes: 🌐

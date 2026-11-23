@@ -503,75 +503,75 @@ logement . mutualiser son logement . empreinte partagée . divers . ameublement:
     divers . ameublement . meubles . matelas: 0
     divers . ameublement . meubles . lit: 0
 
-logement . installer photovoltaique:
-  titre: Installer des panneaux photovoltaïques
-  icônes: 🌞⚡️
-  description: |
-    Installer des panneaux solaires photovoltaïques permet de réduire son empreinte carbone.
+# logement . installer photovoltaique:
+#   titre: Installer des panneaux photovoltaïques
+#   icônes: 🌞⚡️
+#   description: |
+#     Installer des panneaux solaires photovoltaïques permet de réduire son empreinte carbone.
 
-    En effet, **l'empreinte carbone d'un kilowattheure d'électricité photovoltaïque est presque inférieure de moitié** à celle d'un kilowattheure d'électricité du réseau.
+#     En effet, **l'empreinte carbone d'un kilowattheure d'électricité photovoltaïque est presque inférieure de moitié** à celle d'un kilowattheure d'électricité du réseau.
 
-    Mais ce n'est pas tout ! **L'ajout de capacités de production renouvelables en France a des co-bénéfices importants**, que nous ne pouvons pas valoriser dans le calcul. Vous les retrouverez dans l'action "Devenir producteur d'électricité photovoltaïque".
-  non applicable si: électricité . photovoltaique . présent
-  applicable si: logement . type = 'maison'
-  formule:
-    variations:
-      - si: énergie produite < logement . électricité . consommation totale
-        alors: énergie produite * (commun . intensité électricité - facteur émission)
-      - sinon: logement . électricité . consommation totale * (commun . intensité électricité - facteur émission)
+#     Mais ce n'est pas tout ! **L'ajout de capacités de production renouvelables en France a des co-bénéfices importants**, que nous ne pouvons pas valoriser dans le calcul. Vous les retrouverez dans l'action "Devenir producteur d'électricité photovoltaïque".
+#   non applicable si: électricité . photovoltaique . présent
+#   applicable si: logement . type = 'maison'
+#   formule:
+#     variations:
+#       - si: énergie produite < logement . électricité . consommation totale
+#         alors: énergie produite * (commun . intensité électricité - facteur émission)
+#       - sinon: logement . électricité . consommation totale * (commun . intensité électricité - facteur émission)
 
-logement . installer photovoltaique . énergie produite:
-  formule: puissance installée * productible
+# logement . installer photovoltaique . énergie produite:
+#   formule: puissance installée * productible
 
-logement . installer photovoltaique . puissance installée:
-  formule: nombre panneaux * puissance moyenne panneau
+# logement . installer photovoltaique . puissance installée:
+#   formule: nombre panneaux * puissance moyenne panneau
 
-logement . installer photovoltaique . nombre panneaux:
-  question: Combien de panneaux pourriez-vous installer ?
-  par défaut: 4
+# logement . installer photovoltaique . nombre panneaux:
+#   question: Combien de panneaux pourriez-vous installer ?
+#   par défaut: 4
 
-logement . installer photovoltaique . puissance moyenne panneau:
-  formule: 0.4
-  unité: kWc
+# logement . installer photovoltaique . puissance moyenne panneau:
+#   formule: 0.4
+#   unité: kWc
 
-logement . installer photovoltaique . productible:
-  formule:
-    variations:
-      - si: zone climatique = 'bretagne et nord de la france'
-        alors: 1200
-      - si: zone climatique = 'centre et littoral atlantique'
-        alors: 1300
-      - si: zone climatique = 'littoral méditerranéen'
-        alors: 1500
-  unité: kWh/kWc
+# logement . installer photovoltaique . productible:
+#   formule:
+#     variations:
+#       - si: zone climatique = 'bretagne et nord de la france'
+#         alors: 1200
+#       - si: zone climatique = 'centre et littoral atlantique'
+#         alors: 1300
+#       - si: zone climatique = 'littoral méditerranéen'
+#         alors: 1500
+#   unité: kWh/kWc
 
-logement . installer photovoltaique . zone climatique:
-  question: Où se situe votre logement en France ?
-  formule:
-    une possibilité:
-      possibilités:
-        - bretagne et nord de la france
-        - centre et littoral atlantique
-        - littoral méditerranéen
-  par défaut: "'centre et littoral atlantique'"
+# logement . installer photovoltaique . zone climatique:
+#   question: Où se situe votre logement en France ?
+#   formule:
+#     une possibilité:
+#       possibilités:
+#         - bretagne et nord de la france
+#         - centre et littoral atlantique
+#         - littoral méditerranéen
+#   par défaut: "'centre et littoral atlantique'"
 
-logement . installer photovoltaique . zone climatique . bretagne et nord de la france:
-  titre: Bretagne et Nord de la France
-logement . installer photovoltaique . zone climatique . centre et littoral atlantique:
-  titre: Centre et littoral atlantique
-logement . installer photovoltaique . zone climatique . littoral méditerranéen:
-  titre: Littoral méditerranéen et Corse
+# logement . installer photovoltaique . zone climatique . bretagne et nord de la france:
+#   titre: Bretagne et Nord de la France
+# logement . installer photovoltaique . zone climatique . centre et littoral atlantique:
+#   titre: Centre et littoral atlantique
+# logement . installer photovoltaique . zone climatique . littoral méditerranéen:
+#   titre: Littoral méditerranéen et Corse
 
-logement . installer photovoltaique . facteur émission:
-  formule:
-    variations:
-      - si: zone climatique = 'bretagne et nord de la france'
-        alors: 0.0315
-      - si: zone climatique = 'centre et littoral atlantique'
-        alors: 0.0291
-      - si: zone climatique = 'littoral méditerranéen'
-        alors: 0.0252
-  unité: kgCO2e/kWh
+# logement . installer photovoltaique . facteur émission:
+#   formule:
+#     variations:
+#       - si: zone climatique = 'bretagne et nord de la france'
+#         alors: 0.0315
+#       - si: zone climatique = 'centre et littoral atlantique'
+#         alors: 0.0291
+#       - si: zone climatique = 'littoral méditerranéen'
+#         alors: 0.0252
+#   unité: kgCO2e/kWh
 
 logement . électricité verte:
   titre: Choisir une offre d'électricité engagée

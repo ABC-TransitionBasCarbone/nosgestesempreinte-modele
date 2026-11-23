@@ -25,7 +25,7 @@ logement . extérieur:
         alors: 
           somme:
             - empreinte totale / habitants
-            - mosaic
+            # - mosaic
       - sinon: empreinte par défaut / habitants
   description: Si vous ne possédez aucun équipement extérieur, cliquez sur "Aucun", puis passez à la question suivante.
 
@@ -365,124 +365,124 @@ logement . extérieur . nombre total équipements:
 
 ### Calcul d'empreinte basé sur l'achat en 2023
 
-logement . extérieur . mosaic:
-  applicable si: logement . extérieur . nombre total équipements > 0  
-  mosaique:
-    type: nombre
-    optionsConditionnelles:
-      - salon de jardin bois . choix . nombre
-      - salon de jardin résine ou métal . choix . nombre
-      - tondeuse électrique ou robot . choix . nombre
-      - tondeuse thermique . choix . nombre
-      - barbecue électrique ou gaz . choix . nombre
-      - barbecue charbon . choix . nombre
-    suggestions:
-      aucun:
-        salon de jardin bois . choix . nombre: 0
-        salon de jardin résine ou métal . choix . nombre: 0
-        tondeuse électrique ou robot . choix . nombre: 0
-        tondeuse thermique . choix . nombre: 0
-        barbecue électrique ou gaz . choix . nombre: 0
-        barbecue charbon . choix . nombre: 0
-  question: Parmi les équipements extérieurs de moins de 10 ans que vous possédez, lesquels avez-vous achetés en 2023 ?  
-  titre: Extérieurs achetés en 2023
-  formule:
-    somme:
-      - salon de jardin bois
-      - salon de jardin résine ou métal
-      - tondeuse électrique ou robot
-      - tondeuse thermique
-      - barbecue électrique ou gaz
-      - barbecue charbon
+# logement . extérieur . mosaic:
+#   applicable si: logement . extérieur . nombre total équipements > 0  
+#   mosaique:
+#     type: nombre
+#     optionsConditionnelles:
+#       - salon de jardin bois . choix . nombre
+#       - salon de jardin résine ou métal . choix . nombre
+#       - tondeuse électrique ou robot . choix . nombre
+#       - tondeuse thermique . choix . nombre
+#       - barbecue électrique ou gaz . choix . nombre
+#       - barbecue charbon . choix . nombre
+#     suggestions:
+#       aucun:
+#         salon de jardin bois . choix . nombre: 0
+#         salon de jardin résine ou métal . choix . nombre: 0
+#         tondeuse électrique ou robot . choix . nombre: 0
+#         tondeuse thermique . choix . nombre: 0
+#         barbecue électrique ou gaz . choix . nombre: 0
+#         barbecue charbon . choix . nombre: 0
+#   question: Parmi les équipements extérieurs de moins de 10 ans que vous possédez, lesquels avez-vous achetés en 2023 ?  
+#   titre: Extérieurs achetés en 2023
+#   formule:
+#     somme:
+#       - salon de jardin bois
+#       - salon de jardin résine ou métal
+#       - tondeuse électrique ou robot
+#       - tondeuse thermique
+#       - barbecue électrique ou gaz
+#       - barbecue charbon
 
-logement . extérieur . mosaic . salon de jardin bois:
-  formule: empreinte salon de jardin bois * mosaic . salon de jardin bois . choix . nombre
-  unité: kgCO2e
+# logement . extérieur . mosaic . salon de jardin bois:
+#   formule: empreinte salon de jardin bois * mosaic . salon de jardin bois . choix . nombre
+#   unité: kgCO2e
 
-# Initialisation de l'option
-logement . extérieur . mosaic . salon de jardin bois . choix:
-  titre: Salon de jardin en bois
-  icônes: 🏡🪵
+# # Initialisation de l'option
+# logement . extérieur . mosaic . salon de jardin bois . choix:
+#   titre: Salon de jardin en bois
+#   icônes: 🏡🪵
 
-logement . extérieur . mosaic . salon de jardin bois . choix . nombre:
-  titre: Nombre salon jardin bois achetés en 2023 
-  question: Nombre de salon de jardin en bois achetés en 2023 ?  
-  type: nombre  
-  plancher: 0  
-  par défaut: 0
+# logement . extérieur . mosaic . salon de jardin bois . choix . nombre:
+#   titre: Nombre salon jardin bois achetés en 2023 
+#   question: Nombre de salon de jardin en bois achetés en 2023 ?  
+#   type: nombre  
+#   plancher: 0  
+#   par défaut: 0
 
-logement . extérieur . mosaic . salon de jardin résine ou métal:
-  formule: empreinte salon de jardin résine ou métal * mosaic . salon de jardin résine ou métal . choix . nombre
-  unité: kgCO2e
+# logement . extérieur . mosaic . salon de jardin résine ou métal:
+#   formule: empreinte salon de jardin résine ou métal * mosaic . salon de jardin résine ou métal . choix . nombre
+#   unité: kgCO2e
 
-# Initialisation de l'option
-logement . extérieur . mosaic . salon de jardin résine ou métal . choix:
-  titre: Salon de jardin en résine ou métal
-  icônes: 🏡🪨
+# # Initialisation de l'option
+# logement . extérieur . mosaic . salon de jardin résine ou métal . choix:
+#   titre: Salon de jardin en résine ou métal
+#   icônes: 🏡🪨
 
-logement . extérieur . mosaic . salon de jardin résine ou métal . choix . nombre:
-  titre: Nombre salon jardin résine ou métal achetés en 2023 
-  question: Nombre de salon de jardin en résine ou en métal achetés en 2023 ?  
-  type: nombre  
-  plancher: 0  
-  par défaut: 0
+# logement . extérieur . mosaic . salon de jardin résine ou métal . choix . nombre:
+#   titre: Nombre salon jardin résine ou métal achetés en 2023 
+#   question: Nombre de salon de jardin en résine ou en métal achetés en 2023 ?  
+#   type: nombre  
+#   plancher: 0  
+#   par défaut: 0
 
-logement . extérieur . mosaic . tondeuse électrique ou robot:
-  formule: empreinte tondeuse électrique ou robot * mosaic . tondeuse électrique ou robot . choix . nombre
+# logement . extérieur . mosaic . tondeuse électrique ou robot:
+#   formule: empreinte tondeuse électrique ou robot * mosaic . tondeuse électrique ou robot . choix . nombre
 
-# Initialisation de l'option
-logement . extérieur . mosaic . tondeuse électrique ou robot . choix:
-  titre: Tondeuse électrique ou robot
-  icônes: 🌿🔌
+# # Initialisation de l'option
+# logement . extérieur . mosaic . tondeuse électrique ou robot . choix:
+#   titre: Tondeuse électrique ou robot
+#   icônes: 🌿🔌
 
-logement . extérieur . mosaic . tondeuse électrique ou robot . choix . nombre:
-  titre: Nombre tondeuse électrique ou robot achetés en 2023 
-  question: Nombre tondeuse électrique ou robot achetés en 2023 ?  
-  type: nombre  
-  plancher: 0  
-  par défaut: 0
+# logement . extérieur . mosaic . tondeuse électrique ou robot . choix . nombre:
+#   titre: Nombre tondeuse électrique ou robot achetés en 2023 
+#   question: Nombre tondeuse électrique ou robot achetés en 2023 ?  
+#   type: nombre  
+#   plancher: 0  
+#   par défaut: 0
 
-logement . extérieur . mosaic . tondeuse thermique:
-  formule: empreinte tondeuse thermique * mosaic . tondeuse thermique . choix . nombre
+# logement . extérieur . mosaic . tondeuse thermique:
+#   formule: empreinte tondeuse thermique * mosaic . tondeuse thermique . choix . nombre
 
-# Initialisation de l'option
-logement . extérieur . mosaic . tondeuse thermique . choix:
-  titre: Tondeuse thermique
-  icônes: 🌿⛽️
+# # Initialisation de l'option
+# logement . extérieur . mosaic . tondeuse thermique . choix:
+#   titre: Tondeuse thermique
+#   icônes: 🌿⛽️
 
-logement . extérieur . mosaic . tondeuse thermique . choix . nombre:
-  titre: Nombre tondeuse thermique achetés en 2023 
-  question: Nombre tondeuse thermique achetés en 2023 ?  
-  type: nombre  
-  plancher: 0  
-  par défaut: 0
+# logement . extérieur . mosaic . tondeuse thermique . choix . nombre:
+#   titre: Nombre tondeuse thermique achetés en 2023 
+#   question: Nombre tondeuse thermique achetés en 2023 ?  
+#   type: nombre  
+#   plancher: 0  
+#   par défaut: 0
 
-logement . extérieur . mosaic . barbecue électrique ou gaz:
-  formule: empreinte barbecue électrique ou gaz * mosaic . barbecue électrique ou gaz . choix . nombre
+# logement . extérieur . mosaic . barbecue électrique ou gaz:
+#   formule: empreinte barbecue électrique ou gaz * mosaic . barbecue électrique ou gaz . choix . nombre
 
-# Initialisation de l'option
-logement . extérieur . mosaic . barbecue électrique ou gaz . choix:
-  titre: Barbecue électrique ou gaz
-  icônes: ♨️🔌
+# # Initialisation de l'option
+# logement . extérieur . mosaic . barbecue électrique ou gaz . choix:
+#   titre: Barbecue électrique ou gaz
+#   icônes: ♨️🔌
 
-logement . extérieur . mosaic . barbecue électrique ou gaz . choix . nombre:
-  titre: Nombre barbecue électrique ou gaz achetés en 2023 
-  question: Nombre de barbecue électrique ou gaz achetés en 2023 ?  
-  type: nombre  
-  plancher: 0  
-  par défaut: 0
+# logement . extérieur . mosaic . barbecue électrique ou gaz . choix . nombre:
+#   titre: Nombre barbecue électrique ou gaz achetés en 2023 
+#   question: Nombre de barbecue électrique ou gaz achetés en 2023 ?  
+#   type: nombre  
+#   plancher: 0  
+#   par défaut: 0
 
-logement . extérieur . mosaic . barbecue charbon:
-  formule: empreinte construction barbecue charbon * mosaic . barbecue charbon . choix . nombre
+# logement . extérieur . mosaic . barbecue charbon:
+#   formule: empreinte construction barbecue charbon * mosaic . barbecue charbon . choix . nombre
 
-# Initialisation de l'option
-logement . extérieur . mosaic . barbecue charbon . choix:
-  titre: Barbecue au charbon
-  icônes: ♨️🔥
+# # Initialisation de l'option
+# logement . extérieur . mosaic . barbecue charbon . choix:
+#   titre: Barbecue au charbon
+#   icônes: ♨️🔥
 
-logement . extérieur . mosaic . barbecue charbon . choix . nombre:
-  titre: Nombre barbecue charbon achetés en 2023 
-  question: Nombre de barbecue au charbon achetés en 2023 ?  
-  type: nombre  
-  plancher: 0  
-  par défaut: 0
+# logement . extérieur . mosaic . barbecue charbon . choix . nombre:
+#   titre: Nombre barbecue charbon achetés en 2023 
+#   question: Nombre de barbecue au charbon achetés en 2023 ?  
+#   type: nombre  
+#   plancher: 0  
+#   par défaut: 0

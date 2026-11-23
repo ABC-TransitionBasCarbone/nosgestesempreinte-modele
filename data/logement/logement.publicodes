@@ -12,15 +12,15 @@ logement:
   formule:
     somme:
       - construction
-      - informations
+      # - informations
       - électricité
       - chauffage
       - climatisation
       - jardin
-      - piscine
+      # - piscine
       - extérieur
       - vacances
-      - location
+      # - location
   unité: kgCO2e
 
 logement . habitants:
@@ -123,10 +123,10 @@ logement . âge:
 #    Si votre logement a moins de **50 ans**, nous vous attribuons un cinquantième de l'empreinte de sa construction. **Sinon, zéro : le logement est amorti.**
 #    Les questions sur les caractéristiques de votre logement ne vous seront pas posées ; car l'empreinte annuelle de sa contruction est considérée comme nulle.
 
-logement . informations:
-  formule: 0.001 * DPE en chiffre
-  unité: kgCO2e
-  note: On passe les informations de statut et de DPE dans une variable informations et non pas directement dans la somme logement car le front bug sinon
+# logement . informations:
+#   formule: 0.001 * DPE en chiffre
+#   unité: kgCO2e
+#   note: On passe les informations de statut et de DPE dans une variable informations et non pas directement dans la somme logement car le front bug sinon
 
 logement . statut:
   formule:
@@ -165,70 +165,70 @@ logement . statut . non renseigné:
 #  note:  |
 #    L'objet de cette variable est de convertir le statut en un chiffre afin que la formule plus haut ne bug pas.
 
-logement . informations . DPE:
-  question: Quel était le DPE de votre logement principal en 2023 ?
-  description: |
-    Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
-    d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
-    Les DPE sont classés d'une échelle allant de A à G.
-  par défaut: "'non renseigné'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - A 
-        - B
-        - C 
-        - D 
-        - E
-        - F
-        - G 
+# logement . informations . DPE:
+#   question: Quel était le DPE de votre logement principal en 2023 ?
+#   description: |
+#     Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
+#     d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
+#     Les DPE sont classés d'une échelle allant de A à G.
+#   par défaut: "'non renseigné'"
+#   formule:
+#     une possibilité:
+#       choix obligatoire: oui
+#       possibilités:
+#         - A 
+#         - B
+#         - C 
+#         - D 
+#         - E
+#         - F
+#         - G 
 
-logement . informations . DPE en chiffre:
-  titre: numéro du DPE
-  formule:
-    variations:
-      - si: DPE = 'A'
-        alors: 1
-      - si: DPE = 'B'
-        alors: 2
-      - si: DPE = 'C'
-        alors: 3
-      - si: DPE = 'D'
-        alors: 4
-      - si: DPE = 'E'
-        alors: 5
-      - si: DPE = 'F'
-        alors: 6
-      - si: DPE = 'G'
-        alors: 7
-      - sinon: 99
-  note:  |
-    L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
+# logement . informations . DPE en chiffre:
+#   titre: numéro du DPE
+#   formule:
+#     variations:
+#       - si: DPE = 'A'
+#         alors: 1
+#       - si: DPE = 'B'
+#         alors: 2
+#       - si: DPE = 'C'
+#         alors: 3
+#       - si: DPE = 'D'
+#         alors: 4
+#       - si: DPE = 'E'
+#         alors: 5
+#       - si: DPE = 'F'
+#         alors: 6
+#       - si: DPE = 'G'
+#         alors: 7
+#       - sinon: 99
+#   note:  |
+#     L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
 
-logement . informations . DPE . A:
-  titre: DPE A
+# logement . informations . DPE . A:
+#   titre: DPE A
 
-logement . informations . DPE . B:
-  titre: DPE B
+# logement . informations . DPE . B:
+#   titre: DPE B
 
-logement . informations . DPE . C:
-  titre: DPE C
+# logement . informations . DPE . C:
+#   titre: DPE C
 
-logement . informations . DPE . D:
-  titre: DPE D
+# logement . informations . DPE . D:
+#   titre: DPE D
 
-logement . informations . DPE . E:
-  titre: DPE E
+# logement . informations . DPE . E:
+#   titre: DPE E
 
-logement . informations . DPE . F:
-  titre: DPE F
+# logement . informations . DPE . F:
+#   titre: DPE F
 
-logement . informations . DPE . G:
-  titre: DPE G
+# logement . informations . DPE . G:
+#   titre: DPE G
 
-logement . informations . DPE . non renseigné:
-  titre: DPE non renseigné
+# logement . informations . DPE . non renseigné:
+#   titre: DPE non renseigné
 
 logement . facteur notif conso supérieur:
   formule: 1.33

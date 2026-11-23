@@ -471,19 +471,19 @@ logement . vacances . empreinte résidences secondaires:
     somme:
       - résidence secondaire . construction-1
       - résidence secondaire . énergie-1
-      - 0.0000001 * résidence secondaire . âge-1 * résidence secondaire . DPE-1 en chiffre
+      # - 0.0000001 * résidence secondaire . âge-1 * résidence secondaire . DPE-1 en chiffre
       - résidence secondaire . construction-2
       - résidence secondaire . énergie-2
-      - 0.0000001 * résidence secondaire . âge-2 * résidence secondaire . DPE-2 en chiffre
+      # - 0.0000001 * résidence secondaire . âge-2 * résidence secondaire . DPE-2 en chiffre
       - résidence secondaire . construction-3
       - résidence secondaire . énergie-3
-      - 0.0000001 * résidence secondaire . âge-3 * résidence secondaire . DPE-3 en chiffre
+      # - 0.0000001 * résidence secondaire . âge-3 * résidence secondaire . DPE-3 en chiffre
       - résidence secondaire . construction-4
       - résidence secondaire . énergie-4
-      - 0.0000001 * résidence secondaire . âge-4 * résidence secondaire . DPE-4 en chiffre
+      # - 0.0000001 * résidence secondaire . âge-4 * résidence secondaire . DPE-4 en chiffre
       - résidence secondaire . construction-5
       - résidence secondaire . énergie-5
-      - 0.0000001 * résidence secondaire . âge-5 * résidence secondaire . DPE-5 en chiffre
+      # - 0.0000001 * résidence secondaire . âge-5 * résidence secondaire . DPE-5 en chiffre
   unité: kgCO2e
 
 logement . vacances . résidences secondaires:
@@ -858,72 +858,72 @@ logement . vacances . résidence secondaire . saison-1 . hiver:
   icônes: ❄️
   description: Vous ne vous rendez dans votre première résidence secondaire qu'en hiver.
 
-logement . vacances . résidence secondaire . DPE-1:
-  ordre: 12
-  question: Quel est le DPE de votre première résidence secondaire ?
-  applicable si: résidences secondaires . nombre >= 1 
-  description: |
-    Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
-    d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
-    Les DPE sont classés d'une échelle allant de A à G.
-  par défaut: "'non renseigné'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - A 
-        - B
-        - C 
-        - D 
-        - E
-        - F
-        - G 
+# logement . vacances . résidence secondaire . DPE-1:
+#   ordre: 12
+#   question: Quel est le DPE de votre première résidence secondaire ?
+#   applicable si: résidences secondaires . nombre >= 1 
+#   description: |
+#     Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
+#     d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
+#     Les DPE sont classés d'une échelle allant de A à G.
+#   par défaut: "'non renseigné'"
+#   formule:
+#     une possibilité:
+#       choix obligatoire: oui
+#       possibilités:
+#         - A 
+#         - B
+#         - C 
+#         - D 
+#         - E
+#         - F
+#         - G 
 
-logement . vacances . résidence secondaire . DPE-1 en chiffre:
-  titre: numéro du DPE
-  formule:
-    variations:
-      - si: DPE-1 = 'A'
-        alors: 1
-      - si: DPE-1 = 'B'
-        alors: 2
-      - si: DPE-1 = 'C'
-        alors: 3
-      - si: DPE-1 = 'D'
-        alors: 4
-      - si: DPE-1 = 'E'
-        alors: 5
-      - si: DPE-1 = 'F'
-        alors: 6
-      - si: DPE-1 = 'G'
-        alors: 7
-      - sinon: 99
-  note:  |
-    L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
+# logement . vacances . résidence secondaire . DPE-1 en chiffre:
+#   titre: numéro du DPE
+#   formule:
+#     variations:
+#       - si: DPE-1 = 'A'
+#         alors: 1
+#       - si: DPE-1 = 'B'
+#         alors: 2
+#       - si: DPE-1 = 'C'
+#         alors: 3
+#       - si: DPE-1 = 'D'
+#         alors: 4
+#       - si: DPE-1 = 'E'
+#         alors: 5
+#       - si: DPE-1 = 'F'
+#         alors: 6
+#       - si: DPE-1 = 'G'
+#         alors: 7
+#       - sinon: 99
+#   note:  |
+#     L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
 
-logement . vacances . résidence secondaire . DPE-1 . A:
-  titre: DPE A
+# logement . vacances . résidence secondaire . DPE-1 . A:
+#   titre: DPE A
 
-logement . vacances . résidence secondaire . DPE-1 . B:
-  titre: DPE B
+# logement . vacances . résidence secondaire . DPE-1 . B:
+#   titre: DPE B
 
-logement . vacances . résidence secondaire . DPE-1 . C:
-  titre: DPE C
+# logement . vacances . résidence secondaire . DPE-1 . C:
+#   titre: DPE C
 
-logement . vacances . résidence secondaire . DPE-1 . D:
-  titre: DPE D
+# logement . vacances . résidence secondaire . DPE-1 . D:
+#   titre: DPE D
 
-logement . vacances . résidence secondaire . DPE-1 . E:
-  titre: DPE E
+# logement . vacances . résidence secondaire . DPE-1 . E:
+#   titre: DPE E
 
-logement . vacances . résidence secondaire . DPE-1 . F:
-  titre: DPE F
+# logement . vacances . résidence secondaire . DPE-1 . F:
+#   titre: DPE F
 
-logement . vacances . résidence secondaire . DPE-1 . G:
-  titre: DPE G
+# logement . vacances . résidence secondaire . DPE-1 . G:
+#   titre: DPE G
 
-logement . vacances . résidence secondaire . DPE-1 . non renseigné:
-  titre: DPE non renseigné
+# logement . vacances . résidence secondaire . DPE-1 . non renseigné:
+#   titre: DPE non renseigné
 
 logement . vacances . résidence secondaire . âge-1:
   ordre: 11
@@ -1101,72 +1101,72 @@ logement . vacances . résidence secondaire . saison-2 . hiver:
   icônes: ❄️
   description: Vous ne vous rendez dans votre deuxième résidence secondaire qu'en hiver.
 
-logement . vacances . résidence secondaire . DPE-2:
-  ordre: 18
-  question: Quel est le DPE de votre deuxième résidence secondaire ?
-  applicable si: résidences secondaires . nombre >= 2 
-  description: |
-    Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
-    d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
-    Les DPE sont classés d'une échelle allant de A à G.
-  par défaut: "'non renseigné'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - A 
-        - B
-        - C 
-        - D 
-        - E
-        - F
-        - G 
+# logement . vacances . résidence secondaire . DPE-2:
+#   ordre: 18
+#   question: Quel est le DPE de votre deuxième résidence secondaire ?
+#   applicable si: résidences secondaires . nombre >= 2 
+#   description: |
+#     Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
+#     d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
+#     Les DPE sont classés d'une échelle allant de A à G.
+#   par défaut: "'non renseigné'"
+#   formule:
+#     une possibilité:
+#       choix obligatoire: oui
+#       possibilités:
+#         - A 
+#         - B
+#         - C 
+#         - D 
+#         - E
+#         - F
+#         - G 
 
-logement . vacances . résidence secondaire . DPE-2 en chiffre:
-  titre: numéro du DPE
-  formule:
-    variations:
-      - si: DPE-2 = 'A'
-        alors: 1
-      - si: DPE-2 = 'B'
-        alors: 2
-      - si: DPE-2 = 'C'
-        alors: 3
-      - si: DPE-2 = 'D'
-        alors: 4
-      - si: DPE-2 = 'E'
-        alors: 5
-      - si: DPE-2 = 'F'
-        alors: 6
-      - si: DPE-2 = 'G'
-        alors: 7
-      - sinon: 99
-  note:  |
-    L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
+# logement . vacances . résidence secondaire . DPE-2 en chiffre:
+#   titre: numéro du DPE
+#   formule:
+#     variations:
+#       - si: DPE-2 = 'A'
+#         alors: 1
+#       - si: DPE-2 = 'B'
+#         alors: 2
+#       - si: DPE-2 = 'C'
+#         alors: 3
+#       - si: DPE-2 = 'D'
+#         alors: 4
+#       - si: DPE-2 = 'E'
+#         alors: 5
+#       - si: DPE-2 = 'F'
+#         alors: 6
+#       - si: DPE-2 = 'G'
+#         alors: 7
+#       - sinon: 99
+#   note:  |
+#     L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
 
-logement . vacances . résidence secondaire . DPE-2 . A:
-  titre: DPE A
+# logement . vacances . résidence secondaire . DPE-2 . A:
+#   titre: DPE A
 
-logement . vacances . résidence secondaire . DPE-2 . B:
-  titre: DPE B
+# logement . vacances . résidence secondaire . DPE-2 . B:
+#   titre: DPE B
 
-logement . vacances . résidence secondaire . DPE-2 . C:
-  titre: DPE C
+# logement . vacances . résidence secondaire . DPE-2 . C:
+#   titre: DPE C
 
-logement . vacances . résidence secondaire . DPE-2 . D:
-  titre: DPE D
+# logement . vacances . résidence secondaire . DPE-2 . D:
+#   titre: DPE D
 
-logement . vacances . résidence secondaire . DPE-2 . E:
-  titre: DPE E
+# logement . vacances . résidence secondaire . DPE-2 . E:
+#   titre: DPE E
 
-logement . vacances . résidence secondaire . DPE-2 . F:
-  titre: DPE F
+# logement . vacances . résidence secondaire . DPE-2 . F:
+#   titre: DPE F
 
-logement . vacances . résidence secondaire . DPE-2 . G:
-  titre: DPE G
+# logement . vacances . résidence secondaire . DPE-2 . G:
+#   titre: DPE G
 
-logement . vacances . résidence secondaire . DPE-2 . non renseigné:
-  titre: DPE non renseigné
+# logement . vacances . résidence secondaire . DPE-2 . non renseigné:
+#   titre: DPE non renseigné
 
 logement . vacances . résidence secondaire . âge-2:
   ordre: 17
@@ -1344,72 +1344,72 @@ logement . vacances . résidence secondaire . saison-3 . hiver:
   icônes: ❄️
   description: Vous ne vous rendez dans votre troisième résidence secondaire qu'en hiver.
 
-logement . vacances . résidence secondaire . DPE-3:
-  ordre: 24
-  question: Quel est le DPE de votre troisième résidence secondaire ?
-  applicable si: résidences secondaires . nombre >= 3 
-  description: |
-    Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
-    d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
-    Les DPE sont classés d'une échelle allant de A à G.
-  par défaut: "'non renseigné'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - A 
-        - B
-        - C 
-        - D 
-        - E
-        - F
-        - G 
+# logement . vacances . résidence secondaire . DPE-3:
+#   ordre: 24
+#   question: Quel est le DPE de votre troisième résidence secondaire ?
+#   applicable si: résidences secondaires . nombre >= 3 
+#   description: |
+#     Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
+#     d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
+#     Les DPE sont classés d'une échelle allant de A à G.
+#   par défaut: "'non renseigné'"
+#   formule:
+#     une possibilité:
+#       choix obligatoire: oui
+#       possibilités:
+#         - A 
+#         - B
+#         - C 
+#         - D 
+#         - E
+#         - F
+#         - G 
 
-logement . vacances . résidence secondaire . DPE-3 en chiffre:
-  titre: numéro du DPE
-  formule:
-    variations:
-      - si: DPE-3 = 'A'
-        alors: 1
-      - si: DPE-3 = 'B'
-        alors: 2
-      - si: DPE-3 = 'C'
-        alors: 3
-      - si: DPE-3 = 'D'
-        alors: 4
-      - si: DPE-3 = 'E'
-        alors: 5
-      - si: DPE-3 = 'F'
-        alors: 6
-      - si: DPE-3 = 'G'
-        alors: 7
-      - sinon: 99
-  note:  |
-    L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
+# logement . vacances . résidence secondaire . DPE-3 en chiffre:
+#   titre: numéro du DPE
+#   formule:
+#     variations:
+#       - si: DPE-3 = 'A'
+#         alors: 1
+#       - si: DPE-3 = 'B'
+#         alors: 2
+#       - si: DPE-3 = 'C'
+#         alors: 3
+#       - si: DPE-3 = 'D'
+#         alors: 4
+#       - si: DPE-3 = 'E'
+#         alors: 5
+#       - si: DPE-3 = 'F'
+#         alors: 6
+#       - si: DPE-3 = 'G'
+#         alors: 7
+#       - sinon: 99
+#   note:  |
+#     L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
 
-logement . vacances . résidence secondaire . DPE-3 . A:
-  titre: DPE A
+# logement . vacances . résidence secondaire . DPE-3 . A:
+#   titre: DPE A
 
-logement . vacances . résidence secondaire . DPE-3 . B:
-  titre: DPE B
+# logement . vacances . résidence secondaire . DPE-3 . B:
+#   titre: DPE B
 
-logement . vacances . résidence secondaire . DPE-3 . C:
-  titre: DPE C
+# logement . vacances . résidence secondaire . DPE-3 . C:
+#   titre: DPE C
 
-logement . vacances . résidence secondaire . DPE-3 . D:
-  titre: DPE D
+# logement . vacances . résidence secondaire . DPE-3 . D:
+#   titre: DPE D
 
-logement . vacances . résidence secondaire . DPE-3 . E:
-  titre: DPE E
+# logement . vacances . résidence secondaire . DPE-3 . E:
+#   titre: DPE E
 
-logement . vacances . résidence secondaire . DPE-3 . F:
-  titre: DPE F
+# logement . vacances . résidence secondaire . DPE-3 . F:
+#   titre: DPE F
 
-logement . vacances . résidence secondaire . DPE-3 . G:
-  titre: DPE G
+# logement . vacances . résidence secondaire . DPE-3 . G:
+#   titre: DPE G
 
-logement . vacances . résidence secondaire . DPE-3 . non renseigné:
-  titre: DPE non renseigné
+# logement . vacances . résidence secondaire . DPE-3 . non renseigné:
+#   titre: DPE non renseigné
 
 logement . vacances . résidence secondaire . âge-3:
   ordre: 23
@@ -1587,73 +1587,73 @@ logement . vacances . résidence secondaire . saison-4 . hiver:
   icônes: ❄️
   description: Vous ne vous rendez dans votre quatrième résidence secondaire qu'en hiver.
 
-logement . vacances . résidence secondaire . DPE-4:
-  ordre: 30
-  question: Quel est le DPE de votre quatrième résidence secondaire ?
-  applicable si: résidences secondaires . nombre >= 4 
-  description: |
-    Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
-    d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
-    Les DPE sont classés d'une échelle allant de A à G.
-  par défaut: "'non renseigné'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - A 
-        - B
-        - C 
-        - D 
-        - E
-        - F
-        - G 
+# logement . vacances . résidence secondaire . DPE-4:
+#   ordre: 30
+#   question: Quel est le DPE de votre quatrième résidence secondaire ?
+#   applicable si: résidences secondaires . nombre >= 4 
+#   description: |
+#     Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
+#     d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
+#     Les DPE sont classés d'une échelle allant de A à G.
+#   par défaut: "'non renseigné'"
+#   formule:
+#     une possibilité:
+#       choix obligatoire: oui
+#       possibilités:
+#         - A 
+#         - B
+#         - C 
+#         - D 
+#         - E
+#         - F
+#         - G 
 
-logement . vacances . résidence secondaire . DPE-4 en chiffre:
-  titre: numéro du DPE
-  formule:
-    variations:
-      - si: DPE-4 = 'A'
-        alors: 1
-      - si: DPE-4 = 'B'
-        alors: 2
-      - si: DPE-4 = 'C'
-        alors: 3
-      - si: DPE-4 = 'D'
-        alors: 4
-      - si: DPE-4 = 'E'
-        alors: 5
-      - si: DPE-4 = 'F'
-        alors: 6
-      - si: DPE-4 = 'G'
-        alors: 7
-      - sinon: 99
-  note:  |
-    L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
+# logement . vacances . résidence secondaire . DPE-4 en chiffre:
+#   titre: numéro du DPE
+#   formule:
+#     variations:
+#       - si: DPE-4 = 'A'
+#         alors: 1
+#       - si: DPE-4 = 'B'
+#         alors: 2
+#       - si: DPE-4 = 'C'
+#         alors: 3
+#       - si: DPE-4 = 'D'
+#         alors: 4
+#       - si: DPE-4 = 'E'
+#         alors: 5
+#       - si: DPE-4 = 'F'
+#         alors: 6
+#       - si: DPE-4 = 'G'
+#         alors: 7
+#       - sinon: 99
+#   note:  |
+#     L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
 
 
-logement . vacances . résidence secondaire . DPE-4 . A:
-  titre: DPE A
+# logement . vacances . résidence secondaire . DPE-4 . A:
+#   titre: DPE A
 
-logement . vacances . résidence secondaire . DPE-4 . B:
-  titre: DPE B
+# logement . vacances . résidence secondaire . DPE-4 . B:
+#   titre: DPE B
 
-logement . vacances . résidence secondaire . DPE-4 . C:
-  titre: DPE C
+# logement . vacances . résidence secondaire . DPE-4 . C:
+#   titre: DPE C
 
-logement . vacances . résidence secondaire . DPE-4 . D:
-  titre: DPE D
+# logement . vacances . résidence secondaire . DPE-4 . D:
+#   titre: DPE D
 
-logement . vacances . résidence secondaire . DPE-4 . E:
-  titre: DPE E
+# logement . vacances . résidence secondaire . DPE-4 . E:
+#   titre: DPE E
 
-logement . vacances . résidence secondaire . DPE-4 . F:
-  titre: DPE F
+# logement . vacances . résidence secondaire . DPE-4 . F:
+#   titre: DPE F
 
-logement . vacances . résidence secondaire . DPE-4 . G:
-  titre: DPE G
+# logement . vacances . résidence secondaire . DPE-4 . G:
+#   titre: DPE G
 
-logement . vacances . résidence secondaire . DPE-4 . non renseigné:
-  titre: DPE non renseigné
+# logement . vacances . résidence secondaire . DPE-4 . non renseigné:
+#   titre: DPE non renseigné
 
 logement . vacances . résidence secondaire . âge-4:
   ordre: 29
@@ -1831,72 +1831,72 @@ logement . vacances . résidence secondaire . saison-5 . hiver:
   icônes: ❄️
   description: Vous ne vous rendez dans votre cinquième résidence secondaire qu'en hiver.
 
-logement . vacances . résidence secondaire . DPE-5:
-  ordre: 36
-  question: Quel est le DPE de votre cinquième résidence secondaire ?
-  applicable si: résidences secondaires . nombre >= 5 
-  description: |
-    Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
-    d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
-    Les DPE sont classés d'une échelle allant de A à G.
-  par défaut: "'non renseigné'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - A 
-        - B
-        - C 
-        - D 
-        - E
-        - F
-        - G 
+# logement . vacances . résidence secondaire . DPE-5:
+#   ordre: 36
+#   question: Quel est le DPE de votre cinquième résidence secondaire ?
+#   applicable si: résidences secondaires . nombre >= 5 
+#   description: |
+#     Un DPE est un Diagnostic de Performance Energétique.  Il sert à renseigner sur la performance énergétique d’un logement ou
+#     d’un bâtiment, en évaluant sa consommation d’énergie et son impact en termes d’émission de gaz à effet de serre. 
+#     Les DPE sont classés d'une échelle allant de A à G.
+#   par défaut: "'non renseigné'"
+#   formule:
+#     une possibilité:
+#       choix obligatoire: oui
+#       possibilités:
+#         - A 
+#         - B
+#         - C 
+#         - D 
+#         - E
+#         - F
+#         - G 
 
-logement . vacances . résidence secondaire . DPE-5 en chiffre:
-  titre: numéro du DPE
-  formule:
-    variations:
-      - si: DPE-5 = 'A'
-        alors: 1
-      - si: DPE-5 = 'B'
-        alors: 2
-      - si: DPE-5 = 'C'
-        alors: 3
-      - si: DPE-5 = 'D'
-        alors: 4
-      - si: DPE-5 = 'E'
-        alors: 5
-      - si: DPE-5 = 'F'
-        alors: 6
-      - si: DPE-5 = 'G'
-        alors: 7
-        sinon: 99
-  note:  |
-    L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
+# logement . vacances . résidence secondaire . DPE-5 en chiffre:
+#   titre: numéro du DPE
+#   formule:
+#     variations:
+#       - si: DPE-5 = 'A'
+#         alors: 1
+#       - si: DPE-5 = 'B'
+#         alors: 2
+#       - si: DPE-5 = 'C'
+#         alors: 3
+#       - si: DPE-5 = 'D'
+#         alors: 4
+#       - si: DPE-5 = 'E'
+#         alors: 5
+#       - si: DPE-5 = 'F'
+#         alors: 6
+#       - si: DPE-5 = 'G'
+#         alors: 7
+#         sinon: 99
+#   note:  |
+#     L'objet de cette variable est de convertir le DPE en un chiffre afin que la formule plus haut ne bug pas.
 
-logement . vacances . résidence secondaire . DPE-5 . A:
-  titre: DPE A
+# logement . vacances . résidence secondaire . DPE-5 . A:
+#   titre: DPE A
 
-logement . vacances . résidence secondaire . DPE-5 . B:
-  titre: DPE B
+# logement . vacances . résidence secondaire . DPE-5 . B:
+#   titre: DPE B
 
-logement . vacances . résidence secondaire . DPE-5 . C:
-  titre: DPE C
+# logement . vacances . résidence secondaire . DPE-5 . C:
+#   titre: DPE C
 
-logement . vacances . résidence secondaire . DPE-5 . D:
-  titre: DPE D
+# logement . vacances . résidence secondaire . DPE-5 . D:
+#   titre: DPE D
 
-logement . vacances . résidence secondaire . DPE-5 . E:
-  titre: DPE E
+# logement . vacances . résidence secondaire . DPE-5 . E:
+#   titre: DPE E
 
-logement . vacances . résidence secondaire . DPE-5 . F:
-  titre: DPE F
+# logement . vacances . résidence secondaire . DPE-5 . F:
+#   titre: DPE F
 
-logement . vacances . résidence secondaire . DPE-5 . G:
-  titre: DPE G
+# logement . vacances . résidence secondaire . DPE-5 . G:
+#   titre: DPE G
 
-logement . vacances . résidence secondaire . DPE-5 . non renseigné:
-  titre: DPE non renseigné
+# logement . vacances . résidence secondaire . DPE-5 . non renseigné:
+#   titre: DPE non renseigné
 
 logement . vacances . résidence secondaire . âge-5:
   ordre: 35

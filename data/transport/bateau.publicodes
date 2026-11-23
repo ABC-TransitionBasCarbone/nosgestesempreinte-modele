@@ -495,155 +495,156 @@ transport . bateau . location bateau:
   titre: Je ne possédais pas mais j'ai loué un bateau
   icônes: 🛥️🤝
   applicable si: propriétaire
-  formule: location bateau . type
+  formule: 100
+  # Valeur moyenne à venir
   unité: kgCO2e
 
 transport . bateau . location bateau . propriétaire:
   question: Avez-vous loué vous un bateau en 2023 ?
   par défaut: non
 
-transport . bateau . location bateau . type:
-  ordre: 4
-  applicable si: propriétaire
-  titre: Bateau(x) loué(s)
-  mosaique:
-    type: selection
-    options:
-      - voilier . présent
-      - annexe . présent
-      - bateau moteur . présent
-  question: Quel(s) type(s) de bateau(x) avez vous loué en 2023?
-  description: |
-    Renseignez ici le(s) bateau(x) que vous avez loué en 2023. Pour rappel :
-      - La catégorie "Zodiac ou équivalent" représente les petites embarcations à moteur.
-      - La catégorie "Bateau moteur" inclut tous les autres bateaux  à moteur tel que les runabouts, les day-cruisers, les vedettes, les yachts...
-      - La catégorie "Voilier" inclut les monocoques, les catamarans, les trimarans et les multicoques.
-  formule: 
-    somme:
-      - annexe . empreinte * (annexe . jours / commun . jours par an)
-      - voilier . empreinte * (voilier . jours / commun . jours par an)
-      - bateau moteur . empreinte * (bateau moteur . jours / commun . jours par an)
+# transport . bateau . location bateau . type:
+#   ordre: 4
+#   applicable si: propriétaire
+#   titre: Bateau(x) loué(s)
+#   mosaique:
+#     type: selection
+#     options:
+#       - voilier . présent
+#       - annexe . présent
+#       - bateau moteur . présent
+#   question: Quel(s) type(s) de bateau(x) avez vous loué en 2023?
+#   description: |
+#     Renseignez ici le(s) bateau(x) que vous avez loué en 2023. Pour rappel :
+#       - La catégorie "Zodiac ou équivalent" représente les petites embarcations à moteur.
+#       - La catégorie "Bateau moteur" inclut tous les autres bateaux  à moteur tel que les runabouts, les day-cruisers, les vedettes, les yachts...
+#       - La catégorie "Voilier" inclut les monocoques, les catamarans, les trimarans et les multicoques.
+#   formule: 
+#     somme:
+#       - annexe . empreinte * (annexe . jours / commun . jours par an)
+#       - voilier . empreinte * (voilier . jours / commun . jours par an)
+#       - bateau moteur . empreinte * (bateau moteur . jours / commun . jours par an)
       
-transport . bateau . location bateau . type . annexe:
-  titre: Zodiac ou équivalent
-  icônes: 🚣‍♂️🔥🤝
+# transport . bateau . location bateau . type . annexe:
+#   titre: Zodiac ou équivalent
+#   icônes: 🚣‍♂️🔥🤝
 
-transport . bateau . location bateau . type . annexe . empreinte:
-  valeur: transport . bateau . annexe
-  contexte:
-    transport . bateau . annexe . consommation annuelle: 500
-    transport . bateau . annexe . voyageurs: location bateau . type . annexe . voyageurs
-    transport . bateau . annexe . taille: "'moyen'"
-    transport . bateau . annexe . propriétaire: oui
-    transport . bateau . annexe . âge: 10
-  unité: kgCO2e
-  note: les valeur utilisées sont celles par défaut et ne sont pas sourcées faute de données sur ce sujet. A corriger éventuellement post-enquête.
+# transport . bateau . location bateau . type . annexe . empreinte:
+#   valeur: transport . bateau . annexe
+#   contexte:
+#     transport . bateau . annexe . consommation annuelle: 500
+#     transport . bateau . annexe . voyageurs: location bateau . type . annexe . voyageurs
+#     transport . bateau . annexe . taille: "'moyen'"
+#     transport . bateau . annexe . propriétaire: oui
+#     transport . bateau . annexe . âge: 10
+#   unité: kgCO2e
+#   note: les valeur utilisées sont celles par défaut et ne sont pas sourcées faute de données sur ce sujet. A corriger éventuellement post-enquête.
 
 
-transport . bateau . location bateau . type . annexe . présent:
-  question: Avez-vous loué une petite embarcation à moteur en 2023 ?
-  par défaut: non
+# transport . bateau . location bateau . type . annexe . présent:
+#   question: Avez-vous loué une petite embarcation à moteur en 2023 ?
+#   par défaut: non
 
-transport . bateau . location bateau . type . annexe . jours:
-  ordre: 5
-  titre: Durée location
-  applicable si: annexe . présent
-  question: Combien de jours, au total, avez-vous loué une petite embarcation à moteur ?
-  description: |
-    Si vous avez loué une petite embarcation à moteur pour moins d'une journée, renseignez une valeur décimale : 0,5 pour une demie journée et 0,25 pour deux heures de location
-  par défaut: 1
-  unité: jour
+# transport . bateau . location bateau . type . annexe . jours:
+#   ordre: 5
+#   titre: Durée location
+#   applicable si: annexe . présent
+#   question: Combien de jours, au total, avez-vous loué une petite embarcation à moteur ?
+#   description: |
+#     Si vous avez loué une petite embarcation à moteur pour moins d'une journée, renseignez une valeur décimale : 0,5 pour une demie journée et 0,25 pour deux heures de location
+#   par défaut: 1
+#   unité: jour
 
-transport . bateau . location bateau . type . annexe . voyageurs:
-  ordre: 5
-  titre: Nombre voyageurs
-  applicable si: annexe . présent
-  question: Quel était le nombre moyen de personnes avec vous lors de vo(s) sortie(s) avec une petite embarcation à moteur louée ?
-  description: |
-    Essayez d'estimer une moyenne approximative en vous incluant. Si vous faites des sorties toujours entre amis ou en famile, le nombre moyen se situe probablement autour de 4.
-    Si vous êtes souvent seul ou en couple le nombre moyen se situe problement autour de 1.5.
-  plancher: 1
-  par défaut: 4
-  note: la valeur n'est pas sourcée faute de données sur ce sujet.
+# transport . bateau . location bateau . type . annexe . voyageurs:
+#   ordre: 5
+#   titre: Nombre voyageurs
+#   applicable si: annexe . présent
+#   question: Quel était le nombre moyen de personnes avec vous lors de vo(s) sortie(s) avec une petite embarcation à moteur louée ?
+#   description: |
+#     Essayez d'estimer une moyenne approximative en vous incluant. Si vous faites des sorties toujours entre amis ou en famile, le nombre moyen se situe probablement autour de 4.
+#     Si vous êtes souvent seul ou en couple le nombre moyen se situe problement autour de 1.5.
+#   plancher: 1
+#   par défaut: 4
+#   note: la valeur n'est pas sourcée faute de données sur ce sujet.
 
-transport . bateau . location bateau . type . bateau moteur:
-  titre: Bateau à moteur
-  icônes: 🛥️🤝
+# transport . bateau . location bateau . type . bateau moteur:
+#   titre: Bateau à moteur
+#   icônes: 🛥️🤝
 
-transport . bateau . location bateau . type . bateau moteur . empreinte:
-  valeur: transport . bateau . bateau moteur
-  contexte:
-    transport . bateau . bateau moteur . consommation annuelle: 500
-    transport . bateau . bateau moteur . voyageurs: location bateau . type . bateau moteur . voyageurs
-    transport . bateau . bateau moteur . taille: "'moyen'"
-    transport . bateau . bateau moteur . propriétaire: oui
-    transport . bateau . bateau moteur . âge: 10
-  unité: kgCO2e  
-  note: les valeur utilisées sont celles par défaut et ne sont pas sourcées faute de données sur ce sujet. A corriger éventuellement post-enquête.
+# transport . bateau . location bateau . type . bateau moteur . empreinte:
+#   valeur: transport . bateau . bateau moteur
+#   contexte:
+#     transport . bateau . bateau moteur . consommation annuelle: 500
+#     transport . bateau . bateau moteur . voyageurs: location bateau . type . bateau moteur . voyageurs
+#     transport . bateau . bateau moteur . taille: "'moyen'"
+#     transport . bateau . bateau moteur . propriétaire: oui
+#     transport . bateau . bateau moteur . âge: 10
+#   unité: kgCO2e  
+#   note: les valeur utilisées sont celles par défaut et ne sont pas sourcées faute de données sur ce sujet. A corriger éventuellement post-enquête.
 
-transport . bateau . location bateau . type . bateau moteur . présent:
-  question: Avez-vous loué un bateau moteur en 2023 ?
-  par défaut: non
+# transport . bateau . location bateau . type . bateau moteur . présent:
+#   question: Avez-vous loué un bateau moteur en 2023 ?
+#   par défaut: non
 
-transport . bateau . location bateau . type . bateau moteur . jours:
-  ordre: 6
-  titre: Durée location
-  applicable si: bateau moteur . présent
-  question: Combien de jours, au total, avez-vous loué un bateau à moteur ?
-  description: |
-    Si vous avez loué un bateau à moteur pour moins d'une journée, renseignez une valeur décimale : 0,5 pour une demie journée et 0,25 pour deux heures de location
-  par défaut: 1
-  unité: jour
+# transport . bateau . location bateau . type . bateau moteur . jours:
+#   ordre: 6
+#   titre: Durée location
+#   applicable si: bateau moteur . présent
+#   question: Combien de jours, au total, avez-vous loué un bateau à moteur ?
+#   description: |
+#     Si vous avez loué un bateau à moteur pour moins d'une journée, renseignez une valeur décimale : 0,5 pour une demie journée et 0,25 pour deux heures de location
+#   par défaut: 1
+#   unité: jour
 
-transport . bateau . location bateau . type . bateau moteur . voyageurs:
-  ordre: 6
-  titre: Nombre voyageurs
-  applicable si: bateau moteur . présent
-  question: Quel était le nombre moyen de personnes avec vous lors de vo(s) sortie(s) avec un bateau à moteur loué ?
-  description: |
-    Essayez d'estimer une moyenne approximative en vous incluant. Si vous faites des sorties toujours entre amis ou en famile, le nombre moyen se situe probablement autour de 4.
-    Si vous êtes souvent seul ou en couple le nombre moyen se situe problement autour de 1.5.
-  plancher: 1
-  par défaut: 4
-  note: la valeur n'est pas sourcée faute de données sur ce sujet.
+# transport . bateau . location bateau . type . bateau moteur . voyageurs:
+#   ordre: 6
+#   titre: Nombre voyageurs
+#   applicable si: bateau moteur . présent
+#   question: Quel était le nombre moyen de personnes avec vous lors de vo(s) sortie(s) avec un bateau à moteur loué ?
+#   description: |
+#     Essayez d'estimer une moyenne approximative en vous incluant. Si vous faites des sorties toujours entre amis ou en famile, le nombre moyen se situe probablement autour de 4.
+#     Si vous êtes souvent seul ou en couple le nombre moyen se situe problement autour de 1.5.
+#   plancher: 1
+#   par défaut: 4
+#   note: la valeur n'est pas sourcée faute de données sur ce sujet.
 
-transport . bateau . location bateau . type . voilier:
-  titre: Voilier
-  icônes: ⛵🤝
+# transport . bateau . location bateau . type . voilier:
+#   titre: Voilier
+#   icônes: ⛵🤝
 
-transport . bateau . location bateau . type . voilier . empreinte:
-  valeur: transport . bateau . voilier
-  contexte:
-    transport . bateau . voilier . consommation annuelle: 500
-    transport . bateau . voilier . voyageurs: location bateau . type . voilier . voyageurs
-    transport . bateau . voilier . taille: "'moyen'"
-    transport . bateau . voilier . propriétaire: oui
-    transport . bateau . voilier . âge: 10
-  unité: kgCO2e
-  note: les valeur utilisées sont celles par défaut et ne sont pas sourcées faute de données sur ce sujet. A corriger éventuellement post-enquête.
+# transport . bateau . location bateau . type . voilier . empreinte:
+#   valeur: transport . bateau . voilier
+#   contexte:
+#     transport . bateau . voilier . consommation annuelle: 500
+#     transport . bateau . voilier . voyageurs: location bateau . type . voilier . voyageurs
+#     transport . bateau . voilier . taille: "'moyen'"
+#     transport . bateau . voilier . propriétaire: oui
+#     transport . bateau . voilier . âge: 10
+#   unité: kgCO2e
+#   note: les valeur utilisées sont celles par défaut et ne sont pas sourcées faute de données sur ce sujet. A corriger éventuellement post-enquête.
 
-transport . bateau . location bateau . type . voilier . présent:
-  question: Avez-vous loué un voilier en 2023 ?
-  par défaut: non
+# transport . bateau . location bateau . type . voilier . présent:
+#   question: Avez-vous loué un voilier en 2023 ?
+#   par défaut: non
 
-transport . bateau . location bateau . type . voilier . jours:
-  ordre: 7
-  titre: Durée location
-  applicable si: voilier . présent
-  question: Combien de jours, au total, avez-vous loué un voilier ?
-  description: |
-    Si vous avez loué un voilier pour moins d'une journée, renseignez une valeur décimale : 0,5 pour une demie journée et 0,25 pour deux heures de location
-  par défaut: 1
-  unité: jour
+# transport . bateau . location bateau . type . voilier . jours:
+#   ordre: 7
+#   titre: Durée location
+#   applicable si: voilier . présent
+#   question: Combien de jours, au total, avez-vous loué un voilier ?
+#   description: |
+#     Si vous avez loué un voilier pour moins d'une journée, renseignez une valeur décimale : 0,5 pour une demie journée et 0,25 pour deux heures de location
+#   par défaut: 1
+#   unité: jour
 
-transport . bateau . location bateau . type . voilier . voyageurs:
-  ordre: 7
-  titre: Nombre voyageurs
-  applicable si: voilier . présent
-  question: Quel était le nombre moyen de personnes avec vous lors de vo(s) sortie(s) avec un voilier loué ?
-  description: |
-    Essayez d'estimer une moyenne approximative en vous incluant. Si vous faites des sorties toujours entre amis ou en famile, le nombre moyen se situe probablement autour de 4.
-    Si vous êtes souvent seul ou en couple le nombre moyen se situe problement autour de 1.5.
-  plancher: 1
-  par défaut: 4
-  note: la valeur n'est pas sourcée faute de données sur ce sujet.
+# transport . bateau . location bateau . type . voilier . voyageurs:
+#   ordre: 7
+#   titre: Nombre voyageurs
+#   applicable si: voilier . présent
+#   question: Quel était le nombre moyen de personnes avec vous lors de vo(s) sortie(s) avec un voilier loué ?
+#   description: |
+#     Essayez d'estimer une moyenne approximative en vous incluant. Si vous faites des sorties toujours entre amis ou en famile, le nombre moyen se situe probablement autour de 4.
+#     Si vous êtes souvent seul ou en couple le nombre moyen se situe problement autour de 1.5.
+#   plancher: 1
+#   par défaut: 4
+#   note: la valeur n'est pas sourcée faute de données sur ce sujet.

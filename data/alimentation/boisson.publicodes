@@ -225,46 +225,46 @@ alimentation . boisson . froide:
     somme:
       - sucrées
       - alcool
-      - eau en bouteille
+#       - eau en bouteille
 
-alimentation . boisson . eau en bouteille:
-  titre: Eau en bouteille
-  formule:
-    variations:
-      - si:
-          est défini: consommateur
-        alors: consommation annuelle * empreinte
-      - sinon: consommation moyenne * empreinte
-  unité: kgCO2e
+# alimentation . boisson . eau en bouteille:
+#   titre: Eau en bouteille
+#   formule:
+#     variations:
+#       - si:
+#           est défini: consommateur
+#         alors: consommation annuelle * empreinte
+#       - sinon: consommation moyenne * empreinte
+#   unité: kgCO2e
 
-alimentation . boisson . eau en bouteille . consommateur:
-  question: Buvez-vous votre eau en bouteille ?
-  description: |
-    Si vous buvez principalement de l'eau du robinet et que votre consommation d'eau en bouteille se réduit à de rares occasions, répondez non.
+# alimentation . boisson . eau en bouteille . consommateur:
+#   question: Buvez-vous votre eau en bouteille ?
+#   description: |
+#     Si vous buvez principalement de l'eau du robinet et que votre consommation d'eau en bouteille se réduit à de rares occasions, répondez non.
 
-    Si vous achetez régulièrement des packs d'eau en bouteille au supermarché ou si vous achetez une petite bouteille chaque jour lors de vos repas, répondez oui.
-  note: |
-    Les français boivent en moyenne entre 100 et 150 litres d'eau en bouteille par an [source](https://www.planetoscope.com/consommation-eau/854-litres-d-eau-en-bouteille-vendus-en-france.html), soit environ un tiers de nos besoins de 1-1,5l par jour [source](https://www.mangerbouger.fr/Le-Mag/Bien-etre/L-eau-indispensable-a-notre-bonne-sante).
+#     Si vous achetez régulièrement des packs d'eau en bouteille au supermarché ou si vous achetez une petite bouteille chaque jour lors de vos repas, répondez oui.
+#   note: |
+#     Les français boivent en moyenne entre 100 et 150 litres d'eau en bouteille par an [source](https://www.planetoscope.com/consommation-eau/854-litres-d-eau-en-bouteille-vendus-en-france.html), soit environ un tiers de nos besoins de 1-1,5l par jour [source](https://www.mangerbouger.fr/Le-Mag/Bien-etre/L-eau-indispensable-a-notre-bonne-sante).
 
-    Nous avons considéré que la valeur par défaut était donc "non".
+#     Nous avons considéré que la valeur par défaut était donc "non".
 
-alimentation . boisson . eau en bouteille . empreinte:
-  formule: 0.27
-  unité: kgCO2e/l
-  note: Facteur d'émission issu d'[Agibalyse, eau embouteillée de source](https://agribalyse.ademe.fr/app/aliments/18430#Eau_embouteillée_de_source).
+# alimentation . boisson . eau en bouteille . empreinte:
+#   formule: 0.27
+#   unité: kgCO2e/l
+#   note: Facteur d'émission issu d'[Agibalyse, eau embouteillée de source](https://agribalyse.ademe.fr/app/aliments/18430#Eau_embouteillée_de_source).
 
-alimentation . boisson . eau en bouteille . consommation moyenne:
-  formule: 135
-  unité: l
-  note: |
-    La consommation moyenne de l'eau en bouteille est en 2018 de 135 litres par an par habitant (soit 90 bouteilles), 
-    d'après le syndicat des eaux minérales naturelles ([source](https://eaumineralenaturelle.fr/qui-sommes-nous/leau-minerale-en-chiffres))
+# alimentation . boisson . eau en bouteille . consommation moyenne:
+#   formule: 135
+#   unité: l
+#   note: |
+#     La consommation moyenne de l'eau en bouteille est en 2018 de 135 litres par an par habitant (soit 90 bouteilles), 
+#     d'après le syndicat des eaux minérales naturelles ([source](https://eaumineralenaturelle.fr/qui-sommes-nous/leau-minerale-en-chiffres))
 
-alimentation . boisson . eau en bouteille . consommation annuelle:
-  applicable si: consommateur
-  formule: commun . jours par an * 1.5 l/jour
-  unité: l
-  description: On considère que chacun boit 1,5 litres d'eau par jour.
+# alimentation . boisson . eau en bouteille . consommation annuelle:
+#   applicable si: consommateur
+#   formule: commun . jours par an * 1.5 l/jour
+#   unité: l
+#   description: On considère que chacun boit 1,5 litres d'eau par jour.
 
 alimentation . boisson . sucrées:
   description: |
