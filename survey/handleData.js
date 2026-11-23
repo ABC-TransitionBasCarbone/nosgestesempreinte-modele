@@ -6,6 +6,8 @@ const { inputworksheet, numberOfRow } = await handleInputExcel();
 const { outputWorkbook, outputWorksheet, headerRow } = await initOutputExcel();
 
 const engine = new Engine(rules);
+const normalize = (value) => String(value).trim().toLocaleLowerCase('fr-FR');
+const ruleNames = new Map(Object.keys(rules).map((rule) => [normalize(rule), rule]));
 console.log(numberOfRow)
 for (let i = 2; i <= numberOfRow; i ++) {
     console.log(i)
@@ -16,15 +18,22 @@ for (let i = 2; i <= numberOfRow; i ++) {
 
     for (let headerIndex = 2; headerIndex <= headerInput.length; headerIndex ++) {
         if (headerInput[headerIndex] !== undefined && currentRow[headerIndex] !== "" && currentRow[headerIndex] !== undefined) {
-            if (headerInput[headerIndex].match('aide saisie')) {
-                aideSaisie[headerInput[headerIndex].trim().toLowerCase()] = currentRow[headerIndex];
-            } else if (currentRow[headerIndex] === true || currentRow[headerIndex] === false || currentRow[headerIndex] === 'TRUE' || currentRow[headerIndex] === 'FALSE') {
-                situation[headerInput[headerIndex].trim().toLowerCase()] = (currentRow[headerIndex] === true  || currentRow[headerIndex] === 'TRUE') ? "oui" : "non";
-            } else if (currentRow[headerIndex] !== 'je ne sais pas') {
-                if (typeof currentRow[headerIndex] === 'string') {
-                    situation[headerInput[headerIndex].trim().toLowerCase()] = `'${currentRow[headerIndex]}'`;
+            const header = normalize(headerInput[headerIndex]);
+            const rule = ruleNames.get(header) ?? header;
+            const value = currentRow[headerIndex];
+            const normalizedValue = typeof value === 'string' ? normalize(value) : value;
+
+            if (header.includes('aide saisie')) {
+                aideSaisie[header] = value;
+            } else if (value === true || value === false || ['true', 'false', 'oui', 'non'].includes(normalizedValue)) {
+                situation[rule] = (value === true || normalizedValue === 'true' || normalizedValue === 'oui') ? "oui" : "non";
+            } else if (normalizedValue !== 'je ne sais pas') {
+                if (typeof value === 'string') {
+                    const possibilities = rules[rule]?.formule?.['une possibilité']?.['possibilités'];
+                    const canonicalValue = possibilities?.find((possibility) => normalize(possibility) === normalizedValue) ?? value;
+                    situation[rule] = `'${canonicalValue}'`;
                 } else {
-                    situation[headerInput[headerIndex].trim().toLowerCase()] = currentRow[headerIndex];
+                    situation[rule] = value;
                 }
             }
         }
@@ -34,9 +43,10 @@ for (let i = 2; i <= numberOfRow; i ++) {
     const computeRow = [currentRow[1]];
 
     for (let ruleIndex = 2; ruleIndex <= headerRow.length; ruleIndex ++) {
-        const rule = headerRow[ruleIndex].trim().toLowerCase();
-        if (rule && rule.match("aide saisie")) {
-            computeRow.push(aideSaisie[rule]);
+        const header = normalize(headerRow[ruleIndex]);
+        const rule = ruleNames.get(header) ?? header;
+        if (header && header.includes("aide saisie")) {
+            computeRow.push(aideSaisie[header]);
         } else if (rule) {
             const nodeValue = engine.evaluate(rule).nodeValue;
             if (nodeValue) {
