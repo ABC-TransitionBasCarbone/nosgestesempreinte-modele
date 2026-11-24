@@ -6,7 +6,7 @@ const { inputworksheet, numberOfRow } = await handleInputExcel();
 const { outputWorkbook, outputWorksheet, headerRow } = await initOutputExcel();
 
 const engine = new Engine(rules);
-const normalize = (value) => String(value).trim().toLocaleLowerCase('fr-FR');
+const normalize = (value) => value && String(value).trim().toLocaleLowerCase('fr-FR');
 const ruleNames = new Map(Object.keys(rules).map((rule) => [normalize(rule), rule]));
 console.log(numberOfRow)
 for (let i = 2; i <= numberOfRow; i ++) {
