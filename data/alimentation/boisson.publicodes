@@ -155,10 +155,12 @@ alimentation . boisson . tasse de chocolat chaud . empreinte lait:
     variations:
       - si: type de lait = 'lait de vache'
         alors: empreinte lait de vache
-      - si: type de lait = 'lait de soja'
-        alors: empreinte lait de soja
-      - si: type de lait = 'lait d'avoine'
-        alors: empreinte lait d'avoine
+      - si: type de lait = 'lait végétal'
+        alors: empreinte lait végétal
+#      - si: type de lait = 'lait de soja'
+#        alors: empreinte lait de soja
+#      - si: type de lait = 'lait d'avoine'
+#        alors: empreinte lait d'avoine
   unité: kgCO2e/kg
 
 alimentation . boisson . tasse de chicorée:
@@ -188,20 +190,27 @@ alimentation . type de lait:
       choix obligatoire: oui
       possibilités:
         - lait de vache
-        - lait de soja
-        - lait d'avoine
+        - lait végétal
+#        - lait de soja
+#        - lait d'avoine
 
 alimentation . type de lait . lait de vache:
   titre: Lait de vache
-alimentation . type de lait . lait de soja:
-  titre: Lait de soja
-alimentation . type de lait . lait d'avoine:
-  titre: Lait d'avoine
+alimentation . type de lait . lait végétal:
+  titre: Lait végétal
+#alimentation . type de lait . lait de soja:
+#  titre: Lait de soja
+#alimentation . type de lait . lait d'avoine:
+#  titre: Lait d'avoine
 
 alimentation . empreinte lait de vache:
   formule: 1.32
   unité: kgCO2e/kg
   note: Facteur d'émission issu d'[Agibalyse, lait demi-écrémé pasteurisé](https://agribalyse.ademe.fr/app/aliments/19042#Lait_demi-%C3%A9cr%C3%A9m%C3%A9,_pasteuris%C3%A9).
+
+alimentation . empreinte lait végétal:
+  formule: (empreinte lait de soja + empreinte lait d'avoine) / 2
+  unité: kgCO2e/kg
 
 alimentation . empreinte lait de soja:
   formule: 0.44

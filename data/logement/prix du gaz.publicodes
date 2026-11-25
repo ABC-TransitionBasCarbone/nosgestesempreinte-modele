@@ -37,7 +37,7 @@ logement . chauffage . gaz . prix . prix total:
   unité: €
 
 logement . chauffage . gaz . prix . marginal HT:
-  formule: 0.07109
+  formule: 0.1377
   unité: €/kWh
   description: |
     On se base sur le prix repère de vente de gaz naturel pour les consommateurs résidentiels pour août 2024 [publié](https://www.cre.fr/consommateurs/prix-reperes-et-references/prix-repere-de-vente-de-gaz-naturel-a-destination-des-clients-residentiels.html) par la CRE
@@ -51,7 +51,7 @@ logement . chauffage . gaz . prix . marginal HT:
 logement . chauffage . gaz . prix . marginal avec TVA: marginal HT * 1.2
 
 logement . chauffage . gaz . prix . TICGN:
-  formule: 0.01637
+  formule: 0.01666
   unité: €/kWh
   description: valeur de la TICGN 2024 repris depuis ce [site](https://capitole-energie.com/2024/01/04/ticgn-2024/)
 
@@ -60,13 +60,13 @@ logement . chauffage . gaz . prix . TICGN avec TVA: TICGN * 1.2
 logement . chauffage . gaz . prix . marginal taxé: TICGN avec TVA + marginal avec TVA
 
 logement . chauffage . gaz . prix . abonnement: 219.45 €
-logement . chauffage . gaz . prix . abonnement avec TVA: abonnement * 1.055
+logement . chauffage . gaz . prix . abonnement avec TVA: abonnement * 1.2
 
 logement . chauffage . gaz . prix . abonnement ATRD fixe:
-  formule: 175.92 €
+  formule: 186,12
   description: |
     Partie fixe du tarif d’acheminement appliqué par les gestionnaires des réseaux de distribution gaz naturel pour calcul de la CTA, [source 2024](https://opera-energie.com/atrd-tarif-distribution-gaz-naturel/).
     L'option tarifaire B1 (côté client) que nous considérons correspond à l'option tarifaire T2 (côté fournisseur)
 
-logement . chauffage . gaz . prix . CTA: abonnement ATRD fixe * 0.208
-logement . chauffage . gaz . prix . CTA avec TVA: CTA * 1.055
+logement . chauffage . gaz . prix . CTA: (abonnement ATRD fixe * 0.208) + (abonnement ATRD fixe * 0,8321 * 0,0471)
+logement . chauffage . gaz . prix . CTA avec TVA: CTA * 1.2

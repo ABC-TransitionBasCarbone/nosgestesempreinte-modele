@@ -111,13 +111,13 @@ logement . électricité . réseau . consommation estimée via le coût . saisie
   unité: €/mois
 
 logement . électricité . réseau . consommation estimée via le coût . facteur:
-  formule: 0.2776
+  formule: 0.2485
   unité: €/kWh
   note: |
     Cette formule nous permet de passer des €/mois aux kWh/an.
 
-    Le chiffre inclut les taxes et prélévements (ce n'est pas le prix du kWh marginal) ainsi que le coût de l'abonnement (normalement) pour la tranche DC(consommation de 1 000 kWh à 2 499 kWh). Faute de données disponibles pour 2024 on considère la moyenne du S2 2023. Chiffre issu 
-    de [Eurostat, household, first half 2023](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics) et identique aux données du [SDES](https://www.statistiques.developpement-durable.gouv.fr/catalogue?page=dataset&datasetId=631b03afb61e5c6479370169)
+    Le chiffre inclut les taxes et prélévements (ce n'est pas le prix du kWh marginal) ainsi que le coût de l'abonnement (normalement) pour la tranche DC(consommation de 1 000 kWh à 2 499 kWh). Données du S1 2026. Chiffre issu 
+    de [Eurostat](https://ec.europa.eu/eurostat/databrowser/view/nrg_pc_204/default/table?lang=en) et identique aux données du [SDES - tranche DC](https://www.statistiques.developpement-durable.gouv.fr/catalogue?page=dataset&datasetId=631b03afb61e5c6479370169)
     
     On n'utilise pas un mode de calcul détaillé comme pour le gaz car la CTA (Contribution Tarifaire d’Acheminement) dépend de la TURPE (Tarif d’Utilisation des Réseaux Publics d’Électricité)
     qui n'est pas un forfait fixe (à l'inverse de l'ATRD pour le gaz). La TURPE dépend de 3 composantes annuelles (comptage, gestion, soutirage). Les deux premières sont fonction du type d'utilisateur 

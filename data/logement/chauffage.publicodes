@@ -294,7 +294,7 @@ logement . chauffage . bouteille gaz . consommation:
   ordre: 3
   applicable si: bouteille gaz . présent
   question: En 2023, quelle a été votre consommation annuelle en bouteilles de gaz (13 kg) ?
-  aide: logement . chauffage . bouteille gaz . consommation estimée via le poids . saisie
+  aide: logement . chauffage . bouteille gaz . consommation estimée via le coût . saisie
   plancher: 0
   par défaut: parc français . chauffage . consommation moyenne gaz cuisson / énergie par bouteille
   unité: bouteille
@@ -327,28 +327,24 @@ logement . chauffage . bouteille gaz . consommation:
 #  description: |
 #    Vous avez renseigné une consommation de bouteille de gaz relativement haute au regard des caractéristiques de votre logement. Etes-vous certains de la valeur saisie ? Si c'est le cas, passez à la questions suivante.
 
-logement . chauffage . bouteille gaz . consommation estimée via le poids:
-  titre: Consommation estimée via le poids
+logement . chauffage . bouteille gaz . consommation estimée via le coût:
+  titre: Consommation estimée via le coût
   formule: saisie / facteur
   arrondi: 1 décimale
   unité: bouteille
   note: Cette règle est utilisée dans le cadre de l'aide à la saisie pour la question mentionnée dans l'attribut `aide`. L'attribution de la valeur finale est géré côté site.
 
-logement . chauffage . bouteille gaz . consommation estimée via le poids . saisie:
-  question: Vous utilisez un format de bonbonne différent ? Entrez votre consommation annuelle en kg.
+logement . chauffage . bouteille gaz . consommation estimée via le coût . saisie:
+  question: Pas de facture ? Entrez vos dépenses annuelles approximatives par mois
   plancher: 0
-  unité: kg
+  unité: €/an
 
-logement . chauffage . bouteille gaz . consommation estimée via le poids . facteur:
-  formule: 13
-  unité: kg/bouteille
+logement . chauffage . bouteille gaz . consommation estimée via le coût . facteur:
+  formule: 44
+  unité: €/bouteille
   note: |
-    Cette aide permet de simplifier la conversion des kg de gaz consommés en bouteille de gaz au format 13kg.
-
-    Ce mécanisme d'aide à l'estimation est conçu pour recevoir une consommation mensuelle en entrée (cf InputEstimation.tsx côté site).
-    Néanmoins, pour ce cas précis, nous souhaitons proposer une aide à l'estimation sur l'année et attendons une consommation par an 
-    et non par mois (période correspondant davantage aux factures de fournisseurs).
-    C'est pourquoi , la formule présente un facteur 12.
+    Source : moyenne de janvier à septembre des prix moyens mensuels de vente au détail en métropole - Gaz butane comprimé (13 kg), sans consigne de l'[INSEE](https://www.insee.fr/fr/statistiques/serie/000442572)
+    Cette aide permet de simplifier la conversion des euros/an en bouteille de gaz.
 
 logement . chauffage . bouteille gaz . énergie par bouteille:
   titre: Energie bouteille de gaz (13 kg)
@@ -437,10 +433,10 @@ logement . chauffage . citerne propane . consommation estimée via le coût . sa
   unité: €/mois
 
 logement . chauffage . citerne propane . consommation estimée via le coût . facteur:
-  formule: 2.176
+  formule: 2.249
   unité: €/kg
   note: |
-    Source : données issue de l'Excel `1.1.-Prix-menages-Petrole.2024-09` (variable PX_PETRO_PROPANE_TONNE), moyenne S1 2024.
+    Source : données issue de l'Excel `1.1.-Prix-menages-Petrole.2024-09` (variable PX_PETRO_PROPANE_TONNE), moyenne janv-sept 2026.
     Accessible sur le site du [SDES](https://www.statistiques.developpement-durable.gouv.fr/catalogue?page=dataset&datasetId=631b03afb61e5c6479370169)
 
     Cette aide à l'estimation est désignée pour recevoir une consommation mensuelle (cf InputEstimation.tsx côté site)
@@ -513,7 +509,7 @@ logement . chauffage . fioul . consommation estimée via le coût . saisie:
   unité: €/mois
 
 logement . chauffage . fioul . consommation estimée via le coût . facteur:
-  formule: 1.2415
+  formule: 1.5720
   unité: €/l
   note: |
     Cette formule nous permet de passer des €/mois aux litres/an.
@@ -741,23 +737,18 @@ logement . chauffage . réseau de chaleur . consommation estimée via le coût .
   unité: €/mois
 
 logement . chauffage . réseau de chaleur . consommation estimée via le coût . facteur:
-  formule: 0.1126
+  formule: 0.109
   unité: €/kWh
   note: |
-    Cette formule nous permet de passer des €/mois aux kWh/an : le kWh coût x centimes par mois sur 12 mois. Attention, ces données de prix sont issues 
-    des recettes des exploitants facturées aux abonnés (et non pas aux usagers finaux) et ne tiennent pas comptent des aides telles que le bouclier tarifaire (cf. mail AMORCE).
-
-    Ce chiffre est tiré de l'[Enquête des réseaux de chaleur et de froid - RCE 40](https://amorce.asso.fr/publications/enquete-sur-le-prix-de-vente-de-la-chaleur-et-du-froid-en-2022-rce40) 
-    non encore publiée mais transmise par le réseau AMORCE. L'enquête se base sur les données 2022 qui donne un chiffre de 112.6 €HT/MWh 119.8 €TTC/MWh.
-
-    Il faut savoir que l'écart-type TTC est important car la TVA appliquée varie avec la proportion d'énergie verte dans le mix du réseau de chaleur (5,5% pour les réseaux contenant plus de 50 % d'énergie renouvelable et de récupération).
-
-    Néanmoins, on peut lire p17 "Bien que les prix de vente moyens des réseaux de chaleur affichent une très grande disparité, 88% 
-    de la chaleur livrée est vendue à un prix compris entre -30 et +30% de la moyenne nationale."
+    Cette formule nous permet de passer des €/mois aux kWh/an. 
+    La valeur est issue des données prix du réseau de chaleur parisien fournie par [France Chaleur Urbaine](https://france-chaleur-urbaine.beta.gouv.fr/reseaux/7501C).
+    On considère le prix moyen pour la catégorie d'abonnés "Logements"
 
 logement . chauffage . réseau de chaleur . intensité carbone:
   titre: Empreinte carbone réseau de chaleur
-  formule: 0.112
+  formule: 0.171
   unité: kgCO2e/kWh
   note: |
-    Facteur d'émission issu de l'[enquête FEDEN sur les réseaux de chaleur en France 2023](https://www.fedene.fr/sncu/lenquete-2023-sur-les-reseaux-de-chaleur-froid-en-france/).
+    Facteur d'émission issu des données du réseau de chaleur urbain publié par [France Chaleur Urbaine](https://france-chaleur-urbaine.beta.gouv.fr/reseaux/7501C)
+    On considère le contenu carbone en ACV qui est plus complet que le contenu carbone en émisssions directes car le contenu ACV inclue les phases 
+    d'extraction et transport des combustibles. Plus d'infos sur ce [rapport](file:///C:/Users/conta/Downloads/RCT55_Contenu_carbone_RCF.pdf), voir page 2

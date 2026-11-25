@@ -3,16 +3,28 @@ logement . chauffage . bois . type . bûches . prix stère 2017:
   unité: €/stère
   note: Chiffre issu de l'étude ADEME [Etude sur le chauffage domestique bois](https://www.ademe.fr/etude-chauffage-domestique-bois), fichier 3_presentation.pdf, page 34.
 
-logement . chauffage . bois . type . bûches . prix stère 2024:
-  formule: prix stère 2017 * (indice prix bois / 100)
+logement . chauffage . bois . type . bûches . prix stère 2026:
+  formule: prix stère 2017 * indice prix bois
   unité: €/stère
   description: Il n'existe pas de prix récent pour la stère de bois. L'idée est de prendre en compte la hausse des tarifs via l'indice d'inflation.
 
 logement . chauffage . bois . indice prix bois:
-  formule: 131.2
+  formule: moyenne 2026 / moyenne 2017
   note: |
     Moyenne des "Indice prix" (Base 2021) sur le premier semestre 2024. On fait donc l'hypothèse d'un prix inchangé entre 2017 (notre année de référence) et 2021.
     Chiffre issu de l'INSEE, [Indice de prix de production de l'industrie française pour le marché français - Bois d'énergie - Prix de marché - Base 2021](https://www.insee.fr/fr/statistiques/serie/010763786)
+
+logement . chauffage . bois . indice prix bois . moyenne 2017:
+  formule: 76,16
+  note: |
+     Moyenne des Indice de prix (Base 2025) sur l'année 2017.
+     Chiffre issu de l'INSEE, [Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France métropolitaine - Nomenclature Coicop : 04.5.4.2 - Bois de chauffage, y compris granulés et briquettes (ND)](https://www.insee.fr/fr/statistiques/serie/011815863#Tableau)
+
+logement . chauffage . bois . indice prix bois . moyenne 2026:
+  formule: 102,78
+  note: |
+     Moyenne des Indice de prix (Base 2025) sur janvier-septembre 2026.
+     Chiffre issu de l'INSEE, [Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France métropolitaine - Nomenclature Coicop : 04.5.4.2 - Bois de chauffage, y compris granulés et briquettes (ND)](https://www.insee.fr/fr/statistiques/serie/011815863#Tableau)
 
 logement . chauffage . bois . type . granulés . prix kWh:
   formule:
@@ -23,7 +35,7 @@ logement . chauffage . bois . type . granulés . prix kWh:
 
 logement . chauffage . bois . type . granulés vrac:
 logement . chauffage . bois . type . granulés vrac . prix 100 kWh:
-  formule: 8.19315
+  formule: 8.3738
   unité: €
   note: |
     Source : données issue de l'Excel `1.4.-Prix-menages-Bois.2024-09` (variable PX_BOIS_GRANVRAC_100KWH), moyenne S1 2024.
@@ -31,7 +43,7 @@ logement . chauffage . bois . type . granulés vrac . prix 100 kWh:
 
 logement . chauffage . bois . type . granulés sac:
 logement . chauffage . bois . type . granulés sac . prix 100 kWh:
-  formule: 8.0105
+  formule: 8.1838
   unité: €
   note: |
     Source : données issue de l'Excel `1.4.-Prix-menages-Bois.2024-09` (variable PX_BOIS_GRANSACS_100KWH), moyenne S1 2024.
