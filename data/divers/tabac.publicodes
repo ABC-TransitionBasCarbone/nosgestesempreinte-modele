@@ -4,8 +4,10 @@ divers . tabac:
     Le tabac est responsable d'un impact important sur le climat. Mais bien sûr, ce n'est pas l'unique problème dont il est responsable ! Selon l'[OMS](https://www.who.int/fr/news/item/31-05-2022-who-raises-alarm-on-tobacco-industry-environmental-impact) :
 
     > "Chaque année, l’industrie du tabac est responsable de plus de 8 millions de décès, de la destruction de 600 millions d’arbres, 200 000 hectares de terres, de la perte de 22 milliards de tonnes d’eau et de l’émission de 84 millions de tonnes de CO2."
-  formule: consommation * empreinte cigarette
+#  formule: consommation * empreinte cigarette
+  formule: 12
   unité: kgCO2e
+  note: moyenne issue de l'enquête nationale en filtrant sur les habitants de Paris
 
 divers . empreinte cigarette:
   formule: 0.014

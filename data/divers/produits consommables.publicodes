@@ -1,6 +1,7 @@
 divers . produits consommables:
   icônes: 🧴
-  formule: empreinte par mois * commun . mois par an
+  formule: 20
+#  formule: empreinte par mois * commun . mois par an
   description: |
     L'objectif ici est de sortir de la question "dépenses" les produits consommables, qui ne sont donc pas amortis,
     au même titre que les achats "long terme" comme un instrument de musique. 
@@ -9,6 +10,8 @@ divers . produits consommables:
     En revanche, la difficulté de ce sujet réside dans la question posée à l'utilisateur : qui est en mesure de répondre facilement
     sur sa consommation en poids, volume ou € ? L'objectif ici est de faciliter la réponse en définissant différent niveaux de consommation
     basé sur une quantité consommée (les FE étant définis en kgCO2e/kg de produit).
+  unité: kgCO2e
+  note: moyenne issue de l'enquête nationale en filtrant sur les habitants de Paris
 
 divers . produits consommables . empreinte par mois:
   titre: Empreinte des produits consommables sur un mois

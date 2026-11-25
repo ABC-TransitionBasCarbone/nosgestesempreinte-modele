@@ -31,11 +31,14 @@ divers . loisirs . culture:
   titre: Pratiques culturelles
   description: |
     Nous entendons par "pratique culturelle" le fait d'aller au théâtre, à l'opéra ou au cinéma, d'assister à des spectacles de rue, de pratiquer d'un instrument ou de visiter un musée.
-  formule:
-    variations:
-      - si: choix utilisateur
-        alors: empreinte totale
-      - sinon: empreinte par défaut
+  formule: 25.5
+  unité: kgCO2e
+#  formule:
+#    variations:
+#      - si: choix utilisateur
+#        alors: empreinte totale
+#      - sinon: empreinte par défaut
+  note: moyenne issue de l'enquête nationale en filtrant sur les habitants de Paris
 
 divers . loisirs . culture . empreinte totale:
   formule:
@@ -394,17 +397,20 @@ divers . loisirs . sports:
         autres sports . présent: non
   question: Quel(s) sport(s) pratiquez-vous régulièrement ?
   titre: Pratiques sportives
-  formule:
-    variations:
-      - si: choix utilisateur
-        alors: empreinte sportif
-      - sinon: empreinte par défaut
-  note: |
-    La notion de régularité est volontairement imprécise, car elle dépend des sports pratiqués ainsi que du niveau du sportif. 
-
-    Ainsi, on pourra estimer que faire de la voile une fois par mois est une pratique régulière, alors que faire un footing par mois est une pratique anecdotique.
-
-    Également, un sportif "engagé" considérera qu'une pratique régulière implique plusieurs entraînements par semaine, quand un sportif plus amateur placera peut-être la barre un peu plus bas.
+  formule: 31
+  unité: kgCO2e
+  note: moyenne issue de l'enquête nationale en filtrant sur les habitants de Paris
+#  formule:
+#    variations:
+#      - si: choix utilisateur
+#        alors: empreinte sportif
+#      - sinon: empreinte par défaut
+#  note: |
+#    La notion de régularité est volontairement imprécise, car elle dépend des sports pratiqués ainsi que du niveau du sportif. 
+#
+#    Ainsi, on pourra estimer que faire de la voile une fois par mois est une pratique régulière, alors que faire un footing par mois est une pratique anecdotique.
+#
+#    Également, un sportif "engagé" considérera qu'une pratique régulière implique plusieurs entraînements par semaine, quand un sportif plus amateur placera peut-être la barre un peu plus bas.
 
 divers . loisirs . sports . empreinte sportif:
   titre: Empreinte des loisirs sportifs

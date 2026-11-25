@@ -45,8 +45,10 @@ divers . autres produits:
     d'un euro dépensé pour un achat n'est pas du tout représentative de l'empreinte réelle du produit. Par exemple, il n'est pas du tout évident 
     qu'un livre qui coûte plus cher ait une plus grosse empreinte. De même, un ensemble de draps en lin pourrait très bien avoir une empreinte 5 fois 
     plus faible qu'un ensemble en coton (la culture du lin demande très peu de ressources), et pourtant ce dernier est susceptible de coûter jusqu'à 10 fois plus cher.
-  formule: facteur correctif * autres produits macro
+#  formule: facteur correctif * autres produits macro
+  formule: 125
   unité: kgCO2e
+  note: moyenne issue de l'enquête nationale en filtrant sur les habitants de Paris
 
 divers . autres produits . facteur correctif:
   formule:

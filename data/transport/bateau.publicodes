@@ -495,9 +495,9 @@ transport . bateau . location bateau:
   titre: Je ne possédais pas mais j'ai loué un bateau
   icônes: 🛥️🤝
   applicable si: propriétaire
-  formule: 100
-  # Valeur moyenne à venir
+  formule: 7
   unité: kgCO2e
+  note: moyenne issue de l'enquête nationale en filtrant sur les répondants ayant dit avoir loué un bateau
 
 transport . bateau . location bateau . propriétaire:
   question: Avez-vous loué vous un bateau en 2023 ?
