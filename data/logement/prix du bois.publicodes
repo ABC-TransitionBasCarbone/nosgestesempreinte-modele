@@ -15,13 +15,13 @@ logement . chauffage . bois . indice prix bois:
     Chiffre issu de l'INSEE, [Indice de prix de production de l'industrie française pour le marché français - Bois d'énergie - Prix de marché - Base 2021](https://www.insee.fr/fr/statistiques/serie/010763786)
 
 logement . chauffage . bois . indice prix bois . moyenne 2017:
-  formule: 76,16
+  formule: 76.16
   note: |
      Moyenne des Indice de prix (Base 2025) sur l'année 2017.
      Chiffre issu de l'INSEE, [Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France métropolitaine - Nomenclature Coicop : 04.5.4.2 - Bois de chauffage, y compris granulés et briquettes (ND)](https://www.insee.fr/fr/statistiques/serie/011815863#Tableau)
 
 logement . chauffage . bois . indice prix bois . moyenne 2026:
-  formule: 102,78
+  formule: 102.78
   note: |
      Moyenne des Indice de prix (Base 2025) sur janvier-septembre 2026.
      Chiffre issu de l'INSEE, [Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France métropolitaine - Nomenclature Coicop : 04.5.4.2 - Bois de chauffage, y compris granulés et briquettes (ND)](https://www.insee.fr/fr/statistiques/serie/011815863#Tableau)

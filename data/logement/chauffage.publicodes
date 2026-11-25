@@ -657,7 +657,7 @@ logement . chauffage . bois . type . bûches . consommation estimée via le coû
   unité: €/mois
 
 logement . chauffage . bois . type . bûches . consommation estimée via le coût . facteur:
-  formule: prix stère 2024
+  formule: prix stère 2026
   unité: €/stère
   note: |
     Cette formule nous permet de passer des €/mois au nombre de stères par an.

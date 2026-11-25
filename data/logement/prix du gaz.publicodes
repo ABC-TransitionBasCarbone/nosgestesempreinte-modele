@@ -63,10 +63,10 @@ logement . chauffage . gaz . prix . abonnement: 219.45 €
 logement . chauffage . gaz . prix . abonnement avec TVA: abonnement * 1.2
 
 logement . chauffage . gaz . prix . abonnement ATRD fixe:
-  formule: 186,12
+  formule: 186.12
   description: |
     Partie fixe du tarif d’acheminement appliqué par les gestionnaires des réseaux de distribution gaz naturel pour calcul de la CTA, [source 2024](https://opera-energie.com/atrd-tarif-distribution-gaz-naturel/).
     L'option tarifaire B1 (côté client) que nous considérons correspond à l'option tarifaire T2 (côté fournisseur)
 
-logement . chauffage . gaz . prix . CTA: (abonnement ATRD fixe * 0.208) + (abonnement ATRD fixe * 0,8321 * 0,0471)
+logement . chauffage . gaz . prix . CTA: (abonnement ATRD fixe * 0.208) + (abonnement ATRD fixe * 0.8321 * 0.0471)
 logement . chauffage . gaz . prix . CTA avec TVA: CTA * 1.2
