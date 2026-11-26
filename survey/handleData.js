@@ -27,7 +27,7 @@ for (let i = 2; i <= numberOfRow; i ++) {
                 aideSaisie[header] = value;
             } else if (value === true || value === false || ['true', 'false', 'oui', 'non'].includes(normalizedValue)) {
                 situation[rule] = (value === true || normalizedValue === 'true' || normalizedValue === 'oui') ? "oui" : "non";
-            } else if (normalizedValue !== 'je ne sais pas') {
+            } else if (normalizedValue !== 'je ne sais pas' && normalizedValue !== 'nsp' && normalizedValue !== 'jnsp') {
                 if (typeof value === 'string') {
                     const possibilities = rules[rule]?.formule?.['une possibilité']?.['possibilités'];
                     const canonicalValue = possibilities?.find((possibility) => normalize(possibility) === normalizedValue) ?? value;
@@ -45,11 +45,13 @@ for (let i = 2; i <= numberOfRow; i ++) {
     for (let ruleIndex = 2; ruleIndex <= headerRow.length; ruleIndex ++) {
         const header = normalize(headerRow[ruleIndex]);
         const rule = ruleNames.get(header) ?? header;
+
         if (header && header.includes("aide saisie")) {
             computeRow.push(aideSaisie[header]);
         } else if (rule) {
-            const nodeValue = engine.evaluate(rule).nodeValue;
-            if (nodeValue) {
+            const evaluation = engine.evaluate(rule)
+            const nodeValue = evaluation.nodeValue;
+            if (nodeValue || nodeValue === 0) {
                 computeRow.push(engine.evaluate(rule).nodeValue);
             } else if (situation[rule] === 'non') {
                 computeRow.push('FAUX');
