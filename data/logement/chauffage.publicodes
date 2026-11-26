@@ -527,7 +527,7 @@ logement . chauffage . fioul kWh au litre:
     Après conversion on trouve un facteur de pour passer des kWh au litre de fioul.
 
 logement . chauffage . intensité carbone fioul litre:
-  formule: 3.25
+  formule: 3.24
   unité: kgCO2e/l
   note: Facteur d'émission issu de la Base Carbone (Fioul domestique France continental).
 
@@ -746,9 +746,8 @@ logement . chauffage . réseau de chaleur . consommation estimée via le coût .
 
 logement . chauffage . réseau de chaleur . intensité carbone:
   titre: Empreinte carbone réseau de chaleur
-  formule: 0.171
+  formule: 0.18
   unité: kgCO2e/kWh
   note: |
-    Facteur d'émission issu des données du réseau de chaleur urbain publié par [France Chaleur Urbaine](https://france-chaleur-urbaine.beta.gouv.fr/reseaux/7501C)
-    On considère le contenu carbone en ACV qui est plus complet que le contenu carbone en émisssions directes car le contenu ACV inclue les phases 
-    d'extraction et transport des combustibles. Plus d'infos sur ce [rapport](file:///C:/Users/conta/Downloads/RCT55_Contenu_carbone_RCF.pdf), voir page 2
+    Réseau de chaleur/75 PARIS PARIS ET COMMUNES LIMITROPHES - 7501C/Moyenne 2021 à 2023
+    https://base-empreinte.ademe.fr/donnees/jeu-donnees/7e7dbad6-86d0-305b-b934-476f93f4a93f/0/false/null
