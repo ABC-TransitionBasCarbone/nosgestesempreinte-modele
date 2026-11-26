@@ -27,7 +27,7 @@ for (let i = 2; i <= numberOfRow; i ++) {
                 aideSaisie[header] = value;
             } else if (value === true || value === false || ['true', 'false', 'oui', 'non'].includes(normalizedValue)) {
                 situation[rule] = (value === true || normalizedValue === 'true' || normalizedValue === 'oui') ? "oui" : "non";
-            } else if (normalizedValue !== 'je ne sais pas' && normalizedValue !== 'nsp' && normalizedValue !== 'jnsp') {
+            } else if (normalizedValue !== 'je ne sais pas' && normalizedValue !== 'Nsp' && normalizedValue !== 'nsp' && normalizedValue !== 'jnsp') {
                 if (typeof value === 'string') {
                     const possibilities = rules[rule]?.formule?.['une possibilité']?.['possibilités'];
                     const canonicalValue = possibilities?.find((possibility) => normalize(possibility) === normalizedValue) ?? value;
