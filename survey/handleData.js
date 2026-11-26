@@ -26,7 +26,7 @@ for (let i = 2; i <= numberOfRow; i ++) {
             if (header.includes('aide saisie')) {
                 aideSaisie[header] = value;
             } else if (value === true || value === false || ['true', 'false', 'oui', 'non', 'faux', 'vrai'].includes(normalizedValue)) {
-                situation[rule] = [true, 'true', 'oui', 'vrai'].includes(value) ? "oui" : "non";
+                situation[rule] = [true, 'true', 'oui', 'vrai'].includes(normalizedValue) ? "oui" : "non";
             } else if (normalizedValue !== 'je ne sais pas' && normalizedValue !== 'Nsp' && normalizedValue !== 'nsp' && normalizedValue !== 'jnsp') {
                 if (typeof value === 'string') {
                     const possibilities = rules[rule]?.formule?.['une possibilité']?.['possibilités'];
