@@ -20,6 +20,7 @@ for (let i = 2; i <= numberOfRow; i ++) {
         if (headerInput[headerIndex] !== undefined && currentRow[headerIndex] !== "" && currentRow[headerIndex] !== undefined) {
             const header = normalize(headerInput[headerIndex]);
             const rule = ruleNames.get(header) ?? header;
+
             const value = currentRow[headerIndex];
             const normalizedValue = typeof value === 'string' ? normalize(value) : value;
 
@@ -40,12 +41,12 @@ for (let i = 2; i <= numberOfRow; i ++) {
     }
 
     engine.setSituation(situation);
+    console.log(situation)
     const computeRow = [currentRow[1]];
 
     for (let ruleIndex = 2; ruleIndex <= headerRow.length; ruleIndex ++) {
         const header = normalize(headerRow[ruleIndex]);
         const rule = ruleNames.get(header) ?? header;
-
         if (header && header.includes("aide saisie")) {
             computeRow.push(aideSaisie[header]);
         } else if (rule) {
