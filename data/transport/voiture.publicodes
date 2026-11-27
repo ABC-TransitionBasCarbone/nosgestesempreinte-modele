@@ -127,7 +127,7 @@ transport . voiture . voyageurs:
 #      s'il vous arrive de faire du covoiturage. Si vous ne la prenez qu'en famille ou entre amis, le nombre de passsager moyen tend probablement plus vers 3 ou 4.
 #
 #      Bien sûr, si vous vous faites conduire (via un chauffeur) ou si vous prenez le taxi, le chauffeur ne compte pas, car il est au service de votre déplacement.
-  plancher: 1
+#  plancher: 1 #On commente plancher pour éviter que le script de recalcul renvoie 1 alors que les répondants on dit "Aucun km" et qu'on impute 0 voyageurs en input
 #  avertissement: |
 #    Le nombre de voyageurs ne peut pas être nul. Au volant de votre voiture, vous en êtes le premier voyageur.
   par défaut: 1.2

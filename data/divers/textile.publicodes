@@ -3,7 +3,7 @@ divers . textile:
   formule:
     somme:
       - habits
-      - déforestation
+#      - déforestation #Même si dans bilan la variable déforestation est à 'non', je commente également
   unité: kgCO2e
 
 divers . textile . habits:

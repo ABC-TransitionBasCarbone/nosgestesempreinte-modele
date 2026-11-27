@@ -33,12 +33,12 @@ logement . extérieur . choix utilisateur:
   titre: Choix utilisateur pour le jardin
   formule:
     une de ces conditions:
-      - salon de jardin bois . nombre > 0
-      - salon de jardin résine ou métal . nombre > 0
-      - tondeuse électrique ou robot . nombre > 0
-      - tondeuse thermique . nombre > 0
-      - barbecue électrique ou gaz . nombre > 0
-      - barbecue charbon . nombre > 0
+      - salon de jardin bois . nombre >= 0
+      - salon de jardin résine ou métal . nombre >= 0
+      - tondeuse électrique ou robot . nombre >= 0
+      - tondeuse thermique . nombre >= 0
+      - barbecue électrique ou gaz . nombre >= 0
+      - barbecue charbon . nombre >= 0
 
 logement . extérieur . empreinte totale:
   formule:
@@ -71,6 +71,7 @@ logement . extérieur . salon de jardin bois . nombre:
   question: Combien de salon de jardin en bois possédez-vous ?
   plancher: 0
   par défaut: 0
+  note: On considère 0 car la moyenne de possession sur l'échantillon parisien (poids pris en compte) est quasi égale à 0 (0.068)
 
 logement . extérieur . empreinte calculée salon de jardin bois:
   applicable si: salon de jardin bois . nombre > 0
@@ -105,6 +106,7 @@ logement . extérieur . salon de jardin résine ou métal . nombre:
   question: Combien de salon de jardin en résine ou métal possédez-vous ?
   plancher: 0
   par défaut: 0
+  note: On considère 0 car la moyenne de possession sur l'échantillon parisien (poids pris en compte) est quasi égale à 0 (0.074)
 
 logement . extérieur . empreinte calculée salon de jardin résine ou métal:
   applicable si: salon de jardin résine ou métal . nombre > 0
@@ -151,6 +153,7 @@ logement . extérieur . tondeuse électrique ou robot . nombre:
   question: Combien de tondeuse électrique ou robot possédez-vous ?
   plancher: 0
   par défaut: 0
+  note: On considère 0 car la moyenne de possession sur l'échantillon parisien (poids pris en compte) est quasi égale à 0 (0.048)
 
 logement . extérieur . empreinte calculée tondeuse électrique ou robot:
   applicable si: tondeuse électrique ou robot . nombre > 0
@@ -200,6 +203,7 @@ logement . extérieur . tondeuse thermique . nombre:
   question: Combien de tondeuse thermique possédez-vous ?
   plancher: 0
   par défaut: 0
+  note: On considère 0 car la moyenne de possession sur l'échantillon parisien (poids pris en compte) est quasi égale à 0 (0.027)
 
 logement . extérieur . empreinte calculée tondeuse thermique:
   applicable si: tondeuse thermique . nombre > 0
@@ -260,6 +264,7 @@ logement . extérieur . barbecue électrique ou gaz . nombre:
   question: Combien de barbecue électrique ou gaz possédez-vous ?
   plancher: 0
   par défaut: 0
+  note: On considère 0 car la moyenne de possession sur l'échantillon parisien (poids pris en compte) est quasi égale à 0 (0.08)
 
 logement . extérieur . empreinte calculée barbecue électrique ou gaz:
 # Nous ne considérons pas d'empreinte d'utilisation car que ce soit pour le gaz ou l'élec on demande à l'utilisateur de renseigner ses consommation dans la partie énergie
@@ -303,6 +308,7 @@ logement . extérieur . barbecue charbon . nombre:
   question: Combien de barbecue charbon possédez-vous ?
   plancher: 0
   par défaut: 0
+  note: On considère 0 car la moyenne de possession sur l'échantillon parisien (poids pris en compte) est quasi égale à 0 (0.055)
 
 logement . extérieur . empreinte calculée barbecue charbon:
   applicable si: barbecue charbon . nombre > 0

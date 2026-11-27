@@ -11,8 +11,8 @@ divers . ameublement:
   formule: 
     somme:
       - meubles / logement . habitants
-      - meubles . mosaic
-      - déforestation / logement . habitants
+#      - meubles . mosaic
+#      - déforestation / logement . habitants #Même si dans bilan la variable déforestation est à 'non', je commente également
   unité: kgCO2e
 
 divers . ameublement . meubles:

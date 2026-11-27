@@ -49,6 +49,7 @@ transport . deux roues . type:
   applicable si: usager
   question: Quel type de deux-roues utilisiez-vous en 2023 ?
 #  par défaut: "'moto sup 250'"
+  par défaut: "'moto sup 250'" #On décommente par défaut et on impute scooter thermique (majoritaire dans la typologie 2 roues dans l'échantillon mais de peu)
   formule:
     une possibilité:
       choix obligatoire: oui

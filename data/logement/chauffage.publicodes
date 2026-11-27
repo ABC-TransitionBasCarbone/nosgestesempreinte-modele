@@ -105,7 +105,7 @@ logement . chauffage . gaz . empreinte:
     toutes ces conditions:
       - est défini: gaz . présent
       - gaz . présent
-  formule: consommation * gaz . intensité carbone gaz utilisateur
+  formule: consommation choisie * gaz . intensité carbone gaz utilisateur
   unité: kgCO2e
 
 logement . chauffage . gaz . présent:
@@ -114,6 +114,20 @@ logement . chauffage . gaz . présent:
     Bien que le chauffage majoritaire en France soit électrique [source](https://fr.statista.com/statistiques/856283/types-chauffage-logement-principal-france), nous mettons ici la valeur par défaut à oui pour se rapprocher de la moyenne d'empreinte du logement.
 
     On touche aux limites actuelles de ce système de situation par défaut.
+
+logement . chauffage . gaz . consommation choisie:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - est défini: gaz . consommation estimée via le coût . saisie
+            - gaz . consommation estimée via le coût . saisie > 0
+        alors: gaz . consommation estimée via le coût
+      - sinon: gaz . consommation
+  unité: kWh
+  note: |
+    Vu qu'on a plus de site pour imputer l'aide à la saisie dans la variable consommation on utilise cette variable pour 
+    faire le choix de la conso à retenir : consommation (saisie utilisateur ou par défaut) OU aide à la saisie
 
 logement . chauffage . gaz . consommation:
   ordre: 1
@@ -284,11 +298,25 @@ logement . chauffage . bouteille gaz . empreinte:
     toutes ces conditions:
       - est défini: bouteille gaz . présent
       - bouteille gaz . présent
-  formule: empreinte bouteille * consommation
+  formule: empreinte bouteille * consommation choisie
   unité: kgCO2e
 
 logement . chauffage . bouteille gaz . présent:
   question: Utilisez-vous des bouteille de gaz ?
+
+logement . chauffage . bouteille gaz . consommation choisie:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - est défini: bouteille gaz . consommation estimée via le coût . saisie
+            - bouteille gaz . consommation estimée via le coût . saisie > 0
+        alors: bouteille gaz . consommation estimée via le coût
+      - sinon: bouteille gaz . consommation
+  unité: bouteille
+  note: |
+    Vu qu'on a plus de site pour imputer l'aide à la saisie dans la variable consommation on utilise cette variable pour 
+    faire le choix de la conso à retenir : consommation (saisie utilisateur ou par défaut) OU aide à la saisie
 
 logement . chauffage . bouteille gaz . consommation:
   ordre: 3
@@ -391,11 +419,25 @@ logement . chauffage . citerne propane . empreinte:
     toutes ces conditions:
       - est défini: citerne propane . présent
       - citerne propane . présent
-  formule: empreinte propane * consommation
+  formule: empreinte propane * consommation choisie
   unité: kgCO2e
 
 logement . chauffage . citerne propane . présent:
   question: Votre logement est-il chauffé via une citerne de propane ?
+
+logement . chauffage . citerne propane . consommation choisie:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - est défini: citerne propane . consommation estimée via le coût . saisie
+            - citerne propane . consommation estimée via le coût . saisie > 0
+        alors: citerne propane . consommation estimée via le coût
+      - sinon: citerne propane . consommation
+  unité: kg
+  note: |
+    Vu qu'on a plus de site pour imputer l'aide à la saisie dans la variable consommation on utilise cette variable pour 
+    faire le choix de la conso à retenir : consommation (saisie utilisateur ou par défaut) OU aide à la saisie
 
 logement . chauffage . citerne propane . consommation:
   ordre: 4
@@ -469,11 +511,25 @@ logement . chauffage . fioul . empreinte:
     toutes ces conditions:
       - est défini: fioul . présent
       - fioul . présent
-  formule: consommation * intensité carbone fioul litre
+  formule: consommation choisie * intensité carbone fioul litre
   unité: kgCO2e
 
 logement . chauffage . fioul . présent:
   question: Votre logement est-il chauffé au fioul ?
+
+logement . chauffage . fioul . consommation choisie:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - est défini: fioul . consommation estimée via le coût . saisie
+            - fioul . consommation estimée via le coût . saisie > 0
+        alors: fioul . consommation estimée via le coût
+      - sinon: fioul . consommation
+  unité: l
+  note: |
+    Vu qu'on a plus de site pour imputer l'aide à la saisie dans la variable consommation on utilise cette variable pour 
+    faire le choix de la conso à retenir : consommation (saisie utilisateur ou par défaut) OU aide à la saisie
 
 logement . chauffage . fioul . consommation:
   ordre: 5
@@ -545,9 +601,9 @@ logement . chauffage . bois . empreinte:
   formule:
     variations:
       - si: type = 'bûches'
-        alors: type . bûches . consommation * bois . type . bûches . intensité énergétique * facteur d'émission bûches
+        alors: type . bûches . consommation choisie * bois . type . bûches . intensité énergétique * facteur d'émission bûches
       - si: type = 'granulés'
-        alors: type . granulés . consommation * facteur d'émission granulés
+        alors: type . granulés . consommation choisie * facteur d'émission granulés
   unité: kgCO2e
 
 logement . chauffage . bois . présent:
@@ -571,6 +627,20 @@ logement . chauffage . bois . type . bûches:
   titre: Bûches
 logement . chauffage . bois . type . granulés:
   titre: Granulés
+
+logement . chauffage . bois . type . granulés . consommation choisie:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - est défini: chauffage . bois . type . granulés . consommation estimée via le coût . saisie
+            - chauffage . bois . type . granulés . consommation estimée via le coût . saisie > 0
+        alors: chauffage . bois . type . granulés . consommation estimée via le coût
+      - sinon: chauffage . bois . type . granulés . consommation
+  unité: kWh
+  note: |
+    Vu qu'on a plus de site pour imputer l'aide à la saisie dans la variable consommation on utilise cette variable pour 
+    faire le choix de la conso à retenir : consommation (saisie utilisateur ou par défaut) OU aide à la saisie
 
 logement . chauffage . bois . type . granulés . consommation:
   ordre: 8
@@ -620,6 +690,20 @@ logement . chauffage . bois . type . bûches . intensité énergétique:
   formule: 1610
   unité: kWh/stère
   note: Nous faisons l'hypothèse d'une consommation de bûches de 20% d'humidité, d'après l'[étude ADEME sur le chauffahe domestique au bois](https://librairie.ademe.fr/produire-autrement/872-etude-sur-le-chauffage-domestique-au-bois.html), page 10.
+
+logement . chauffage . bois . type . bûches . consommation choisie:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - est défini: chauffage . bois . type . bûches . consommation estimée via le coût . saisie
+            - chauffage . bois . type . bûches . consommation estimée via le coût . saisie > 0
+        alors: chauffage . bois . type . bûches . consommation estimée via le coût
+      - sinon: chauffage . bois . type . bûches . consommation
+  unité: stère
+  note: |
+    Vu qu'on a plus de site pour imputer l'aide à la saisie dans la variable consommation on utilise cette variable pour 
+    faire le choix de la conso à retenir : consommation (saisie utilisateur ou par défaut) OU aide à la saisie
 
 logement . chauffage . bois . type . bûches . consommation:
   ordre: 7
@@ -695,11 +779,25 @@ logement . chauffage . réseau de chaleur . empreinte:
     toutes ces conditions:
       - est défini: réseau de chaleur . présent
       - réseau de chaleur . présent
-  formule: consommation * intensité carbone
+  formule: consommation choisie * intensité carbone
   unité: kgCO2e
 
 logement . chauffage . réseau de chaleur . présent:
   question: Votre logement est-il chauffé via un réseau de chaleur ?
+
+logement . chauffage . réseau de chaleur . consommation choisie:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - est défini: réseau de chaleur . consommation estimée via le coût . saisie
+            - réseau de chaleur . consommation estimée via le coût . saisie > 0
+        alors: réseau de chaleur . consommation estimée via le coût
+      - sinon: réseau de chaleur . consommation
+  unité: kWh
+  note: |
+    Vu qu'on a plus de site pour imputer l'aide à la saisie dans la variable consommation on utilise cette variable pour 
+    faire le choix de la conso à retenir : consommation (saisie utilisateur ou par défaut) OU aide à la saisie
 
 logement . chauffage . réseau de chaleur . consommation:
   ordre: 2
@@ -746,7 +844,7 @@ logement . chauffage . réseau de chaleur . consommation estimée via le coût .
 
 logement . chauffage . réseau de chaleur . intensité carbone:
   titre: Empreinte carbone réseau de chaleur
-  formule: 0.18
+  formule: 0.171
   unité: kgCO2e/kWh
   note: |
     Réseau de chaleur/75 PARIS PARIS ET COMMUNES LIMITROPHES - 7501C/Moyenne 2021 à 2023

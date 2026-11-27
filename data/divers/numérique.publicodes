@@ -11,7 +11,7 @@ divers . numérique:
     somme:
       - internet
       - appareils
-      - appareils . mosaic
+#      - appareils . mosaic
       - ia
 
 divers . numérique . ia:
@@ -46,6 +46,7 @@ divers . numérique . internet:
   icônes: 🌐
   formule: empreinte horaire * durée journalière * commun . jours par an
   unité: kgCO2e
+
 divers . numérique . internet . consommation horaire:
   formule: 0.077
   unité: kWh/h

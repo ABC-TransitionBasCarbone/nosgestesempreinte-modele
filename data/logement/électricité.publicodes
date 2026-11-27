@@ -35,20 +35,38 @@ logement . électricité . intensité carbone équivalente:
 #l'intensite carbone équivalente n'est pas encore calculée
 
 logement . électricité . consommation totale:
-  formule:
-    somme:
-      # - photovoltaique . autoconsommation
-      - réseau . consommation
+  formule: réseau . consommation choisie
+#    somme:
+#      - photovoltaique . autoconsommation
+#      - réseau . consommation choisie
 
 logement . électricité . réseau:
   titre: Électricité du réseau
   icônes: ⚡
+
+logement . électricité . réseau . consommation choisie:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - est défini: consommation estimée via le coût . saisie
+            - consommation estimée via le coût . saisie > 0
+        alors: consommation estimée via le coût
+      - sinon: consommation
+  note: |
+    Vu qu'on a plus de site pour imputer l'aide à la saisie dans la variable consommation on utilise cette variable pour 
+    faire le choix de la conso à retenir : consommation (saisie utilisateur ou par défaut) OU aide à la saisie
 
 logement . électricité . réseau . consommation:
   question: En 2023, quelle a été la consommation annuelle d'électricité (de réseau) de votre logement principal ?
   aide: logement . électricité . réseau . consommation estimée via le coût . saisie
   plancher: 0
   unité: kWh
+#  formule:
+#    variations:
+#      - si: consommation estimée via le coût . saisie > 0
+#        alors: consommation estimée via le coût
+#      - sinon: consommation par défaut
   par défaut: consommation par défaut
   note: on considère que seule la consommation d'électricité liée au chauffage est dépendante de la surface du logement
   description: |

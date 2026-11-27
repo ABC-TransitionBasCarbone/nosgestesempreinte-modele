@@ -5,7 +5,7 @@ alimentation . repas:
       - petit déjeuner annuel
       - déjeuner et dîner
       - bonus
-      - déforestation
+#      - déforestation #Même si dans bilan la variable déforestation est à 'non', je commente également
   note: |
     Comme pour le textile et l'ameublement, est ajoutée ici une part de l'empreinte liée à la déforestation importée.
 
@@ -194,7 +194,7 @@ alimentation . plats . viande rouge . empreinte:
   formule: 
     somme:
       - 5.19
-      - déforestation
+#      - déforestation #Même si dans bilan la variable déforestation est à 'non', je commente également
   unité: kgCO2e/repas
   note: |
     Repas contenant 150g d'une viande rouge moyenne (issue d'un travail de consolidation sur les consommations moyennes de viande rouge de l'étude INCA3), un accompagnement moyen (consolidation sur les moyennes de consommation pour les légumes, légumineuses, riz, céréales et pâtes), huile.
