@@ -103,19 +103,15 @@ transport . voiture . empreinte moyenne:
   valeur: voiture . empreinte calculée
   contexte:
     voiture . utilisateur: "'régulier non propriétaire'"
-    voiture . gabarit: "'berline'"
-    voiture . motorisation: "'thermique'"
-    voiture . thermique . carburant: "'essence E5 ou E10'"
-    voiture . thermique . consommation aux 100:
-      valeur: voiture . thermique . consommation estimée
-      contexte:
-        voiture . utilisateur: "'régulier non propriétaire'"
-        voiture . gabarit: "'berline'"
-        voiture . motorisation: "'thermique'"
-        voiture . thermique . carburant: "'essence E5 ou E10'"
+    voiture . km:  1000
+    voiture . voyageurs: 3
+    voiture . gabarit: "'moyenne'"
+    voiture . motorisation: "'hybride'"
+    voiture . thermique . carburant: "'GPL'"
+    voiture . thermique . consommation aux 100: 5
 
 transport . voiture . empreinte calculée:
-  formule: ((usage + construction) / voyageurs) + (0.001 * voiture . âge)
+  formule: ((usage + construction) / voyageurs)
   unité: kgCO2e
 
 transport . voiture . voyageurs:
@@ -218,7 +214,9 @@ transport . voiture . thermique . consommation aux 100:
       - une de ces conditions:
           - utilisateur = 'propriétaire'
           - utilisateur = 'régulier non propriétaire'
-      - motorisation = 'thermique'
+      - une de ces conditions:
+          - motorisation = 'thermique'
+          - motorisation = 'hybride' #Hack qui ne contrevient pas au fait que l'empreinte au km hybride se calque sur l'empreinte au km thermique mais qui permet à l'utilisateur hybride de renseigner sa conso
   description: |
     Si vous avez répondu "Oui mais ce n'est pas la mienne" précédemment mais qu'il vous est arrivé d'utiliser plusieurs voitures (car vous n'en possédez pas une), renseignez une consommation la représentative des véhicules utilisés.
 #  suggestions:
@@ -403,7 +401,9 @@ transport . voiture . thermique . carburant:
       - une de ces conditions:
           - utilisateur = 'propriétaire'
           - utilisateur = 'régulier non propriétaire'
-      - motorisation = 'thermique'
+      - une de ces conditions:
+          - motorisation = 'thermique'
+          - motorisation = 'hybride' #Hack qui ne contrevient pas au fait que la conso par défaut se calque sur la conso thermique mais qui évite pour les hybride un forçage à essence E5 ou E10
   par défaut: "'essence E5 ou E10'"
   formule:
     une possibilité:
